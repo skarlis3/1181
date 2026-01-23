@@ -1,0 +1,60 @@
+/* ==================== Meme Grid ==================== */
+.meme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.5em 0 2.5em;
+  justify-items: center;
+}
+
+.meme-grid img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: var(--bg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.meme-grid img:hover,
+.meme-grid img:focus {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  outline: none;
+}
+
+@media (max-width: 600px) {
+  .meme-grid {
+    gap: 0.75rem;
+  }
+}
+
+/* ==================== Meme Zoom Overlay ==================== */
+.meme-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.meme-overlay.active {
+  display: flex;
+}
+
+.meme-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  background: var(--bg);
+  transition: transform 0.2s ease-in-out;
+}
+
+.meme-overlay img:focus {
+  outline: 2px solid var(--accent);
+}
+
