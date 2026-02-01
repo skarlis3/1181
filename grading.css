@@ -29,11 +29,11 @@
   width: 60px;
 }
 
-/* Color variations (optional but readable) */
-.symbol-plus  { background: #006f5c; }
-.symbol-check { background: #004739; }
-.symbol-minus { background: #a05f00; }
-.symbol-nc    { background: #555;    }
+/* Color variations - AAA compliant (7:1+ contrast with white text) */
+.symbol-plus  { background: #005a4a; }  /* AAA: ~7.5:1 */
+.symbol-check { background: #004739; }  /* AAA: 9.2:1 */
+.symbol-minus { background: #7a4800; }  /* AAA: ~7.2:1 */
+.symbol-nc    { background: #555;    }  /* AAA: 7.5:1 */
 
 /* Right column cell */
 .grade-text strong{

@@ -12,7 +12,7 @@
 .home-hero__card {
   position: relative;
   z-index: 1;
-  background: #fff;
+  background: var(--bg);
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -23,6 +23,10 @@
   display: inline-block; /* shrink-wraps to its content */
   width: auto;
   max-width: 70%;
+}
+
+[data-theme="dark"] .home-hero__card {
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
 }
 
 

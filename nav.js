@@ -305,6 +305,10 @@
 
       // -------------------- Injection --------------------
       if (!document.querySelector(".topnav")) document.body.insertAdjacentHTML("afterbegin", renderTopNav());
+      // Skip link for accessibility (WCAG 2.4.1) - inserted after topnav so it appears first in DOM
+      if (!document.querySelector(".skip-link")) {
+        document.body.insertAdjacentHTML("afterbegin", '<a href="#page-content" class="skip-link">Skip to main content</a>');
+      }
       if (!document.querySelector(".bottomnav")) document.body.insertAdjacentHTML("beforeend", renderBottomNav());
 
       let layout = document.querySelector(".layout");
@@ -428,6 +432,78 @@
 
       if (document.body.classList.contains("sidenav-show-all"))
         document.body.classList.add("sidenav-force-open");
+
+      // -------------------- Dark Mode Toggle --------------------
+      (function initThemeToggle() {
+        const STORAGE_KEY = 'theme-preference';
+
+        // Get user's preference: localStorage > system preference > light
+        const getPreference = () => {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) return stored;
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        };
+
+        // Apply theme to document
+        const applyTheme = (theme) => {
+          document.documentElement.setAttribute('data-theme', theme);
+        };
+
+        // Save preference
+        const savePreference = (theme) => {
+          localStorage.setItem(STORAGE_KEY, theme);
+        };
+
+        // Create toggle button
+        const createToggleButton = () => {
+          if (document.querySelector('.theme-toggle')) return;
+
+          const btn = document.createElement('button');
+          btn.className = 'theme-toggle';
+          btn.setAttribute('aria-label', 'Toggle dark mode');
+          btn.setAttribute('title', 'Toggle dark mode');
+          btn.innerHTML = `
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          `;
+
+          btn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme') || 'light';
+            const next = current === 'dark' ? 'light' : 'dark';
+            applyTheme(next);
+            savePreference(next);
+            btn.setAttribute('aria-label', `Switch to ${next === 'dark' ? 'light' : 'dark'} mode`);
+          });
+
+          document.body.appendChild(btn);
+        };
+
+        // Listen for system preference changes (only if no stored preference)
+        const watchSystemPreference = () => {
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem(STORAGE_KEY)) {
+              applyTheme(e.matches ? 'dark' : 'light');
+            }
+          });
+        };
+
+        // Initialize
+        applyTheme(getPreference());
+        createToggleButton();
+        watchSystemPreference();
+      })();
 
     } catch (err) {
       console.error("nav.js initialization error:", err);
