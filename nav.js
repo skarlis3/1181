@@ -5,6 +5,28 @@
   if (window.__NAV_INITED__) return;
   window.__NAV_INITED__ = true;
 
+  // -------------------- Theme Management (runs immediately) --------------------
+  const THEME_KEY = 'theme-preference';
+  const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+  const getStoredTheme = () => localStorage.getItem(THEME_KEY);
+  const getSystemTheme = () => darkModeQuery.matches ? 'dark' : 'light';
+
+  // Apply saved theme immediately to prevent flash
+  const savedTheme = getStoredTheme();
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  } else {
+    document.documentElement.setAttribute('data-theme', getSystemTheme());
+  }
+
+  // Listen for system theme changes (only if user hasn't set a preference)
+  darkModeQuery.addEventListener('change', () => {
+    if (!getStoredTheme()) {
+      document.documentElement.setAttribute('data-theme', getSystemTheme());
+    }
+  });
+
   document.addEventListener("DOMContentLoaded", () => {
     try {
       // -------------------- Data --------------------
@@ -199,7 +221,11 @@
         if (isCurrent(href)) return true;
         const cur = new URL(location.href).pathname.toLowerCase().replace(/\/+$/, "");
         const dir = sectionDir(href);
-        return dir === "/" ? cur.endsWith("/index.html") || cur === "/" : cur.startsWith(dir);
+        // Home should only be active on the actual home page, not subfolders
+        if (dir === "/") {
+          return cur === "/" || cur === "" || cur === "/index.html" || cur === "/index";
+        }
+        return cur.startsWith(dir);
       };
 
       const menuTitleFor = (label) => {
@@ -462,6 +488,7 @@
           btn.className = 'theme-toggle';
           btn.setAttribute('aria-label', 'Toggle dark mode');
           btn.setAttribute('title', 'Toggle dark mode');
+          btn.style.cssText = 'position:fixed !important; bottom:1.5rem; right:1.5rem; z-index:99999 !important; width:48px; height:48px; border-radius:50%; border:2px solid var(--bright, #5ee0b3); background:var(--bg, #fff); color:var(--text, #333); cursor:pointer; display:flex !important; align-items:center; justify-content:center; box-shadow:0 2px 10px rgba(0,0,0,.3);';
           btn.innerHTML = `
             <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -507,6 +534,72 @@
 
     } catch (err) {
       console.error("nav.js initialization error:", err);
+    }
+
+    // Fallback toggle creation in case main code failed
+    if (!document.querySelector('.theme-toggle')) {
+      const btn = document.createElement('button');
+      btn.className = 'theme-toggle';
+      btn.setAttribute('aria-label', 'Toggle dark mode');
+      btn.setAttribute('title', 'Toggle dark mode');
+      btn.style.cssText = 'position:fixed !important; bottom:1.5rem; right:1.5rem; z-index:99999 !important; width:48px; height:48px; border-radius:50%; border:2px solid var(--bright, #5ee0b3); background:var(--bg, #fff); color:var(--text, #333); cursor:pointer; display:flex !important; align-items:center; justify-content:center; box-shadow:0 2px 10px rgba(0,0,0,.3);';
+      btn.innerHTML = `
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      `;
+      btn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme-preference', next);
+      });
+      document.body.appendChild(btn);
+    }
+  });
+
+  // Additional fallback on window load
+  window.addEventListener('load', () => {
+    if (!document.querySelector('.theme-toggle')) {
+      const btn = document.createElement('button');
+      btn.className = 'theme-toggle';
+      btn.setAttribute('aria-label', 'Toggle dark mode');
+      btn.setAttribute('title', 'Toggle dark mode');
+      btn.style.cssText = 'position:fixed !important; bottom:1.5rem; right:1.5rem; z-index:99999 !important; width:48px; height:48px; border-radius:50%; border:2px solid var(--bright, #5ee0b3); background:var(--bg, #fff); color:var(--text, #333); cursor:pointer; display:flex !important; align-items:center; justify-content:center; box-shadow:0 2px 10px rgba(0,0,0,.3);';
+      btn.innerHTML = `
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      `;
+      btn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme-preference', next);
+      });
+      document.body.appendChild(btn);
     }
   });
 })();

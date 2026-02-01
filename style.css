@@ -302,12 +302,19 @@ label[for="topnav-toggle"],
 
 
 /* ==================== Examples & Tips Box  ======================== */
-  .tips-accent-box{
+.tips-accent-box{
   border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
   background: var(--accent-box-bg);
-  padding: .8rem 1.75rem .6rem;
-  margin: 1rem 0 1.25rem;
+  padding: 1rem 1.75rem .8rem;
+  margin: 1rem 0 1.75rem 0;
+  margin-left: 0;
   border-radius: 6px;
+}
+
+/* Dark mode tips box enhancement */
+[data-theme="dark"] .tips-accent-box {
+  border-left-color: var(--bright);
 }
 .tips-accent-box h2{
   margin-top: 0;
@@ -1027,21 +1034,21 @@ html {
 
 /* ==================== Dark Mode Toggle Button ==================== */
 .theme-toggle {
-  position: fixed;
+  position: fixed !important;
   bottom: 1.5rem;
   right: 1.5rem;
-  z-index: 2500;
+  z-index: 9999 !important;
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 2px solid var(--border);
-  background: var(--bg);
-  color: var(--text);
+  border: 2px solid var(--border, #e2e3e5);
+  background: var(--bg, #ffffff);
+  color: var(--text, #141414);
   cursor: pointer;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,.15);
+  box-shadow: 0 2px 10px rgba(0,0,0,.25);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -1073,10 +1080,11 @@ html {
   box-shadow: 0 2px 10px rgba(0,0,0,.4);
 }
 
-/* Mobile: position above bottom nav */
+/* Mobile: position in upper right to avoid bottom nav */
 @media (max-width: 740px) {
   .theme-toggle {
-    bottom: calc(var(--bottomnav-h, 78px) + env(safe-area-inset-bottom) + 1rem);
+    bottom: auto;
+    top: calc(var(--topnav-h, 56px) + 0.75rem);
     right: 1rem;
     width: 44px;
     height: 44px;
