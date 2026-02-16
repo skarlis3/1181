@@ -125,7 +125,7 @@
               },
             { 
               label: "In-Class Activities",       
-              href: "/resources/inclass/index.html",
+              href: "/resources/in-class/index.html",
               children: [
                 {label: "In-Class Activities",  href: "/resources/in-class/index.html"},
                 {label: "Team Names",           href: "/resources/in-class/team-names.html"},
@@ -159,7 +159,7 @@
           href: "/policies/index.html",
           children: [
             { label: "Class Information",
-              href: "/assignments/class-overview.html",
+              href: "/policies/class-overview.html",
               children: [
               { label: "Class Overview",            href: "/policies/class-overview.html" },
               { label: "Office Hours",              href: "/policies/office-hours.html" },
