@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(ls:*)",
+      "Bash(git -C /home/skarlis/Websites_work/1181 status)",
+      "Bash(git -C /home/skarlis/Websites_work/1181 add assignments/conferences.html assignments/reflection.html)",
+      "Bash(git -C /home/skarlis/Websites_work/1181 commit -m \"$\\(cat <<''EOF''\nAdd conferences and reflection assignment pages\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /home/skarlis/Websites_work/1181 push)",
+      "Bash(git -C /home/skarlis/Websites_work/1181 log --oneline -3)",
+      "Bash(git -C /home/skarlis/Websites_work/1181 add assignments/genre-analysis.html assignments/reflection.html assignments/conferences.html assignments/revised-draft.html assignments/rough-draft.html)",
+      "Bash(git -C /home/skarlis/Websites_work/1181 commit -m \"$\\(cat <<''EOF''\nConsolidate Project 1 grade breakdown on genre analysis page\n\nAdded central grade breakdown table to genre-analysis.html and updated\ngrading sections on reflection, conferences, revised-draft, and rough-draft\npages to reference it.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}
