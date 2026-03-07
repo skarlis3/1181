@@ -17,7 +17,15 @@
       "Bash(git -C /home/skarlis/Websites_work/1190 status)",
       "Bash(git -C /home/skarlis/Websites_work/1190 add nav.js)",
       "Bash(git -C /home/skarlis/Websites_work/1190 commit -m \"$\\(cat <<''EOF''\nAdd annotating PDFs and reading scholarly articles to resources nav\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(git -C /home/skarlis/Websites_work/1190 push)"
+      "Bash(git -C /home/skarlis/Websites_work/1190 push)",
+      "Bash(git -C /home/skarlis/Websites_work/1190 add nav.js assignments/final-portfolio.html)",
+      "Bash(git -C /home/skarlis/Websites_work/1190 commit -m \"$\\(cat <<''EOF''\nRemove unready pages from nav and add final portfolio placeholder\n\nRemoved ww8, ww9, example essays, and sample assignments from navigation.\nAdded placeholder final-portfolio.html page.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /home/skarlis/Websites_work/1190 log --oneline -3)",
+      "WebFetch(domain:1190.skarlis.org)",
+      "Bash(git -C /home/skarlis/Websites_work/1190 add assignments/apa-in-action.html)",
+      "Bash(git -C /home/skarlis/Websites_work/1190 commit -m \"$\\(cat <<''EOF''\nShow all APA example pages at once instead of tabbed navigation\n\nRemoved page navigation buttons and display toggling so all pages\nare visible in sequence. Added divider between body and references\npages indicating additional pages would continue there.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git mv:*)",
+      "Bash(git status:*)"
     ]
   }
 }
