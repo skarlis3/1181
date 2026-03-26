@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example Essay Organization (v3) | ENGL 1181</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/icon1181.png" type="image/x-icon">
+  <meta name="description" content="Example outlines and common organization patterns for Project 1." />
+  <style>
+    /* Hourglass visual */
+    .hourglass {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin: 1.5rem 0 2rem 0;
+    }
+    .hourglass-block {
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #fff;
+      border-radius: 6px;
+    }
+    .hourglass-arrow {
+      color: var(--muted, #888);
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .hg-broad { background: var(--accent, #003e32); width: 100%; max-width: 450px; }
+    .hg-mid { background: #2d7a5e; width: 70%; max-width: 320px; }
+    .hg-narrow { background: #4a9a7a; width: 50%; max-width: 250px; }
+
+    /* Outline cards */
+    .outline-card {
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+    .outline-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .outline-card ul, .outline-card ol { margin-top: 0.5rem; }
+    .outline-card li { margin-bottom: 0.3rem; }
+
+    /* Card number badge */
+    .card-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      font-size: 0.9rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Section type colors */
+    .card-intro {
+      background: #dfeaf5;
+      border-left: 6px solid #2c5f8a;
+    }
+    .card-intro h3 { color: #2c5f8a; }
+    .card-intro .card-num { background: #2c5f8a; color: #fff; }
+
+    .card-body {
+      background: #e6f4ea;
+      border-left: 6px solid #2d7a3a;
+    }
+    .card-body h3 { color: #2d7a3a; }
+    .card-body .card-num { background: #2d7a3a; color: #fff; }
+
+    .card-convention {
+      background: #fef3e0;
+      border-left: 6px solid #b8710a;
+    }
+    .card-convention h3 { color: #8a5a08; }
+    .card-convention .card-num { background: #b8710a; color: #fff; }
+
+    .card-function {
+      background: #f3e8fd;
+      border-left: 6px solid #6b3fa0;
+    }
+    .card-function h3 { color: #6b3fa0; }
+    .card-function .card-num { background: #6b3fa0; color: #fff; }
+
+    .card-conclusion {
+      background: #dfeaf5;
+      border-left: 6px solid #2c5f8a;
+    }
+    .card-conclusion h3 { color: #2c5f8a; }
+    .card-conclusion .card-num { background: #2c5f8a; color: #fff; }
+
+    /* Connecting line between cards */
+    .card-connector {
+      width: 3px;
+      height: 1.25rem;
+      background: var(--border, #ccc);
+      margin: 0 auto;
+    }
+
+    /* Note callout */
+    .inline-note {
+      background: rgba(255,255,255,0.6);
+      border-radius: 6px;
+      padding: 0.6rem 0.8rem;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--muted, #555);
+    }
+
+    /* Options grid for function section */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+    @media (max-width: 600px) {
+      .options-grid { grid-template-columns: 1fr; }
+    }
+    .option-chip {
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(107,63,160,0.3);
+      border-radius: 8px;
+      padding: 0.6rem 0.8rem;
+    }
+    .option-chip strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: #6b3fa0;
+      font-size: 0.9rem;
+    }
+    .option-chip p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text, #333);
+    }
+
+    /* Intro options as tabs */
+    .intro-options {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    @media (max-width: 600px) {
+      .intro-options { flex-direction: column; }
+    }
+    .intro-option {
+      flex: 1;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(44,95,138,0.3);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+    }
+    .intro-option strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: #2c5f8a;
+    }
+
+    /* Dark mode */
+    [data-theme="dark"] .card-intro { background: #1a2636; border-left-color: #5b9bd5; }
+    [data-theme="dark"] .card-intro h3 { color: #7db8e8; }
+    [data-theme="dark"] .card-intro .card-num { background: #5b9bd5; color: #121417; }
+
+    [data-theme="dark"] .card-body { background: #1a2b1f; border-left-color: #4caf6a; }
+    [data-theme="dark"] .card-body h3 { color: #6dcf88; }
+    [data-theme="dark"] .card-body .card-num { background: #4caf6a; color: #121417; }
+
+    [data-theme="dark"] .card-convention { background: #2b2214; border-left-color: #d4a03c; }
+    [data-theme="dark"] .card-convention h3 { color: #e8b84a; }
+    [data-theme="dark"] .card-convention .card-num { background: #d4a03c; color: #121417; }
+
+    [data-theme="dark"] .card-function { background: #241a30; border-left-color: #9b7cc9; }
+    [data-theme="dark"] .card-function h3 { color: #b89de0; }
+    [data-theme="dark"] .card-function .card-num { background: #9b7cc9; color: #121417; }
+
+    [data-theme="dark"] .card-conclusion { background: #1a2636; border-left-color: #5b9bd5; }
+    [data-theme="dark"] .card-conclusion h3 { color: #7db8e8; }
+    [data-theme="dark"] .card-conclusion .card-num { background: #5b9bd5; color: #121417; }
+
+    [data-theme="dark"] .card-connector { background: var(--border, #2d3138); }
+
+    [data-theme="dark"] .outline-card { color: var(--text, #e8eaed); }
+
+    [data-theme="dark"] .inline-note {
+      background: rgba(0,0,0,0.3);
+      color: var(--muted, #a8adb5);
+    }
+
+    [data-theme="dark"] .option-chip {
+      background: rgba(0,0,0,0.2);
+      border-color: rgba(155,124,201,0.3);
+    }
+    [data-theme="dark"] .option-chip strong { color: #b89de0; }
+    [data-theme="dark"] .option-chip p { color: var(--text, #e8eaed); }
+
+    [data-theme="dark"] .intro-option {
+      background: rgba(0,0,0,0.2);
+      border-color: rgba(91,155,213,0.3);
+    }
+    [data-theme="dark"] .intro-option strong { color: #7db8e8; }
+
+    [data-theme="dark"] .hg-broad { background: var(--bright, #5ee0b3); color: var(--bg, #121417); }
+    [data-theme="dark"] .hg-mid { background: #3a9e7e; }
+    [data-theme="dark"] .hg-narrow { background: #2d7a5e; }
+  </style>
+</head>
+<body>
+  <div id="page-content">
+
+    <h1>Example Essay Organization</h1>
+    <p>This is not required — just an example outline that works well for this assignment. Adapt it to fit your community and genre.</p>
+
+    <h2>The Hourglass Shape</h2>
+    <p>Your essay works best with a <strong>broad → narrow → broad</strong> structure:</p>
+
+    <div class="hourglass">
+      <div class="hourglass-block hg-broad">Broad: Community overview &amp; genre intro</div>
+      <div class="hourglass-arrow">&#9660;</div>
+      <div class="hourglass-block hg-mid">Narrower: Purpose &amp; audience</div>
+      <div class="hourglass-arrow">&#9660;</div>
+      <div class="hourglass-block hg-narrow">Narrowest: Convention analysis</div>
+      <div class="hourglass-arrow">&#9660;</div>
+      <div class="hourglass-block hg-mid">Broader: Genre function in community</div>
+      <div class="hourglass-arrow">&#9660;</div>
+      <div class="hourglass-block hg-broad">Broad: Conclusion</div>
+    </div>
+
+    <h2>Example Outline</h2>
+
+    <!-- INTRO -->
+    <div class="outline-card card-intro">
+      <h3><span class="card-num">1</span> Introduction (1–2 paragraphs)</h3>
+      <p>Introduce your community, the platform, and the genre you will analyze.</p>
+      <div class="intro-options">
+        <div class="intro-option">
+          <strong>Option A: Two paragraphs</strong>
+          <p><strong>Paragraph 1:</strong> Introduce your discourse community and how they communicate on the platform.</p>
+          <p><strong>Paragraph 2:</strong> Describe the different types of posts. Then state which one your essay will focus on (this is your thesis).</p>
+        </div>
+        <div class="intro-option">
+          <strong>Option B: One paragraph</strong>
+          <p>Combine community, platform, and genre intro into one paragraph. Best for communities that don't need a lot of background.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-connector"></div>
+
+    <!-- GENRE DESCRIPTION -->
+    <div class="outline-card card-body">
+      <h3><span class="card-num">2</span> Genre Description, Purpose, &amp; Audience (1–3 paragraphs)</h3>
+      <ul>
+        <li>Provide an overview and description of the genre.</li>
+        <li>Discuss the <strong>purpose</strong> — why this genre exists in the community.</li>
+        <li>Analyze the <strong>audience</strong> and how they shape the genre.</li>
+      </ul>
+      <div class="inline-note">
+        These can be one paragraph or 2–3, depending on how much you have to say. The description should come early, but purpose and audience could also work later in the paper.
+      </div>
+    </div>
+
+    <div class="card-connector"></div>
+
+    <!-- CONVENTION 1 -->
+    <div class="outline-card card-convention">
+      <h3><span class="card-num">3</span> Convention #1 (1 paragraph)</h3>
+      <ul>
+        <li>Pick one convention (informal rule) to analyze.</li>
+        <li>Describe it and use <strong>evidence from your samples</strong> to support your point.</li>
+        <li>Analyze how it makes the genre effective (or ineffective).</li>
+      </ul>
+    </div>
+
+    <div class="card-connector"></div>
+
+    <!-- CONVENTION 2 -->
+    <div class="outline-card card-convention">
+      <h3><span class="card-num">4</span> Convention #2 (1 paragraph)</h3>
+      <ul>
+        <li>Pick another convention to analyze.</li>
+        <li>Describe it and use evidence from your samples.</li>
+        <li>Analyze its effectiveness.</li>
+      </ul>
+    </div>
+
+    <div class="card-connector"></div>
+
+    <!-- CONVENTION 3 -->
+    <div class="outline-card card-convention">
+      <h3><span class="card-num">5</span> Convention #3 (1 paragraph)</h3>
+      <ul>
+        <li>Pick a third convention to analyze.</li>
+        <li>Describe it and use evidence from your samples.</li>
+        <li>Analyze its effectiveness.</li>
+      </ul>
+    </div>
+
+    <div class="card-connector"></div>
+
+    <!-- FUNCTION -->
+    <div class="outline-card card-function">
+      <h3><span class="card-num">6</span> How the Genre Functions in the Community (1–2 paragraphs)</h3>
+      <p>Pick one or two of the following approaches, or come up with your own:</p>
+      <div class="options-grid">
+        <div class="option-chip">
+          <strong>Context &amp; Circulation</strong>
+          <p>How and where is this genre used? Formal or informal? How is it shared?</p>
+        </div>
+        <div class="option-chip">
+          <strong>Interaction</strong>
+          <p>How do members interact with this genre? What do comments and reactions show?</p>
+        </div>
+        <div class="option-chip">
+          <strong>Values &amp; Norms</strong>
+          <p>What does this genre reveal about the community's values and goals?</p>
+        </div>
+        <div class="option-chip">
+          <strong>Broader Implications</strong>
+          <p>What does this analysis suggest about how genres work in communities generally?</p>
+        </div>
+      </div>
+      <div class="inline-note">
+        You don't need to cover all of these. Pick what makes sense for your genre and community.
+      </div>
+    </div>
+
+    <div class="card-connector"></div>
+
+    <!-- CONCLUSION -->
+    <div class="outline-card card-conclusion">
+      <h3><span class="card-num">7</span> Conclusion (1 paragraph)</h3>
+      <ul>
+        <li>Summarize your key findings from the analysis.</li>
+        <li>Restate how the genre contributes to the goals and functioning of the discourse community.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- main navigation and page scripts -->
+  <script src="/nav.js"></script>
+  <script src="/footer.js" defer></script>
+</body>
+</html>
