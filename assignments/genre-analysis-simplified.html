@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Genre Analysis — Simplified Instructions | ENGL 1181</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/icon1181.png" type="image/x-icon">
+  <style>
+    /* Section cards — color coded */
+    .section-card {
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-card .icon { font-size: 1.4rem; flex-shrink: 0; }
+    .section-card p, .section-card ul { margin-top: 0.5rem; }
+    .section-card ul { padding-left: 1.5rem; }
+    .section-card li { margin-bottom: 0.35rem; }
+
+    .section-community { background: #e8f0fe; border-left: 5px solid #2c5f8a; }
+    .section-community h3 { color: #2c5f8a; }
+    .section-describe { background: #e6f4ea; border-left: 5px solid #2d7a3a; }
+    .section-describe h3 { color: #2d7a3a; }
+    .section-convention { background: #fef3e0; border-left: 5px solid #b8710a; }
+    .section-convention h3 { color: #8a5a08; }
+    .section-function { background: #f3e8fd; border-left: 5px solid #6b3fa0; }
+    .section-function h3 { color: #6b3fa0; }
+    .section-conclusion { background: #f0f0f0; border-left: 5px solid #555; }
+    .section-conclusion h3 { color: #444; }
+
+    .convention-explainer {
+      background: #fff8e8;
+      border: 2px solid #e0c36a;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0 1.5rem 0;
+    }
+    .convention-explainer strong { display: block; margin-bottom: 0.4rem; color: #8a5a08; }
+
+    .steps { list-style: none; padding-left: 0; margin-top: 0.75rem; }
+    .steps li { padding-left: 2rem; position: relative; margin-bottom: 0.5rem; }
+    .steps li .step-num {
+      position: absolute; left: 0; top: 0;
+      width: 1.5rem; height: 1.5rem;
+      background: #b8710a; color: #fff; border-radius: 50%;
+      text-align: center; font-size: 0.85rem; line-height: 1.5rem; font-weight: 700;
+    }
+
+    .visual-map {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0; margin: 1.5rem 0 2rem 0;
+    }
+    .map-block {
+      padding: 0.6rem 1.5rem; border-radius: 8px; text-align: center;
+      font-weight: 600; font-size: 0.95rem; color: #fff;
+      width: 100%; max-width: 500px;
+    }
+    .map-arrow { font-size: 1.1rem; color: #888; line-height: 1; padding: 0.1rem 0; }
+    .map-community { background: #2c5f8a; }
+    .map-describe { background: #2d7a3a; }
+    .map-convention { background: #b8710a; }
+    .map-function { background: #6b3fa0; }
+    .map-conclusion { background: #555; }
+
+    .big-question {
+      background: #2c5f8a; color: #fff;
+      padding: 1.2rem 1.5rem; border-radius: 8px;
+      margin-bottom: 2rem; font-size: 1.1rem; font-weight: 600; text-align: center;
+    }
+
+    .vocab-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+    .vocab-table th { background: #2c5f8a; color: #fff; padding: 0.6rem 1rem; text-align: left; }
+    .vocab-table td { padding: 0.6rem 1rem; border-bottom: 1px solid #ddd; }
+    .vocab-table tr:nth-child(even) td { background: #f5f7fa; }
+    .vocab-table .term { font-weight: 700; color: #2c5f8a; white-space: nowrap; }
+
+    .evidence-box {
+      background: #f7f7f7; border: 2px solid #ccc;
+      border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0;
+    }
+    .evidence-box h3 { margin-bottom: 0.75rem; }
+    .sample-card {
+      background: #fff; border: 1px solid #ddd;
+      border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem;
+    }
+    .sample-card p { margin: 0.25rem 0; }
+    .sample-label { font-weight: 700; color: #2c5f8a; }
+
+    .simplified-checklist {
+      background: #f0f4f8; border-radius: 10px;
+      padding: 1.5rem; margin-top: 2rem;
+    }
+    .simplified-checklist h2 { margin-top: 0; color: #2c5f8a; }
+    .simplified-checklist ul { list-style: none; padding-left: 0; }
+    .simplified-checklist li {
+      padding: 0.5rem 0 0.5rem 2.2rem; position: relative;
+      border-bottom: 1px solid #dce4ed; font-size: 1rem;
+    }
+    .simplified-checklist li:last-child { border-bottom: none; }
+    .simplified-checklist li::before {
+      content: ''; position: absolute; left: 0; top: 0.6rem;
+      width: 1.3rem; height: 1.3rem;
+      border: 2px solid #2c5f8a; border-radius: 4px; background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="page-content">
+    <!-- start of page content -->
+
+    <h1>Genre Analysis Essay — Simplified Instructions</h1>
+    <p>Use this guide alongside the <a href="genre-analysis.html">full assignment page</a>. It breaks the essay into smaller steps.</p>
+
+    <div class="big-question">
+      Your essay answers one big question:<br>
+      What are the patterns in this type of post? Why do they matter to the community?<br>
+      <span style="font-weight:400; font-size:0.95em;">Or: What makes this type of post this type of post?</span>
+    </div>
+
+    <h2>Important Words</h2>
+    <table class="vocab-table">
+      <tr><th>Word</th><th>What It Means</th></tr>
+      <tr><td class="term">Genre</td><td>A type or style of post</td></tr>
+      <tr><td class="term">Discourse community</td><td>A group of people with a shared interest. They talk to each other online or in person.</td></tr>
+      <tr><td class="term">Conventions</td><td>Informal rules. The things most posts of this type have in common.</td></tr>
+      <tr><td class="term">Purpose</td><td>Why people make this type of post</td></tr>
+      <tr><td class="term">Audience</td><td>Who reads, watches, or responds to these posts</td></tr>
+      <tr><td class="term">Function</td><td>How this type of post helps the community</td></tr>
+    </table>
+
+    <h2>Essay Map</h2>
+    <p>Your essay has this shape. Start wide, go narrow, then go wide again:</p>
+
+    <div class="visual-map">
+      <div class="map-block map-community">1. The Community (broad)</div>
+      <div class="map-arrow">&#9660;</div>
+      <div class="map-block map-describe">2. Describe the Genre + Purpose + Audience</div>
+      <div class="map-arrow">&#9660;</div>
+      <div class="map-block map-convention">3. Convention #1</div>
+      <div class="map-arrow">&#9660;</div>
+      <div class="map-block map-convention">4. Convention #2</div>
+      <div class="map-arrow">&#9660;</div>
+      <div class="map-block map-convention">5. Convention #3 (most specific)</div>
+      <div class="map-arrow">&#9660;</div>
+      <div class="map-block map-function">6. How This Type of Post Helps the Community</div>
+      <div class="map-arrow">&#9660;</div>
+      <div class="map-block map-conclusion">7. Conclusion (broad again)</div>
+    </div>
+
+    <h2>Write Your Essay in This Order</h2>
+
+    <div class="section-card section-community">
+      <h3><span class="icon">&#127760;</span> Section 1: Introduce the Community (1 paragraph)</h3>
+      <p>Write about your online community.</p>
+      <ul>
+        <li>Where does it exist? (Reddit, Facebook, TikTok, Discord, etc.)</li>
+        <li>What is the community about?</li>
+        <li>What kinds of posts do people make there?</li>
+        <li>Which <strong>one type of post</strong> will your essay be about?</li>
+      </ul>
+    </div>
+
+    <div class="section-card section-describe">
+      <h3><span class="icon">&#128269;</span> Section 2: Describe + Purpose + Audience (1–2 paragraphs)</h3>
+      <p>Describe this type of post. Then answer:</p>
+      <ul>
+        <li><strong>Purpose (why):</strong> Why do people make this type of post? What does it do?</li>
+        <li><strong>Audience (who):</strong> Who sees these posts? Can anyone understand them? Or do you need to be part of the community?</li>
+      </ul>
+    </div>
+
+    <div class="convention-explainer">
+      <strong>What is a convention (informal rule)?</strong>
+      A convention is something most posts of this type have in common. Look at your 3 samples. What do you see <em>again and again</em>? Those are the conventions.<br><br>
+      Examples: how the post looks, what language or tone is used, what the post includes (images, links, videos, captions), how long it is.
+    </div>
+
+    <div class="section-card section-convention">
+      <h3><span class="icon">&#128308;</span> Section 3: Convention (Informal Rule) #1 — (1 paragraph)</h3>
+      <p>Pick <strong>ONE</strong> convention (informal rule). Write about it.</p>
+      <ul class="steps">
+        <li><span class="step-num">1</span> <strong>Name it.</strong> What is the informal rule?</li>
+        <li><span class="step-num">2</span> <strong>Show examples.</strong> Use quotes or descriptions from your 3 samples.</li>
+        <li><span class="step-num">3</span> <strong>Explain why it matters.</strong> Why do creators do this? How does it help the post?</li>
+      </ul>
+    </div>
+
+    <div class="section-card section-convention">
+      <h3><span class="icon">&#128993;</span> Section 4: Convention (Informal Rule) #2 — (1 paragraph)</h3>
+      <p>Pick a <strong>SECOND</strong> convention (informal rule). Same steps:</p>
+      <ul class="steps">
+        <li><span class="step-num">1</span> <strong>Name it.</strong></li>
+        <li><span class="step-num">2</span> <strong>Show examples.</strong></li>
+        <li><span class="step-num">3</span> <strong>Explain why it matters.</strong></li>
+      </ul>
+    </div>
+
+    <div class="section-card section-convention">
+      <h3><span class="icon">&#128994;</span> Section 5: Convention (Informal Rule) #3 — (1 paragraph)</h3>
+      <p>Pick a <strong>THIRD</strong> convention (informal rule). Same steps:</p>
+      <ul class="steps">
+        <li><span class="step-num">1</span> <strong>Name it.</strong></li>
+        <li><span class="step-num">2</span> <strong>Show examples.</strong></li>
+        <li><span class="step-num">3</span> <strong>Explain why it matters.</strong></li>
+      </ul>
+    </div>
+
+    <div class="section-card section-function">
+      <h3><span class="icon">&#129309;</span> Section 6: How This Type of Post Helps the Community (1 paragraph)</h3>
+      <p>Explain what this type of post does for the community.</p>
+      <ul>
+        <li>Does it connect people? How?</li>
+        <li>What do people write in the comments?</li>
+        <li>What does this type of post show about what the community cares about?</li>
+      </ul>
+    </div>
+
+    <div class="section-card section-conclusion">
+      <h3><span class="icon">&#128203;</span> Section 7: Conclusion (1 short paragraph)</h3>
+      <p>Write a short summary. Why is this type of post important to the community?</p>
+    </div>
+
+    <div class="evidence-box">
+      <h3>&#128206; Your 3 Samples (Evidence)</h3>
+      <p>You need <strong>3 examples</strong> of the same type of post from your community. All 3 must be the same type. Save this information for each one:</p>
+      <ul>
+        <li>Creator name or username</li>
+        <li>Date posted</li>
+        <li>Link to the post</li>
+        <li>Short description of the post</li>
+      </ul>
+    </div>
+
+    <div class="simplified-checklist">
+      <h2>Final Checklist</h2>
+      <ul>
+        <li>My essay is about one community</li>
+        <li>My essay is about one type of post (one genre)</li>
+        <li>I explain the purpose (why people make these posts)</li>
+        <li>I explain the audience (who reads or watches)</li>
+        <li>I analyze 3 conventions (informal rules) with examples</li>
+        <li>Each convention paragraph: names it, shows examples, explains why it matters</li>
+        <li>I explain how this type of post helps the community</li>
+        <li>I have 3 samples as evidence</li>
+        <li>I include a Works Cited page with links to my samples (MLA format)</li>
+        <li>My essay is 1,300–1,700 words</li>
+        <li>MLA format</li>
+      </ul>
+    </div>
+
+    <!-- end of page content -->
+  </div>
+
+  <!-- main navigation and page scripts -->
+  <script src="/nav.js"></script>
+  <script src="/footer.js" defer></script>
+</body>
+</html>
