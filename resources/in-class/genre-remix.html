@@ -4,18 +4,123 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Genre Remix Activity | ENGL 1181</title>
-  <link rel="stylesheet" href="/style.css" />
-  <link rel="stylesheet" href="/inclass.css" />
   <link rel="icon" href="/icon1181.png" type="image/x-icon">
+  <link rel="stylesheet" href="/inclass.css" />
+  <style>
+    body {
+      margin: 0;
+      background: #1a1a2e;
+      color: #e8e8e8;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .activity {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #f0c27a;
+      margin-bottom: 0.25rem;
+    }
+
+    .subtitle {
+      color: #a0a0b8;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      color: #f0c27a;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid #2a2a4a;
+      padding-bottom: 0.25rem;
+    }
+
+    p { margin: 0.5rem 0; }
+
+    ul, ol {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    li { margin-bottom: 0.35rem; }
+
+    a {
+      color: #7ec8e3;
+      text-decoration: underline;
+      text-decoration-color: #7ec8e350;
+    }
+
+    a:hover, a:focus {
+      color: #b8e0f0;
+      text-decoration-color: #b8e0f0;
+    }
+
+    .sample-link {
+      display: inline-block;
+      margin: 0.75rem 0;
+      padding: 0.6rem 1.25rem;
+      background: #2a2a4a;
+      border: 2px solid #7ec8e3;
+      border-radius: 6px;
+      color: #7ec8e3;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .sample-link:hover, .sample-link:focus {
+      background: #7ec8e3;
+      color: #1a1a2e;
+    }
+
+    .ideas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0;
+    }
+
+    .idea-tag {
+      background: #2a2a4a;
+      border: 1px solid #3a3a5a;
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.9rem;
+      color: #d0d0e0;
+    }
+
+    .note {
+      margin-top: 2rem;
+      padding: 1rem 1.25rem;
+      background: #2a2a4a;
+      border-left: 4px solid #f0c27a;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: #d0d0e0;
+    }
+
+    @media (max-width: 600px) {
+      .activity { padding: 1.5rem 1rem; }
+      h1 { font-size: 1.6rem; }
+    }
+  </style>
 </head>
 <body>
-  <div id="page-content">
-    <div class="presentation-content">
+
+  <div class="activity presentation-content">
 
     <h1>Genre Remix: Recipe Edition</h1>
+    <p class="subtitle">In-Class Team Activity</p>
 
     <h2>Step 1: Genre Detective</h2>
-    <p>Open the <a href="/resources/in-class/recipe-remix-activity.html">recipe sample page</a> and study it with your team. What conventions do you notice? Think about:</p>
+    <p>Open the recipe sample and study it with your team. What conventions do you notice? Think about:</p>
     <ul>
       <li>Structure and organization (sections, order of information)</li>
       <li>Formatting (how ingredients are listed, numbered steps, headings)</li>
@@ -23,19 +128,20 @@
       <li>Visual and design elements (images, layout, typography, callout boxes)</li>
     </ul>
     <p>As a team, list every convention you can identify.</p>
+    <a class="sample-link" href="/resources/in-class/recipe-remix-activity.html" target="_blank">Open Recipe Sample &rarr;</a>
 
-    <h2>Step 2: Pull Up Genre Samples</h2>
+    <h2>Step 2: Pull Up More Samples</h2>
     <p>Look up a few real recipes online (AllRecipes, food blogs, etc.) as a team. Compare them to the sample. What conventions are consistent across recipes? What varies? Add to your list.</p>
 
     <h2>Step 3: Plan Your Remix</h2>
     <p>As a team, choose a "recipe" topic that is <strong>not food</strong>. Some ideas:</p>
-    <ul>
-      <li>Recipe for a Perfect Nap</li>
-      <li>How to Make a Best Friend</li>
-      <li>Recipe for Procrastination</li>
-      <li>Recipe for the Perfect Playlist</li>
-      <li>Recipe for Surviving Finals Week</li>
-    </ul>
+    <div class="ideas">
+      <span class="idea-tag">Recipe for a Perfect Nap</span>
+      <span class="idea-tag">How to Make a Best Friend</span>
+      <span class="idea-tag">Recipe for Procrastination</span>
+      <span class="idea-tag">Recipe for the Perfect Playlist</span>
+      <span class="idea-tag">Recipe for Surviving Finals Week</span>
+    </div>
     <p>Work together to figure out: What are the "ingredients"? What are the "steps"? What's the prep time and yield? What would the headnote sound like? What image would go with it?</p>
 
     <h2>Step 4: Design &amp; Write It</h2>
@@ -48,12 +154,14 @@
     </ul>
 
     <h2>Step 5: Gallery Walk</h2>
-    <p>When your team is done, put your recipe up on the wall. We'll do a quick walk-around to see everyone's remixes.</p>
+    <p>When your team is done, put your recipe up on the wall. We'll walk around and check out everyone's remixes.</p>
 
+    <div class="note">
+      <strong>The point of this activity:</strong> When you remix your Project 1 essay into a new genre, you'll need to do exactly what you just did here — identify the conventions of your target genre, then make deliberate choices about structure, tone, formatting, and design to match.
     </div>
+
   </div>
-  <script src="/nav.js"></script>
-  <script src="/footer.js" defer></script>
+
   <script src="/inclass.js"></script>
 </body>
 </html>
