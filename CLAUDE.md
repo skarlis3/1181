@@ -10,7 +10,10 @@ In-class activities can have up to three types of pages:
 - A normal site page using `style.css`, `nav.js`, and `footer.js`
 - Lives in `/resources/in-class/` and is listed in the nav under In-Class Activities
 - Contains the full, scrollable activity instructions
-- If the activity has standalone companion pages (projector view, handouts, examples), link them at the **top** of the page as pill-shaped links that stand out in both light and dark mode (see `genre-remix.html` for the pattern using `.activity-pill` classes with site CSS variables)
+- If the activity has standalone companion pages (projector view, handouts, examples), link them at the **top** of the page as pill-shaped links (`.activity-pill`) that work in both light and dark mode
+  - **Student-facing links first** (examples, handouts) — use `.pill-primary` (filled accent color, stands out)
+  - **Instructor-only links second** (projector view) — use `.pill-outline` (outlined, less prominent since only the instructor uses it)
+  - See `genre-remix.html` for the pattern using site CSS variables
 
 ### 2. Projector page (standalone)
 - A standalone page — does **not** use `style.css`, `nav.js`, or `footer.js`
