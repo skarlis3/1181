@@ -1,0 +1,105 @@
+/* ==========================================================================
+   Handout / Presentation Mode
+   Include on any in-class activity or presentation page.
+   Adds a "Presentation Mode" toggle button that:
+     - Scales content to fit the viewport (no scrolling)
+     - Hides site nav, footer, sidebar
+     - Requests a Wake Lock so the screen stays on
+   ========================================================================== */
+
+/* ---------- Toggle Button ---------- */
+.presentation-toggle {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 10000;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--accent, #003e32);
+  border-radius: 6px;
+  background: var(--bg, #fff);
+  color: var(--text, #141414);
+  font-family: Lato, Arial, sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.presentation-toggle:hover,
+.presentation-toggle:focus-visible {
+  background: var(--accent, #003e32);
+  color: var(--accent-contrast, #fff);
+  outline: 3px solid var(--focus-outline, #005e4b);
+  outline-offset: 2px;
+}
+
+/* ---------- Presentation Mode Active ---------- */
+body.presentation-mode {
+  overflow: hidden;
+}
+
+body.presentation-mode #top-nav,
+body.presentation-mode #side-nav,
+body.presentation-mode #bottom-nav,
+body.presentation-mode footer,
+body.presentation-mode .site-footer,
+body.presentation-mode #site-footer {
+  display: none !important;
+}
+
+body.presentation-mode #page-content {
+  /* Reset any sidebar-driven margins/padding */
+  margin: 0 !important;
+  padding: 1.5rem !important;
+  max-width: 100vw !important;
+  width: 100vw !important;
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Scale the inner content to fit viewport without scrolling */
+body.presentation-mode .presentation-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Bump up font sizes slightly in presentation mode for readability at a distance */
+body.presentation-mode .presentation-content h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+body.presentation-mode .presentation-content h2 {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+}
+
+body.presentation-mode .presentation-content p,
+body.presentation-mode .presentation-content li {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+}
+
+/* Move the toggle button to top-right in presentation mode */
+body.presentation-mode .presentation-toggle {
+  top: 0.75rem;
+  bottom: auto;
+  right: 0.75rem;
+  opacity: 0.3;
+  transition: opacity 0.2s;
+}
+
+body.presentation-mode .presentation-toggle:hover,
+body.presentation-mode .presentation-toggle:focus-visible {
+  opacity: 1;
+}
+
+/* Mobile: position above bottom nav in normal mode */
+@media (max-width: 740px) {
+  .presentation-toggle {
+    bottom: calc(var(--bottomnav-h, 78px) + 0.75rem);
+  }
+}

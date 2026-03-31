@@ -138,7 +138,9 @@
                 {label: "Children's Books",     href: "/resources/in-class/childrens-books.html"},
                 {label: "Newsletters",          href: "/resources/in-class/newsletters.html"},
                 {label: "Genre Scavenger Hunt", href: "/resources/in-class/genre-scavenger-hunt.html"},
-                {label: "Magazine Ads",         href: "/resources/in-class/analyzing-ads.html"}
+                {label: "Magazine Ads",         href: "/resources/in-class/analyzing-ads.html"},
+                {label: "Genre Remix Activity", href: "/resources/in-class/genre-remix.html"},
+                {label: "Recipe Sample",        href: "/resources/in-class/recipe-remix-activity.html"}
               ]
               },
               {label: "Additional Readings & Videos",  href: "/resources/additional-readings-and-videos.html"},

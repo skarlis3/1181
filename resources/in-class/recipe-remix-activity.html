@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe: Genre Conventions Activity | ENGL 1181</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/icon1181.png" type="image/x-icon">
+  <link rel="stylesheet" href="/inclass.css" />
+  <style>
+    /* Recipe-specific styles to mimic a recipe blog/card */
+    .recipe-page {
+      max-width: 720px;
+      margin: 0 auto;
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    .recipe-page h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .recipe-byline {
+      text-align: center;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .recipe-hero {
+      width: 100%;
+      border-radius: 8px;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .recipe-headnote {
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+
+    .recipe-meta {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      background: var(--callout-bg);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      font-family: Lato, Arial, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .recipe-meta div {
+      text-align: center;
+    }
+
+    .recipe-meta strong {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    .recipe-section-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.4rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.25rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .recipe-ingredients ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .recipe-ingredients li {
+      padding: 0.4rem 0;
+      border-bottom: 1px dotted var(--border);
+    }
+
+    .recipe-ingredients li::before {
+      content: "▪ ";
+      color: var(--bright);
+    }
+
+    .recipe-instructions ol {
+      padding-left: 1.5rem;
+    }
+
+    .recipe-instructions li {
+      padding: 0.5rem 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .recipe-tip {
+      background: var(--accent-box-bg);
+      color: var(--accent-box-text);
+      border-left: 4px solid var(--bright);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .recipe-tip strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .recipe-source {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-family: Lato, Arial, sans-serif;
+    }
+
+    .activity-instructions {
+      background: var(--accent-box-bg);
+      color: var(--accent-box-text);
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+      font-family: Lato, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .activity-instructions h2 {
+      font-family: Judson, Georgia, serif;
+      margin-top: 0;
+      color: var(--bright);
+    }
+
+    .activity-instructions ol {
+      padding-left: 1.25rem;
+    }
+
+    .activity-instructions li {
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 740px) {
+      .recipe-meta {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="page-content">
+    <!-- start of page content -->
+
+    <div class="activity-instructions">
+      <h2>In-Class Activity: Genre Detective &amp; Remix</h2>
+      <p>Below is a recipe page. With your team:</p>
+      <ol>
+        <li><strong>Genre Detective:</strong> Study the recipe below. What conventions do you notice? Think about structure, formatting, tone, word choice, visual elements, and layout. List as many as you can on your shared doc or paper.</li>
+        <li><strong>Remix It:</strong> As a team, write a "recipe" for something that is <em>not food</em>. Use the conventions you identified to make it look and sound like a real recipe. Some ideas: Recipe for a Perfect Nap, How to Make a Best Friend, Recipe for Procrastination, Recipe for the Perfect Playlist, Recipe for Surviving Finals Week.</li>
+        <li><strong>Debrief:</strong> What choices did you have to make to fit your topic into this genre's conventions? What was easy to translate? What was tricky?</li>
+      </ol>
+    </div>
+
+    <div class="recipe-page">
+
+      <h1>Classic Chocolate Chip Cookies</h1>
+      <p class="recipe-byline">By the King Arthur Baking Team</p>
+
+      <img class="recipe-hero" src="/img/cookies.jpg" alt="A pile of golden-brown chocolate chip cookies with melted chocolate chips visible" />
+
+      <div class="recipe-headnote">
+        <p>These homemade chocolate chip cookies are packed with chips and loaded with buttery flavor. They walk the line nicely between crunchy and chewy: the edges are crisp, while the center is perfectly "bendy." This is the kind of cookie that disappears from the cooling rack before you can even put them in a container. Fair warning: you'll want to double the batch.</p>
+      </div>
+
+      <div class="recipe-meta">
+        <div>
+          <strong>Prep Time</strong>
+          12 min
+        </div>
+        <div>
+          <strong>Cook Time</strong>
+          12 min
+        </div>
+        <div>
+          <strong>Total Time</strong>
+          36 min
+        </div>
+        <div>
+          <strong>Yield</strong>
+          36 cookies
+        </div>
+      </div>
+
+      <h2 class="recipe-section-title">Ingredients</h2>
+      <div class="recipe-ingredients">
+        <ul>
+          <li>2/3 cup light brown sugar, packed</li>
+          <li>2/3 cup granulated sugar</li>
+          <li>8 tablespoons (1 stick) unsalted butter, softened</li>
+          <li>1/2 cup vegetable shortening</li>
+          <li>3/4 teaspoon table salt</li>
+          <li>2 teaspoons vanilla extract</li>
+          <li>1/4 teaspoon almond extract (optional)</li>
+          <li>1 teaspoon cider or white vinegar</li>
+          <li>1 teaspoon baking soda</li>
+          <li>1 large egg</li>
+          <li>2 cups all-purpose flour</li>
+          <li>2 cups semisweet chocolate chips</li>
+        </ul>
+      </div>
+
+      <h2 class="recipe-section-title">Instructions</h2>
+      <div class="recipe-instructions">
+        <ol>
+          <li>Preheat the oven to 375°F. Lightly grease two baking sheets or line them with parchment paper.</li>
+          <li>In a large bowl, combine the sugars, butter, shortening, salt, vanilla, almond extract (if using), vinegar, and baking soda. Beat until smooth and creamy, about 2 minutes.</li>
+          <li>Add the egg and beat until well combined. Scrape down the sides of the bowl.</li>
+          <li>Mix in the flour on low speed until just incorporated. Fold in the chocolate chips.</li>
+          <li>Scoop dough into 1&frac14;-inch balls and place on the prepared baking sheets, spacing them about 2 inches apart.</li>
+          <li>For an extra touch, sprinkle a few flakes of sea salt on top of each cookie before baking.</li>
+          <li>Bake for 11 to 12 minutes, until the edges are golden brown and the tops are light golden. The centers may look slightly underdone — that's what you want.</li>
+          <li>Let the cookies cool on the baking sheet for 5 minutes, then transfer to a wire cooling rack.</li>
+        </ol>
+      </div>
+
+      <div class="recipe-tip">
+        <strong>Baker's Tip:</strong>
+        Don't overmix the dough after adding the flour — this keeps the cookies tender instead of tough. And resist the urge to overbake! They'll firm up as they cool. Pull them out when they still look a little soft in the middle.
+      </div>
+
+      <div class="recipe-source">
+        <p><strong>Recipe adapted from:</strong> <a href="https://www.kingarthurbaking.com/recipes/classic-chocolate-chip-cookies-recipe">King Arthur Baking — Classic Chocolate Chip Cookies</a>. Recipe used for educational purposes (recipes are not copyrightable; presentation adapted for this activity).</p>
+        <p><strong>Photo:</strong> "Pile of Chocolate Chip Cookies" by ROMAN ODINTSOV, via <a href="https://www.pexels.com/photo/pile-of-chocolate-chip-cookies-5846049/">Pexels</a> (free to use).</p>
+      </div>
+
+    </div>
+
+    <!-- end of page content -->
+  </div>
+  <script src="/nav.js"></script>
+  <script src="/footer.js" defer></script>
+  <script src="/inclass.js"></script>
+</body>
+</html>
