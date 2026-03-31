@@ -3,7 +3,7 @@
    For standalone in-class activity and presentation pages.
    Include on pages that do NOT use nav.js / style.css.
    Adds a "Presentation Mode" toggle button that:
-     - Scales content to fit the viewport (no scrolling)
+     - Reflows content into columns to fit the viewport
      - Requests a Wake Lock so the screen stays on
    ========================================================================== */
 
@@ -41,30 +41,48 @@ body.presentation-mode {
   padding: 0;
 }
 
-/* Scale the content to fit viewport without scrolling */
 body.presentation-mode .presentation-content {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  padding: 1.5rem;
+  padding: 2rem 3rem;
   box-sizing: border-box;
+  overflow: hidden;
+
+  /* CSS columns: fill available viewport width, auto-balance content */
+  column-width: 26rem;
+  column-gap: 3rem;
+  column-fill: auto;
 }
 
-/* Bump up font sizes in presentation mode for readability at a distance */
-body.presentation-mode .presentation-content h1 {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-}
-
+/* Prevent headings from being orphaned at the bottom of a column */
+body.presentation-mode .presentation-content h1,
 body.presentation-mode .presentation-content h2 {
-  font-size: clamp(1.3rem, 3vw, 2rem);
+  break-after: avoid;
 }
 
-body.presentation-mode .presentation-content p,
+/* Keep grouped content together across columns */
+body.presentation-mode .presentation-content .note,
+body.presentation-mode .presentation-content .ideas {
+  break-inside: avoid;
+}
+
+/* Tighten spacing in presentation mode so more fits */
+body.presentation-mode .presentation-content h2 {
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+body.presentation-mode .presentation-content p {
+  margin: 0.3rem 0;
+}
+
+body.presentation-mode .presentation-content ul,
+body.presentation-mode .presentation-content ol {
+  margin: 0.3rem 0;
+}
+
 body.presentation-mode .presentation-content li {
-  font-size: clamp(1rem, 2vw, 1.3rem);
+  margin-bottom: 0.15rem;
 }
 
 /* Move the toggle button to top-right and fade it in presentation mode */

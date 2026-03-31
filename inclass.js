@@ -1,7 +1,8 @@
 /* ==========================================================================
-   Handout / Presentation Mode — JS
-   Pair with handout.css. Include on any in-class or presentation page.
-   Adds a toggle button, manages Wake Lock, and scales content to viewport.
+   In-Class / Presentation Mode — JS
+   Pair with inclass.css. Include on any standalone in-class or presentation page.
+   Adds a toggle button and manages Wake Lock.
+   Layout is handled entirely by CSS (columns).
    ========================================================================== */
 
 (function () {
@@ -45,14 +46,12 @@
     document.body.classList.add("presentation-mode");
     btn.textContent = "Exit Presentation";
     requestWakeLock();
-    scaleContent();
   }
 
   function exitPresentation() {
     document.body.classList.remove("presentation-mode");
     btn.textContent = "Presentation Mode";
     releaseWakeLock();
-    resetScale();
   }
 
   btn.addEventListener("click", () => {
@@ -67,39 +66,6 @@
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && document.body.classList.contains("presentation-mode")) {
       exitPresentation();
-    }
-  });
-
-  // Scale .presentation-content to fit viewport without scrolling
-  function scaleContent() {
-    const el = document.querySelector(".presentation-content");
-    if (!el) return;
-
-    // Reset any previous transform so we measure natural size
-    el.style.transform = "";
-    el.style.transformOrigin = "top left";
-
-    requestAnimationFrame(() => {
-      const vh = window.innerHeight - 48; // leave room for padding
-      const vw = window.innerWidth - 48;
-      const contentH = el.scrollHeight;
-      const contentW = el.scrollWidth;
-
-      const scale = Math.min(1, vh / contentH, vw / contentW);
-      el.style.transform = "scale(" + scale + ")";
-    });
-  }
-
-  function resetScale() {
-    const el = document.querySelector(".presentation-content");
-    if (el) {
-      el.style.transform = "";
-    }
-  }
-
-  window.addEventListener("resize", () => {
-    if (document.body.classList.contains("presentation-mode")) {
-      scaleContent();
     }
   });
 })();
