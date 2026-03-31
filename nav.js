@@ -139,7 +139,7 @@
                 {label: "Newsletters",          href: "/resources/in-class/newsletters.html"},
                 {label: "Genre Scavenger Hunt", href: "/resources/in-class/genre-scavenger-hunt.html"},
                 {label: "Magazine Ads",         href: "/resources/in-class/analyzing-ads.html"},
-                {label: "Genre Remix",          href: "/resources/in-class/genre-remix-links.html"}
+                {label: "Genre Remix",          href: "/resources/in-class/genre-remix.html"}
               ]
               },
               {label: "Additional Readings & Videos",  href: "/resources/additional-readings-and-videos.html"},
