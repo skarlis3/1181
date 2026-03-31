@@ -24,7 +24,7 @@
     h1 {
       font-size: 2rem;
       color: #f0c27a;
-      margin-bottom: 0.25rem;
+      margin: 0 0 0.25rem;
     }
 
     .subtitle {
@@ -36,7 +36,7 @@
     h2 {
       font-size: 1.25rem;
       color: #f0c27a;
-      margin-top: 2rem;
+      margin-top: 1.75rem;
       margin-bottom: 0.5rem;
       border-bottom: 2px solid #2a2a4a;
       padding-bottom: 0.25rem;
@@ -97,7 +97,7 @@
     }
 
     .note {
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       padding: 1rem 1.25rem;
       background: #2a2a4a;
       border-left: 4px solid #f0c27a;
@@ -105,6 +105,33 @@
       font-size: 0.95rem;
       color: #d0d0e0;
     }
+
+    /* ---- Presentation mode: two-column grid ---- */
+    .pres-header { display: none; }
+    .pres-columns { display: none; }
+
+    body.presentation-mode .activity { display: none; }
+    body.presentation-mode .pres-header { display: block; padding: 1.5rem 2.5rem 0; }
+    body.presentation-mode .pres-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      padding: 0 2.5rem 1.5rem;
+      height: calc(100vh - 5rem);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    body.presentation-mode h1 { font-size: 1.8rem; margin: 0 0 0.15rem; }
+    body.presentation-mode .subtitle { margin-bottom: 0.5rem; font-size: 0.9rem; }
+    body.presentation-mode h2 { font-size: 1.1rem; margin-top: 0.75rem; margin-bottom: 0.25rem; }
+    body.presentation-mode p { margin: 0.25rem 0; font-size: 0.95rem; }
+    body.presentation-mode li { margin-bottom: 0.15rem; font-size: 0.95rem; }
+    body.presentation-mode ul, body.presentation-mode ol { margin: 0.25rem 0; }
+    body.presentation-mode .ideas { margin: 0.4rem 0; gap: 0.35rem; }
+    body.presentation-mode .idea-tag { font-size: 0.85rem; padding: 0.2rem 0.7rem; }
+    body.presentation-mode .sample-link { margin: 0.5rem 0; padding: 0.4rem 1rem; font-size: 0.9rem; }
+    body.presentation-mode .note { margin-top: 0.75rem; padding: 0.75rem 1rem; font-size: 0.9rem; }
 
     @media (max-width: 600px) {
       .activity { padding: 1.5rem 1rem; }
@@ -114,6 +141,7 @@
 </head>
 <body>
 
+  <!-- Normal scrolling view -->
   <div class="activity presentation-content">
 
     <h1>Genre Remix: Recipe Edition</h1>
@@ -160,6 +188,56 @@
       <strong>The point of this activity:</strong> When you remix your Project 1 essay into a new genre, you'll need to do exactly what you just did here — identify the conventions of your target genre, then make deliberate choices about structure, tone, formatting, and design to match.
     </div>
 
+  </div>
+
+  <!-- Presentation mode: explicit two-column layout -->
+  <div class="pres-header">
+    <h1>Genre Remix: Recipe Edition</h1>
+    <p class="subtitle">In-Class Team Activity</p>
+  </div>
+  <div class="pres-columns">
+    <div class="pres-col">
+      <h2>Step 1: Genre Detective</h2>
+      <p>Open the recipe sample and study it with your team. What conventions do you notice?</p>
+      <ul>
+        <li>Structure and organization (sections, order of information)</li>
+        <li>Formatting (how ingredients are listed, numbered steps, headings)</li>
+        <li>Tone and word choice (what does it "sound" like?)</li>
+        <li>Visual and design elements (images, layout, typography, callout boxes)</li>
+      </ul>
+      <p>As a team, list every convention you can identify.</p>
+      <a class="sample-link" href="/resources/in-class/recipe-remix-activity.html" target="_blank">Open Recipe Sample &rarr;</a>
+
+      <h2>Step 2: Pull Up More Samples</h2>
+      <p>Look up a few real recipes online (AllRecipes, food blogs, etc.) as a team. What conventions are consistent? What varies? Add to your list.</p>
+
+      <h2>Step 3: Plan Your Remix</h2>
+      <p>As a team, choose a "recipe" topic that is <strong>not food</strong>:</p>
+      <div class="ideas">
+        <span class="idea-tag">Recipe for a Perfect Nap</span>
+        <span class="idea-tag">How to Make a Best Friend</span>
+        <span class="idea-tag">Recipe for Procrastination</span>
+        <span class="idea-tag">Recipe for the Perfect Playlist</span>
+        <span class="idea-tag">Recipe for Surviving Finals Week</span>
+      </div>
+    </div>
+    <div class="pres-col">
+      <h2>Step 4: Design &amp; Write It</h2>
+      <p>Using a blank piece of paper, <strong>design and write your recipe</strong> as a team. It should look and sound like a real recipe.</p>
+      <ul>
+        <li>Include all the parts: title, headnote, time/yield info, ingredients, steps, a tip</li>
+        <li>Write in the tone and style of a recipe (imperative verbs, specific measurements, etc.)</li>
+        <li>Design the layout — where does each section go on the page?</li>
+        <li>Use boxes with labels like <em>"picture of a cozy blanket"</em> as placeholders for visual elements</li>
+      </ul>
+
+      <h2>Step 5: Gallery Walk</h2>
+      <p>When your team is done, put your recipe up on the wall. We'll walk around and check out everyone's remixes.</p>
+
+      <div class="note">
+        <strong>The point of this activity:</strong> When you remix your Project 1 essay into a new genre, you'll need to do exactly what you just did here — identify the conventions of your target genre, then make deliberate choices about structure, tone, formatting, and design to match.
+      </div>
+    </div>
   </div>
 
   <script src="/inclass.js"></script>
