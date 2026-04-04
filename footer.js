@@ -16,7 +16,7 @@
       <div class="site-footer__brand">ENGL 1181 Class Website</div>
 <hr/>
       <p>ENGL 1181 website and its individual pages, unless otherwise noted, are created by Sarah Karlis and are licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. </p>
-      <p>AI tools were used in the design and coding of this site and may have been used for proofreading, brainstorming, or refining course content. <a href="/policies/gen-ai-policy.html">Learn more.</a></p>
+      <p>AI tools were used in the design and coding of this site and may have been used for proofreading, brainstorming, or refining course content. <a href="/policies/instructor-genai.html">Learn more.</a></p>
     </div>
 
     <nav aria-label="Footer – Quick Links">
