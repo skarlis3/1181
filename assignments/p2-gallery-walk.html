@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 2 Gallery Walk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Judson:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    @page {
+      size: letter landscape;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      font-size: 10pt;
+      line-height: 1.4;
+      color: #1a1a1a;
+      background: white;
+    }
+
+    /* ── SHEET ── */
+    .sheet {
+      width: 11in;
+      height: 8.5in;
+      position: relative;
+      display: flex;
+      page-break-after: always;
+    }
+
+    .sheet:last-child {
+      page-break-after: avoid;
+    }
+
+    /* ── PANEL ── */
+    .panel {
+      width: 5.5in;
+      height: 8.5in;
+      padding: 0.45in 0.5in;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Fold line — visible on screen only */
+    .sheet::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 0;
+      height: 100%;
+      border-left: 1px dashed #ccc;
+    }
+
+    /* ════════════════════════════════════
+       FRONT COVER
+       ════════════════════════════════════ */
+    .cover-front {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 2pt solid #1a1a1a;
+    }
+
+    .cover-course {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 11pt;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 0.15in;
+    }
+
+    .cover-title {
+      font-family: 'Judson', serif;
+      font-weight: 700;
+      font-size: 22pt;
+      line-height: 1.2;
+      color: #1a1a1a;
+      margin-bottom: 0.08in;
+    }
+
+    .cover-divider {
+      width: 2in;
+      height: 0;
+      border-top: 1.5pt solid #1a1a1a;
+      margin: 0.2in auto;
+    }
+
+    .cover-subtitle {
+      font-family: 'Judson', serif;
+      font-weight: 400;
+      font-size: 12pt;
+      color: #555;
+    }
+
+    /* ════════════════════════════════════
+       BACK COVER (blank)
+       ════════════════════════════════════ */
+    .cover-back {
+      /* intentionally blank */
+    }
+
+    /* ════════════════════════════════════
+       INSIDE LEFT (page 2)
+       ════════════════════════════════════ */
+    .inside-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-header {
+      text-align: center;
+      padding-bottom: 0.08in;
+      border-bottom: 2pt solid #1a1a1a;
+      margin-bottom: 0.15in;
+    }
+
+    .page-header-title {
+      font-family: 'Judson', serif;
+      font-weight: 700;
+      font-size: 10pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+    }
+
+    /* ── NAME FIELD ── */
+    .name-field {
+      display: flex;
+      align-items: baseline;
+      gap: 0.08in;
+      margin-bottom: 0.15in;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 10pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .name-field .label {
+      white-space: nowrap;
+      color: #1a1a1a;
+    }
+
+    .name-field .line {
+      flex: 1;
+      border-bottom: 1.5pt solid #1a1a1a;
+      min-height: 1em;
+    }
+
+    /* ── INSTRUCTIONS ── */
+    .instructions {
+      font-size: 9pt;
+      line-height: 1.5;
+      color: #333;
+      margin-bottom: 0.2in;
+      padding: 0.1in 0.15in;
+      border: 1pt solid #999;
+      border-left: 3pt solid #1a1a1a;
+      border-radius: 0 3pt 3pt 0;
+    }
+
+    /* ── QUESTION SECTIONS ── */
+    .question-block {
+      margin-bottom: 0.18in;
+    }
+
+    .question-header {
+      display: flex;
+      align-items: center;
+      gap: 0.08in;
+      margin-bottom: 0.06in;
+    }
+
+    .question-number {
+      font-family: 'Judson', serif;
+      font-weight: 700;
+      font-size: 18pt;
+      color: white;
+      background: #1a1a1a;
+      width: 0.3in;
+      height: 0.3in;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3pt;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .question-label {
+      font-family: 'Judson', serif;
+      font-weight: 700;
+      font-size: 12pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #1a1a1a;
+    }
+
+    .question-prompt {
+      font-size: 9pt;
+      color: #333;
+      margin-bottom: 0.08in;
+      line-height: 1.45;
+    }
+
+    .writing-lines {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .writing-lines .line {
+      height: 0.3in;
+      border-bottom: 0.75pt solid #bbb;
+    }
+
+    /* ── SUBFIELD LABELS ── */
+    .subfield {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #555;
+      margin-top: 0.06in;
+      margin-bottom: 0.02in;
+    }
+
+    /* ── REMINDERS ── */
+    .reminders {
+      position: absolute;
+      bottom: 0.4in;
+      left: 0.5in;
+      right: 0.5in;
+      border-top: 1pt solid #999;
+      padding-top: 0.1in;
+    }
+
+    .reminders-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #1a1a1a;
+      margin-bottom: 0.04in;
+    }
+
+    .reminders ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .reminders li {
+      font-size: 8pt;
+      line-height: 1.5;
+      padding-left: 0.15in;
+      position: relative;
+      color: #333;
+    }
+
+    .reminders li::before {
+      content: '▸';
+      position: absolute;
+      left: 0.02in;
+      color: #555;
+      font-size: 7pt;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .sheet {
+        margin: 0;
+      }
+
+      .sheet::after {
+        display: none;
+      }
+    }
+
+    /* ── SCREEN PREVIEW ── */
+    @media screen {
+      body {
+        background: #e0e0e0;
+        padding: 0.25in;
+      }
+
+      .sheet {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+        margin: 0 auto 0.3in;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════
+       SHEET 1 (outside): Back Cover + Front Cover
+       ════════════════════════════════════════ -->
+  <div class="sheet">
+
+    <!-- BACK COVER (blank) -->
+    <div class="panel cover-back"></div>
+
+    <!-- FRONT COVER -->
+    <div class="panel cover-front">
+      <div class="cover-course">ENGL 1181</div>
+      <div class="cover-title">Project 2<br>Gallery Walk</div>
+      <div class="cover-divider"></div>
+      <div class="cover-subtitle">Poster Presentation Day</div>
+    </div>
+
+  </div>
+
+  <!-- ════════════════════════════════════════
+       SHEET 2 (inside): Inside Left + Inside Right
+       ════════════════════════════════════════ -->
+  <div class="sheet">
+
+    <!-- INSIDE LEFT (page 2) -->
+    <div class="panel inside-left">
+
+      <div class="page-header">
+        <div class="page-header-title">Project 2 Gallery Walk</div>
+      </div>
+
+      <div class="name-field">
+        <span class="label">Name:</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="instructions">
+        Visit <strong>all</strong> of the poster presentations &mdash; you have the full class period. Take your time, read the posters, and look at the remixes before filling this out.
+      </div>
+
+      <div class="question-block">
+        <div class="question-header">
+          <div class="question-number">1</div>
+          <div>
+            <div class="question-label">Best Style &amp; Tone</div>
+          </div>
+        </div>
+        <div class="question-prompt">Name a remix that does the style and tone of its new genre really well. What does it do well?</div>
+        <div class="subfield">Community / Author</div>
+        <table class="writing-lines"><tr><td class="line"></td></tr></table>
+        <div class="subfield">What does it do well?</div>
+        <table class="writing-lines">
+          <tr><td class="line"></td></tr>
+          <tr><td class="line"></td></tr>
+          <tr><td class="line"></td></tr>
+          <tr><td class="line"></td></tr>
+        </table>
+      </div>
+
+      <div class="question-block">
+        <div class="question-header">
+          <div class="question-number">2</div>
+          <div>
+            <div class="question-label">Best Remix Design</div>
+          </div>
+        </div>
+        <div class="question-prompt">Name a remix where the visual design really fits the genre. What stands out about the design?</div>
+        <div class="subfield">Community / Author</div>
+        <table class="writing-lines"><tr><td class="line"></td></tr></table>
+        <div class="subfield">What stands out?</div>
+        <table class="writing-lines">
+          <tr><td class="line"></td></tr>
+          <tr><td class="line"></td></tr>
+          <tr><td class="line"></td></tr>
+          <tr><td class="line"></td></tr>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- INSIDE RIGHT (page 3) -->
+    <div class="panel inside-right">
+
+      <div class="page-header">
+        <div class="page-header-title">Project 2 Gallery Walk</div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-header">
+          <div class="question-number">3</div>
+          <div>
+            <div class="question-label">Best Poster Design</div>
+          </div>
+        </div>
+        <div class="question-prompt">Name a poster where the overall layout and visual rhetoric works well. What makes it effective?</div>
+        <div class="subfield">Community / Author</div>
+        <table class="writing-lines"><tr><td class="line"></td></tr></table>
+        <div class="subfield">What makes it effective?</div>
+        <table class="writing-lines">
+          <tr><td class="line"></td></tr>
+          <tr><td class="line"></td></tr>
+          <tr><td class="line"></td></tr>
+          <tr><td class="line"></td></tr>
+        </table>
+      </div>
+
+      <div class="question-block">
+        <div class="question-header">
+          <div class="question-number">4</div>
+          <div>
+            <div class="question-label">New Community</div>
+          </div>
+        </div>
+        <div class="question-prompt">Name a community you weren&rsquo;t familiar with before today. What&rsquo;s one thing you learned about it?</div>
+        <div class="subfield">Community / Author</div>
+        <table class="writing-lines"><tr><td class="line"></td></tr></table>
+        <div class="subfield">What did you learn?</div>
+        <table class="writing-lines">
+          <tr><td class="line"></td></tr>
+          <tr><td class="line"></td></tr>
+          <tr><td class="line"></td></tr>
+          <tr><td class="line"></td></tr>
+        </table>
+      </div>
+
+      <div class="reminders">
+        <div class="reminders-title">Reminders</div>
+        <ul>
+          <li>Do not leave early &mdash; wait until I have finished grading everyone&rsquo;s poster and everyone has had a chance to see all the displays.</li>
+          <li>You must take your presentation with you at the end of class.</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

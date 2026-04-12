@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project 2: Checklist | ENGL 1181</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/assignments.css" />
+  <link rel="icon" href="/icon1181.png" type="image/x-icon">
+</head>
+<body>
+  <div id="page-content">
+
+    <h1>Project 2: Checklist</h1>
+
+    <p>Use this checklist to make sure you have everything ready before Poster Presentation Day. Check off items as you complete them.</p>
+
+    <p class="checklist-note">Checkboxes save on this device only &mdash; they don't submit anything or sync across devices.</p>
+
+    <div class="checklist-box">
+      <h3>Genre Remix</h3>
+      <ul>
+        <li><input type="checkbox" id="c1"><label for="c1">Remix includes key information from your genre analysis essay</label></li>
+        <li><input type="checkbox" id="c2"><label for="c2">Written in the tone and style of your new genre</label></li>
+        <li><input type="checkbox" id="c3"><label for="c3">Follows the design conventions of your new genre</label></li>
+        <li><input type="checkbox" id="c4"><label for="c4">Polished and professional looking</label></li>
+        <li><input type="checkbox" id="c5"><label for="c5">Appropriate length for the genre</label></li>
+      </ul>
+    </div>
+
+    <div class="checklist-box">
+      <h3>Poster Content</h3>
+      <ul>
+        <li><input type="checkbox" id="c6"><label for="c6">Original genre analysis essay included on poster</label></li>
+        <li><input type="checkbox" id="c7"><label for="c7">Genre remix fully displayed on poster</label></li>
+        <li><input type="checkbox" id="c8"><label for="c8">Name of your community</label></li>
+        <li><input type="checkbox" id="c9"><label for="c9">Information about the new genre</label></li>
+        <li><input type="checkbox" id="c10"><label for="c10">New audience and new purpose for the remix</label></li>
+        <li><input type="checkbox" id="c11"><label for="c11">AI Statement of Use at the bottom of the poster</label></li>
+      </ul>
+    </div>
+
+    <div class="checklist-box">
+      <h3>Poster Design &amp; Format</h3>
+      <ul>
+        <li><input type="checkbox" id="c12"><label for="c12">Tri-fold poster board (stands on its own)</label></li>
+        <li><input type="checkbox" id="c13"><label for="c13">Visual rhetoric demonstrated (layout, color, hierarchy, fonts)</label></li>
+        <li><input type="checkbox" id="c14"><label for="c14">Professional appearance (nothing handwritten)</label></li>
+        <li><input type="checkbox" id="c15"><label for="c15">Image attributions included where needed</label></li>
+      </ul>
+    </div>
+
+    <div class="checklist-box">
+      <h3>Poster Presentation Day</h3>
+      <ul>
+        <li><input type="checkbox" id="c16"><label for="c16">Your name is clearly visible on the project</label></li>
+        <li><input type="checkbox" id="c17"><label for="c17">Bags and belongings put away (no trip hazards)</label></li>
+        <li><input type="checkbox" id="c18"><label for="c18">Gallery Walk form completed</label></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script src="/nav.js"></script>
+  <script src="/footer.js" defer></script>
+  <script>
+    // Save checkbox state to localStorage
+    (function() {
+      var KEY = "p2-checklist-1181";
+      var boxes = document.querySelectorAll('.checklist-box input[type="checkbox"]');
+      var saved = JSON.parse(localStorage.getItem(KEY) || "{}");
+
+      boxes.forEach(function(cb) {
+        if (saved[cb.id]) cb.checked = true;
+        cb.addEventListener("change", function() {
+          saved[cb.id] = cb.checked;
+          localStorage.setItem(KEY, JSON.stringify(saved));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
