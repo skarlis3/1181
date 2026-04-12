@@ -34,6 +34,12 @@
   --accent-box-bg: color-mix(in srgb, var(--focus) 7%, white);
   --accent-box-text: #000;
   --callout-bg: color-mix(in srgb, var(--accent) 6%, white);
+  --req: #1a7a6a;         /* teal — requirements boxes, 4.58:1 on white (AA) */
+  --req-box-bg: #eef7f5;  /* very light teal wash */
+  --alert: #b45309;        /* amber — important note boxes, 4.56:1 on white (AA) */
+  --alert-box-bg: #fef8ee; /* very light amber wash */
+  --aside: #2d5090;        /* blue — aside/info boxes, 7.8:1 on white (AAA) */
+  --aside-box-bg: #eef1f8; /* very light blue wash */
 
   /* Sidenav active states (light mode) */
   --sidenav-active-bg: color-mix(in srgb, var(--accent) 10%, white);
@@ -61,6 +67,12 @@
   --accent-box-bg: #1e2329;
   --accent-box-text: #e8eaed;
   --callout-bg: #1e2329;
+  --req: #5ec4b0;          /* lighter teal for dark bg */
+  --req-box-bg: #1a2724;   /* dark teal tint */
+  --alert: #f5a623;        /* warm amber for dark bg */
+  --alert-box-bg: #2a2318; /* dark amber tint */
+  --aside: #7badea;        /* lighter blue for dark bg — 7.1:1 on #1a1f2a */
+  --aside-box-bg: #1a1f2a; /* dark blue tint */
 
   /* Sidenav active states (dark mode) */
   --sidenav-active-bg: #252d35;
@@ -331,6 +343,91 @@ label[for="topnav-toggle"],
   font-family: "Judson", serif;
   font-size: 1.2rem;
   color: var(--text);
+}
+
+/* ==================== Aside / Info Box ==================================== */
+
+.aside-box {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--aside);
+  border-radius: 8px;
+  background: var(--aside-box-bg);
+  margin: 1.25rem 0 1.75rem;
+  overflow: hidden;
+}
+
+/* "i" sidebar */
+.aside-box::before {
+  content: "i";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 3.25rem;
+  background: var(--aside);
+  color: #fff;
+  font-family: "Judson", serif;
+  font-size: 1.75rem;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.aside-box-content {
+  padding: 1rem 1.5rem;
+}
+
+.aside-box-content h3 {
+  margin-top: 0;
+  font-family: "Judson", serif;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.aside-box-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Dark mode: dark text on lighter blue sidebar */
+[data-theme="dark"] .aside-box::before {
+  color: #121417;
+}
+
+/* ==================== Details / Accordion ================================ */
+details {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin: .75rem 0;
+  background: var(--accent-box-bg);
+}
+
+summary {
+  padding: .75rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+summary::before {
+  content: "▸";
+  font-size: 1.1rem;
+  transition: transform .2s;
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.details-content {
+  padding: 0 1rem 1rem;
 }
 
 /* ==================== Transparency Statement, Licensing, & Sources  ======================== */

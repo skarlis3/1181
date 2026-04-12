@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Assignment Page Styles — ENGL 1181
+   Components: requirements boxes, important notes, checklists, grade scales
+   Dependencies: style.css (must be linked first)
+   ========================================================================== */
+
+
+/* ==================== Requirements Box ========================== */
+
+.requirements-box {
+  position: relative;
+  border: 1px solid var(--req);
+  border-left: 6px solid var(--req);
+  background: var(--req-box-bg);
+  padding: 1rem 1.75rem .8rem;
+  margin: 1.25rem 0 1.75rem;
+  border-radius: 6px;
+}
+
+/* Label tag */
+.requirements-box::before {
+  content: "Requirements";
+  position: absolute;
+  top: -0.65rem;
+  left: 1rem;
+  background: var(--req);
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: .15rem .6rem;
+  border-radius: 3px;
+  line-height: 1.4;
+}
+
+.requirements-box h3 {
+  margin-top: .4rem;
+  font-family: "Judson", serif;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.requirements-box ul,
+.requirements-box ol {
+  margin-bottom: 0;
+}
+
+/* Dark mode: use dark text on the lighter teal tag */
+[data-theme="dark"] .requirements-box::before {
+  color: #121417;
+}
+
+
+/* ==================== Important Note Box ======================== */
+
+.important-note {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--alert);
+  border-radius: 8px;
+  background: var(--alert-box-bg);
+  margin: 1.25rem 0 1.75rem;
+  overflow: hidden;
+}
+
+/* Exclamation point sidebar */
+.important-note::before {
+  content: "!";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 3.25rem;
+  background: var(--alert);
+  color: #fff;
+  font-family: "Judson", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.important-note-content {
+  padding: 1rem 1.5rem;
+}
+
+.important-note-content h3 {
+  margin-top: 0;
+  font-family: "Judson", serif;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.important-note-content p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ==================== Interactive Checklist ==================== */
+
+.checklist-box {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--accent-box-bg);
+  padding: 1.25rem 1.5rem 1rem;
+  margin: 1.5rem 0;
+}
+
+.checklist-box h3 {
+  margin-top: 0;
+  font-family: "Judson", serif;
+  font-size: 1.15rem;
+  color: var(--text);
+  padding-bottom: .4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: .6rem;
+}
+
+.checklist-box ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.checklist-box li {
+  position: relative;
+  padding: .35rem 0 .35rem 2rem;
+  line-height: 1.5;
+}
+
+.checklist-box li + li {
+  border-top: 1px solid var(--border);
+}
+
+.checklist-box input[type="checkbox"] {
+  position: absolute;
+  left: 0;
+  top: .5rem;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.checklist-box label {
+  cursor: pointer;
+}
+
+/* Checked items get muted text */
+.checklist-box input[type="checkbox"]:checked + label {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--border);
+}
+
+.checklist-note {
+  font-size: .82rem;
+  color: var(--muted);
+  margin-top: .75rem;
+  font-style: italic;
+}
+
+
+/* ==================== Standard Grading Scale ==================== */
+
+.grade-scale-note {
+  font-size: 0.9rem;
+  color: var(--muted, #666666);
+  margin-bottom: 0.75rem;
+  max-width: 48rem;
+}
+
+.grade-scale-wrapper {
+  margin: 1rem 0 2rem 0;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border, #e2e3e5);
+  background: var(--sidebar-bg, #fafafa);
+  overflow-x: auto;
+}
+
+.grade-scale-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.grade-scale-table thead th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  background: var(--accent, #003e32);
+  color: var(--accent-contrast, #ffffff);
+  font-weight: 400;
+}
+
+.grade-scale-table tbody td {
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px solid var(--border, #e2e3e5);
+}
+
+.grade-scale-table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.0125);
+}
+
+.grade-scale-table tbody tr:hover {
+  background: var(--hover, #f5f1f1);
+}
+
+.grade-scale-table td:first-child,
+.grade-scale-table th:first-child {
+  width: 5rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .grade-scale-wrapper {
+    padding: 0.75rem 0.75rem;
+  }
+  .grade-scale-table {
+    font-size: 0.9rem;
+  }
+}
