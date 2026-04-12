@@ -40,6 +40,9 @@
   --alert-box-bg: #fef8ee; /* very light amber wash */
   --aside: #2d5090;        /* blue — aside/info boxes, 7.8:1 on white (AAA) */
   --aside-box-bg: #eef1f8; /* very light blue wash */
+  --pop: #f0a0a0;           /* pastel salmon — decorative, borders, gradients */
+  --pop-dark: #9e3e55;      /* coral-pink — AAA on white (7.2:1), text-safe */
+  --pop-box-bg: #fdf0ef;   /* very light salmon wash */
 
   /* Sidenav active states (light mode) */
   --sidenav-active-bg: color-mix(in srgb, var(--accent) 10%, white);
@@ -73,6 +76,9 @@
   --alert-box-bg: #2a2318; /* dark amber tint */
   --aside: #7badea;        /* lighter blue for dark bg — 7.1:1 on #1a1f2a */
   --aside-box-bg: #1a1f2a; /* dark blue tint */
+  --pop: #f0a0a0;
+  --pop-dark: #f0a0a0;     /* use lighter salmon for borders on dark bg */
+  --pop-box-bg: #2a1f22;   /* dark warm tint */
 
   /* Sidenav active states (dark mode) */
   --sidenav-active-bg: #252d35;
@@ -340,6 +346,25 @@ label[for="topnav-toggle"],
 .tips-accent-box h3{
   margin-top: 0;
   margin-bottom: .5em;
+  font-family: "Judson", serif;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+/* ==================== Pop Accent Box (high-visibility callouts) =========== */
+
+.pop-accent-box {
+  border: 1px solid var(--pop);
+  border-left: 6px solid var(--pop-dark);
+  background: var(--pop-box-bg);
+  padding: 1rem 1.75rem .8rem;
+  margin: 1rem 0 1.75rem;
+  border-radius: 6px;
+}
+
+.pop-accent-box h2,
+.pop-accent-box h3 {
+  margin-top: 0;
   font-family: "Judson", serif;
   font-size: 1.2rem;
   color: var(--text);
