@@ -79,13 +79,14 @@
                 { label: "Example Projects",      href: "/assignments/example-p2.html"}
               ]
             },
-            { label: "Final Portfolio",        
+            { label: "Final Portfolio",
               href: "/assignments/final-portfolio.html",
               children: [
-                { label: "Final Portfolio Overview",    href: "/assignments/final-portfolio.html"},
-                { label: "Final Genre Analysis Essay",  href: "/assignments/final-genre-analysis.html"},
-                { label: "AI & Writing Listicle",       href: "/assignments/listicle.html"},
-                { label: "Class Reflection",            href: "/assignments/class-reflection.html"}
+                { label: "Final Portfolio Overview",       href: "/assignments/final-portfolio.html"},
+                { label: "Genre Analysis Essay (Final)",   href: "/assignments/fp-genre-analysis.html"},
+                { label: "Final Reflection",               href: "/assignments/fp-reflection.html"},
+                { label: "Final Portfolio Grading",        href: "/assignments/fp-grading.html"},
+                { label: "Submitting Your Portfolio",      href: "/assignments/fp-submitting.html"}
               ]
             }
             
