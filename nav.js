@@ -76,7 +76,6 @@
                 { label: "Genre Remix",           href: "/assignments/p2-remix.html"},
                 { label: "Poster Presentation",   href: "/assignments/p2-poster.html"},
                 { label: "Checklist",             href: "/assignments/p2-checklist.html"},
-                { label: "Gallery Walk",          href: "/assignments/p2-gallery-walk.html"},
                 { label: "Design Resources",      href: "/assignments/p2-design-resources.html"},
                 { label: "Example Projects",      href: "/assignments/example-p2.html"}
               ]
