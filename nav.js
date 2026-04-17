@@ -80,7 +80,6 @@
                 { label: "Example Projects",      href: "/assignments/example-p2.html"}
               ]
             },
-            { label: "Extra Credit", href: "/assignments/extra-credit.html" },
             { label: "Final Portfolio",
               href: "/assignments/final-portfolio.html",
               children: [
@@ -90,8 +89,8 @@
                 { label: "Final Portfolio Grading",        href: "/assignments/fp-grading.html"},
                 { label: "Submitting Your Portfolio",      href: "/assignments/fp-submitting.html"}
               ]
-            }
-            
+            },
+            { label: "Extra Credit", href: "/assignments/extra-credit.html" }
           ]
         },
         {
