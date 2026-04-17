@@ -80,6 +80,7 @@
                 { label: "Example Projects",      href: "/assignments/example-p2.html"}
               ]
             },
+            { label: "Extra Credit", href: "/assignments/extra-credit.html" },
             { label: "Final Portfolio",
               href: "/assignments/final-portfolio.html",
               children: [
