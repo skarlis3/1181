@@ -61,7 +61,7 @@
                 { label: "Rough Draft",                href: "/assignments/rough-draft.html" },
                 { label: "Peer Review",                href: "/assignments/peer-review.html" },
                 { label: "Revised Draft",              href: "/assignments/revised-draft.html" },
-                { label: "Self-Eval & Reflection",     href: "/assignments/reflection.html" },
+                { label: "Reflection & Checklist",      href: "/assignments/reflection.html" },
                 { label: "Individual Conferences",     href: "/assignments/conferences.html" },
                 { label: "Example Organization",       href: "/assignments/p1-example-organization.html" },
                 { label: "Example Essays",             href: "/assignments/example-p1.html" },
