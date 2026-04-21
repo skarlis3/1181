@@ -122,7 +122,10 @@
                 {label: "Paragraphs & Transitions",  href: "/resources/revising/paragraphs-and-transitions.html"},
                 {label: "Reverse Outline",      href: "/resources/revising/reverse-outline.html"},
                 {label: "Paper Skeleton",       href: "/resources/revising/paper-skeleton.html"},
-                {label: "Proofreading & LOCs",       href: "/resources/revising/proofreading.html"}
+                {label: "Proofreading & LOCs",       href: "/resources/revising/proofreading.html"},
+                {label: "Sentence Structure",    href: "/resources/revising/sentence-structure.html"},
+                {label: "Sentence Fragments",    href: "/resources/revising/fragments.html"},
+                {label: "Paragraph Revision",    href: "/resources/revising/paragraph-revision.html"}
               ]
               },
             { 
