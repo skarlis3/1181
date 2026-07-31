@@ -6,9 +6,9 @@ See `work-with-claude-code/classes/ENGL-1181/CLAUDE.md` for full course context.
 
 Changes here get written up at:
 
-`~/MEGA/work-with-claude-code/classes/ENGL-1181/changelog/index.html`
+`~/MEGA/work-with-claude-code/classes/ENGL-1181/changelog/`
 
-Newest entry first. Add an entry **in the same session as the change**, not later — the reasoning is what the log is for, and it evaporates fast.
+**One HTML file per date, named `YYYY-MM-DD.html`**, plus an `index.html` listing them all with a short summary each. Add both **in the same session as the change**, not later — the reasoning is what the log is for, and it evaporates fast.
 
 An entry covers what changed, what outside event prompted it, a table of the specifics, anything students were seeing wrong, what was checked and found clean, anything flagged but not fixed, and whether it's been pushed. Full spec in `classes/CLAUDE.md` under "Class Website Change Logs."
 
