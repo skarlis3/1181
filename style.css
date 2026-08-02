@@ -81,11 +81,17 @@
   /* The accent is used everywhere — sidebar links, every h3, calendar tabs,
      buttons, date highlights — so its INTENSITY, not its lightness, decides how
      loud the page reads. At 68% saturation the whole page came across as a wall
-     of green. Down to 33%, roughly where 1170's violet sits (44%), which is what
-     makes that site read as calm. Lightness went up to 80% at the same time. */
-  --bright: #bbddd0;         /* 13.4:1 on --bg, 12.5:1 on the sidebar - AAA ✓ */
-  --accent2: #d3e9e0;        /* hover; a step brighter than --bright, same family */
-  --focus-outline: #bbddd0;  /* tracks --bright */
+     of green. Down to 45% — quiet next to the 68% that was shouting, but with
+     more colour present than 33% for scanning. Lightness 76%.
+     Note the readability limit here is not contrast with the background (12.9:1)
+     but telling a link apart from body text, which is only 1.28:1 in luminance.
+     Teal is a luminous hue, so darkening it barely widens that gap. What
+     actually carries the job is the underline on p > a and li > a — do not
+     remove it. In the sidebar the links are a nav list, not prose, so the
+     colour-alone rule does not apply there. */
+  --bright: #a6ddc8;         /* 12.9:1 on --bg, 12.0:1 on the sidebar - AAA ✓ */
+  --accent2: #c6e8da;        /* hover; a step brighter than --bright, same family */
+  --focus-outline: #a6ddc8;  /* tracks --bright */
 
   /* Accent box backgrounds (dark mode) - elevated surfaces */
   --accent-box-bg: #171f1d;
