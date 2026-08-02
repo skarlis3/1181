@@ -32,7 +32,7 @@
      read washed out. Already 100% saturated, so depth is the only lever the
      colour itself has; the rest comes from letting less page through the frost
      below. Drives the bottom bar too, so the two stay in step. */
-  --navbar-bg:#003329;
+  --navbar-bg:#071c18;
 
   /* Drawer header (mobile sidenav) */
   --drawer-header-bg:var(--accent);
@@ -70,26 +70,27 @@
      under what the eye resolves, so it changed nothing you could see. These are
      deliberately far enough to read as a very dark teal rather than as grey.
      Reference point: the 1730 site, which reads as cohesive, runs 33%. */
-  --bg: #0c1211;             /* 16.2:1 under --text - AAA ✓ */
-  --sidebar-bg: #141d1b;     /* 14.7:1 under --text - AAA ✓ */
-  --text: #eaeeed;
-  --muted: #a6b9b5;          /* 9.2:1 on --bg - AAA ✓ */
-  --border: #233733;
-  --hover: #1e2f2b;
+  --bg: #090c0b;             /* 16.5:1 under --text - AAA ✓ */
+  --sidebar-bg: #101615;     /* 15.4:1 under --text - AAA ✓ */
+  --text: #e9ecec;
+  --muted: #afc0bd;          /* 10.4:1 on --bg - AAA ✓ */
+  --border: #212f2c;
+  --hover: #1c2725;
   --accent-contrast: #ffffff;
   /* --focus stays as #005e4b for nav active states (dark bg with white text) */
-  /* Lightened from #5ee0b3 (lightness 62% -> 72%). Against the retuned teal
-     surfaces the old value was green-on-green and the sidebar read as one
-     flat colour. Capped here on purpose: much above 80% lightness a link
-     closes on the body text and stops looking like a link. */
-  --bright: #87e8c5;         /* 13.0:1 on --bg, 11.8:1 on the sidebar - AAA ✓ */
-  --accent2: #9ce4f6;        /* hover; lifted to stay a step above --bright */
-  --focus-outline: #87e8c5;  /* tracks --bright */
+  /* The accent is used everywhere — sidebar links, every h3, calendar tabs,
+     buttons, date highlights — so its INTENSITY, not its lightness, decides how
+     loud the page reads. At 68% saturation the whole page came across as a wall
+     of green. Down to 33%, roughly where 1170's violet sits (44%), which is what
+     makes that site read as calm. Lightness went up to 80% at the same time. */
+  --bright: #bbddd0;         /* 13.4:1 on --bg, 12.5:1 on the sidebar - AAA ✓ */
+  --accent2: #d3e9e0;        /* hover; a step brighter than --bright, same family */
+  --focus-outline: #bbddd0;  /* tracks --bright */
 
   /* Accent box backgrounds (dark mode) - elevated surfaces */
-  --accent-box-bg: #1a2624;
-  --accent-box-text: #eaeeed;
-  --callout-bg: #1a2624;
+  --accent-box-bg: #171f1d;
+  --accent-box-text: #e9ecec;
+  --callout-bg: #171f1d;
   --req: #5ec4b0;          /* lighter teal for dark bg */
   --req-box-bg: #1a2724;   /* dark teal tint */
   --alert: #f5a623;        /* warm amber for dark bg */
@@ -102,8 +103,8 @@
 
   /* Sidenav active states (dark mode) */
   /* were #252d35 / #2a3540 — still blue-grey after the surfaces moved to teal */
-  --sidenav-active-bg: #243632;       /* text 10.9:1, links 7.8:1 - AAA ✓ */
-  --sidenav-active-deep-bg: #2a403b;  /* text 9.5:1,  links 6.8:1 */
+  --sidenav-active-bg: #263331;       /* text 11.0:1, links 9.0:1 - AAA ✓ */
+  --sidenav-active-deep-bg: #2c3c39;  /* text 9.8:1,  links 7.9:1 - AAA ✓ */
 }
 
 /* ==================== Global resets (safe) ==================== */
@@ -460,7 +461,7 @@ body{
 
 /* Dark mode: dark text on lighter blue sidebar */
 [data-theme="dark"] .aside-box::before {
-  color: #0c1211;
+  color: #090c0b;
 }
 
 /* ==================== Details / Accordion ================================ */

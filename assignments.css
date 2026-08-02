@@ -49,7 +49,7 @@
 
 /* Dark mode: use dark text on the lighter teal tag */
 [data-theme="dark"] .requirements-box::before {
-  color: #0c1211;
+  color: #090c0b;
 }
 
 
