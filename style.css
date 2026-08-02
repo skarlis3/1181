@@ -26,6 +26,10 @@
   --maxw:100%;
   --bottomnav-h:78px;
 
+  /* Top bar chrome, named separately from --accent so dark mode can leave it
+     alone. Matches the convention on the 1170 site. */
+  --navbar-bg:#003e32;
+
   /* Drawer header (mobile sidenav) */
   --drawer-header-bg:var(--accent);
   --drawer-header-fg:#fff;
@@ -54,12 +58,17 @@
 
 /* ==================== Dark Mode Tokens (AAA Compliant) ==================== */
 [data-theme="dark"] {
-  --bg: #121417;
-  --sidebar-bg: #1a1d21;
-  --text: #e8eaed;           /* ~14:1 on #121417 - AAA ✓ */
-  --muted: #a8adb5;          /* ~7.5:1 on #121417 - AAA ✓ */
-  --border: #2d3138;
-  --hover: #252930;
+  /* Neutrals sit on the site's own hue (168°, the teal) at low saturation.
+     They used to be a blue-grey at 216° / 12% — the same grey as the purple
+     1170 site — so on both sites the neutral pulled a direction the brand
+     colour didn't, which is what read as a clash. Lightness is unchanged, so
+     every contrast ratio below holds. */
+  --bg: #131615;             /* 15.3:1 under --text - AAA ✓ */
+  --sidebar-bg: #1b201f;     /* 13.9:1 under --text - AAA ✓ */
+  --text: #e9eceb;
+  --muted: #a9b4b2;          /* 8.6:1 on --bg - AAA ✓ */
+  --border: #2e3735;
+  --hover: #272e2d;
   --accent-contrast: #ffffff;
   /* --focus stays as #005e4b for nav active states (dark bg with white text) */
   --bright: #5ee0b3;         /* ~9:1 on #121417 - AAA ✓ */
@@ -67,9 +76,9 @@
   --focus-outline: #5ee0b3;  /* Bright outline for focus states */
 
   /* Accent box backgrounds (dark mode) - elevated surfaces */
-  --accent-box-bg: #1e2329;
-  --accent-box-text: #e8eaed;
-  --callout-bg: #1e2329;
+  --accent-box-bg: #212625;
+  --accent-box-text: #e9eceb;
+  --callout-bg: #212625;
   --req: #5ec4b0;          /* lighter teal for dark bg */
   --req-box-bg: #1a2724;   /* dark teal tint */
   --alert: #f5a623;        /* warm amber for dark bg */
@@ -187,8 +196,33 @@ body{
 /* ==================== Top Navigation (desktop default) ==================== */
 .topnav{
   position:sticky; top:0; z-index:1000;
-  background: var(--accent); color:#fff;
+  color:#fff;
   font-weight:400; font-size:1.05em;
+
+  /* Frosted bar. The brand colour goes slightly translucent over a blur, so page
+     content diffuses as it passes underneath instead of stopping at a hard line.
+     The opacity is deliberately high: the glass reads through the blur and the
+     sheen below, not by lightening the colour, so the bar stays as deep as it
+     has always been. Dark mode can afford a touch more translucency because the
+     page behind it is dark — it can't wash the colour out. */
+  background: color-mix(in srgb, var(--navbar-bg) 94%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  backdrop-filter: blur(12px) saturate(150%);
+}
+[data-theme="dark"] .topnav{
+  background: color-mix(in srgb, var(--navbar-bg) 88%, transparent);
+}
+/* the lit top edge, and a soft fade onto the page rather than a hard rule */
+.topnav::before{
+  content:""; position:absolute; inset:0 0 auto; height:2px; pointer-events:none;
+  background:linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,0));
+}
+.topnav::after{
+  content:""; position:absolute; left:0; right:0; top:100%; height:16px; pointer-events:none;
+  background:linear-gradient(180deg, rgba(0,0,0,.09), transparent);
+}
+[data-theme="dark"] .topnav::after{
+  background:linear-gradient(180deg, rgba(0,0,0,.30), transparent);
 }
 .topnav-inner{
   display:flex; align-items:center; gap:1rem;
@@ -196,7 +230,7 @@ body{
   max-width:var(--maxw); margin-inline:auto;
 }
 .topnav .brand{ color:#fff; font-weight:400; font-size:1.20em; }
-.topnav .menu{ list-style:none; display:flex; gap:.5rem; margin:0 0 0 auto; padding:0;}
+.topnav .menu{ list-style:none; display:flex; align-items:center; gap:.5rem; margin:0 0 0 auto; padding:0;}
 .topnav .menu > li > a{ display:block; padding:.6rem .9rem; border-radius:.4rem; color:#fff; text-decoration: none;}
 .topnav .menu > li > a:hover{ outline:1px solid #fff; }
 .topnav .menu > li > a:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
@@ -206,12 +240,8 @@ body{
 .topnav .brand{ margin-right:auto; }   /* pushes everything else (the menu) to the right */
 .topnav .menu{ margin:0; }             /* remove the old shorthand if present */
 
-/* Kill the TOP-NAV hamburger only  */
-label[for="topnav-toggle"],
-.topnav label[for="topnav-toggle"],
-.topnav .open-topnav-btn { 
-  display: none !important;
-}
+/* A rule killing a top-nav hamburger used to sit here. nav.js has never rendered
+   one on this site — no #topnav-toggle, no .open-topnav-btn — so it hid nothing. */
 
 
 /* ==================== Layout ==================== */
@@ -1059,45 +1089,15 @@ h1, h2, h3, h4, h5, h6{
 /* ===================================================================== */
 /* ===== DESKTOP RESTORE (≥741px): normal top bar & no bottom space ===== */
 /* ===================================================================== */
-@media (min-width: 741px) {
-  :root { --topnav-h: 56px !important; }
-
-  .topnav {
-    /* deliberately not !important — the ≤900px block below overrides these to
-       fixed, and it shouldn't have to escalate to do it */
-    position: sticky;
-    top: 0;
-    background: var(--accent) !important;
-    height: auto !important;
-    min-height: var(--topnav-h) !important;
-    padding: 0 !important;
-    border: 0 !important;
-    overflow: visible !important;
-  }
-
-  .topnav-inner {
-    display: flex !important;
-    min-height: var(--topnav-h) !important;
-    padding-inline: 1rem !important;
-  }
-  .topnav .brand { display: inline !important; }
-
-  .topnav .menu {
-    display: flex !important;
-    position: static !important;
-    left: auto !important; right: auto !important; top: auto !important; bottom: auto !important;
-    height: auto !important;
-    margin: 0 !important; padding: 0 !important;
-    background: transparent !important;
-    z-index: auto !important;
-    flex-direction: row !important;
-    justify-content: flex-end !important;
-    align-items: center !important;
-    gap: .5rem !important;
-  }
-
-  body { padding-bottom: 0 !important; }
-}
+/* A "DESKTOP RESTORE (≥741px)" block used to sit here, ~20 !important
+   declarations re-asserting the top bar's normal appearance. It was written as
+   though the ≤740px mobile block leaked upward. It doesn't — a max-width query
+   simply stops applying above its breakpoint, so the base rules were already in
+   force and every line of it was a no-op. Verified: nothing outside those two
+   blocks styles .topnav. The one declaration that wasn't a browser default,
+   .topnav .menu{align-items:center}, moved into the base rule above.
+   Removing it also cleared a background:var(--accent)!important that would have
+   overridden the frosted bar at desktop widths. Matches the 1170 site. */
 /* ===================================================================== */
 /* ===== MOBILE MODE (≤740px): use dedicated .bottomnav component ======= */
 /* ===================================================================== */
@@ -1106,34 +1106,20 @@ h1, h2, h3, h4, h5, h6{
      left the theme button positioning itself against a bar that wasn't there —
      it landed on top of the drawer's Close control. The bar carries only the
      course name and the theme button; page navigation is the .bottomnav's job. */
-  :root { --topnav-h: 48px !important; }
+  :root { --topnav-h: 48px; }
 
-  .topnav {
-    background: var(--accent) !important;
-    box-shadow: none !important;
-    height: auto !important;
-    min-height: var(--topnav-h) !important;
-    padding: 0 !important;
-    border: 0 !important;
-    overflow: visible !important;
-  }
-  .topnav-inner {
-    display: flex !important;
-    min-height: var(--topnav-h) !important;
-    padding-inline: .75rem !important;
-    gap: .5rem !important;
-  }
-  .topnav .brand { display: inline !important; font-size: 1.05em !important; }
+  .topnav-inner { padding-inline: .75rem; gap: .5rem; }
+  .topnav .brand { font-size: 1.05em; }
 
   /* IMPORTANT: hide the desktop <ul class="menu"> entirely on mobile
      (we’ll use the injected .bottomnav instead) */
-  .topnav .menu { display: none !important; }
+  .topnav .menu { display: none; }
 
   /* show the real bottom nav injected by nav.js */
   .bottomnav { display: block !important; }
 
   /* reserve space so content/footer aren’t covered by bottom bar */
-  body { padding-bottom: calc(var(--bottomnav-h, 78px) + env(safe-area-inset-bottom)) !important; }
+  body { padding-bottom: calc(var(--bottomnav-h, 78px) + env(safe-area-inset-bottom)); }
 }
 
 /* ===================================================================== */
@@ -1261,10 +1247,12 @@ html {
 }
 
 /* ==================== Top/Bottom Nav - Unchanged in Dark Mode ==================== */
-/* These use --accent background with white text, which stays consistent */
+/* These use --navbar-bg with white text, which stays consistent.
+   The background used to be set here with !important, which meant the frosted
+   rule below could never take effect. Colour is now owned by .topnav's own
+   rule near the top of the file; only the text colour is pinned here. */
 .topnav,
 [data-theme="dark"] .topnav {
-  background: var(--accent) !important;
   color: #fff !important;
 }
 
@@ -1277,7 +1265,7 @@ html {
 
 .bottomnav,
 [data-theme="dark"] .bottomnav {
-  background: var(--accent) !important;
+  background: var(--navbar-bg) !important;   /* same token as the top bar, so the two stay in step */
 }
 
 .bn-item,
