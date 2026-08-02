@@ -207,6 +207,15 @@
         if (!href) return false;
         const h = clean(href);
         const hBare = h.split("#")[0].split("?")[0];
+        // For index.html, compare full paths to avoid matching across directories.
+        // Without this, the check below ("is the current filename the same as this
+        // link's filename?") makes Home current on EVERY section landing page,
+        // since /calendar/index.html and /assignments/index.html are all named
+        // index.html. Home then highlights alongside the section you're actually
+        // in. 1170 has carried this guard for a while; 1181 never got it.
+        if (hBare === "index.html") {
+          return path === "/index.html" || path === "/" || path === "";
+        }
         if (last === hBare) return true;
         if (path.endsWith("/" + hBare)) return true;
         const stem = hBare.endsWith(".html") ? hBare.slice(0, -5) : hBare;
