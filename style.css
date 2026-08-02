@@ -27,8 +27,12 @@
   --bottomnav-h:78px;
 
   /* Top bar chrome, named separately from --accent so dark mode can leave it
-     alone. Matches the convention on the 1170 site. */
-  --navbar-bg:#003e32;
+     alone. Matches the convention on the 1170 site. Deepened from #003e32 once
+     the dark surfaces went to a real teal — against a vivid page the old value
+     read washed out. Already 100% saturated, so depth is the only lever the
+     colour itself has; the rest comes from letting less page through the frost
+     below. Drives the bottom bar too, so the two stay in step. */
+  --navbar-bg:#003329;
 
   /* Drawer header (mobile sidenav) */
   --drawer-header-bg:var(--accent);
@@ -214,7 +218,9 @@ body{
   backdrop-filter: blur(12px) saturate(150%);
 }
 [data-theme="dark"] .topnav{
-  background: color-mix(in srgb, var(--navbar-bg) 88%, transparent);
+  /* 92%, not 88% — the page behind is darker now, so a given amount of
+     transparency bleeds more of it through and dilutes the bar's colour. */
+  background: color-mix(in srgb, var(--navbar-bg) 92%, transparent);
 }
 /* the lit top edge, and a soft fade onto the page rather than a hard rule */
 .topnav::before{
