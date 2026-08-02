@@ -32,10 +32,14 @@
      read washed out. Already 100% saturated, so depth is the only lever the
      colour itself has; the rest comes from letting less page through the frost
      below. Drives the bottom bar too, so the two stay in step. */
-  /* Lifted from #071c18 (lightness 7% -> 13%). At 7% the bar was almost the same
-     darkness as the page — fine on one laptop, too dark to read as a bar on an
-     iPad. Intensity stays at the chosen 59%. */
-  --navbar-bg:#0e352d;
+  /* Intensity back up to 90% at lightness 13%.
+     A near-black, low-saturation colour is the worst case for looking the same
+     on two screens: with little hue to lock onto, what you see is almost purely
+     the panel gamma, and cheap panels differ most at the bottom of the range.
+     Adding saturation gives the eye a hue to read instead of a brightness, which
+     is far more stable across devices. Landing near the original #003e32 is not
+     a coincidence — that value was robust for the same reason. */
+  --navbar-bg:#033f33;
 
   /* Drawer header (mobile sidenav) */
   --drawer-header-bg:var(--accent);
