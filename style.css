@@ -78,9 +78,13 @@
   --hover: #1e2f2b;
   --accent-contrast: #ffffff;
   /* --focus stays as #005e4b for nav active states (dark bg with white text) */
-  --bright: #5ee0b3;         /* 11.5:1 on --bg - AAA ✓ */
-  --accent2: #6dd5f0;        /* 12.9:1 on --bg - AAA ✓ */
-  --focus-outline: #5ee0b3;  /* Bright outline for focus states */
+  /* Lightened from #5ee0b3 (lightness 62% -> 72%). Against the retuned teal
+     surfaces the old value was green-on-green and the sidebar read as one
+     flat colour. Capped here on purpose: much above 80% lightness a link
+     closes on the body text and stops looking like a link. */
+  --bright: #87e8c5;         /* 13.0:1 on --bg, 11.8:1 on the sidebar - AAA ✓ */
+  --accent2: #9ce4f6;        /* hover; lifted to stay a step above --bright */
+  --focus-outline: #87e8c5;  /* tracks --bright */
 
   /* Accent box backgrounds (dark mode) - elevated surfaces */
   --accent-box-bg: #1a2624;
