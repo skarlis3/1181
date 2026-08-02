@@ -443,6 +443,9 @@
         const setDrawer = (open) => {
           if (checkbox.checked === open) return;
           checkbox.checked = open;
+          // Lets page-level chrome outside .layout react — see .theme-toggle, which
+          // otherwise floats on top of the drawer's Close button.
+          document.documentElement.classList.toggle("drawer-open", open);
           if (openBtnEl) openBtnEl.setAttribute("aria-expanded", open ? "true" : "false");
 
           if (open) {
@@ -455,7 +458,10 @@
             });
           } else {
             unlockBody();
-            const back = lastFocus && lastFocus.isConnected ? lastFocus : openBtnEl;
+            // offsetParent guards against handing focus back to something that got
+            // hidden while the drawer was open.
+            const usable = lastFocus && lastFocus.isConnected && lastFocus.offsetParent !== null;
+            const back = usable ? lastFocus : openBtnEl;
             lastFocus = null;
             if (back && back.focus) back.focus();
           }

@@ -848,6 +848,11 @@ summary::-webkit-details-marker {
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1;
   }
 
+  /* The drawer is a full-screen overlay, and the floating theme button sits at the
+     same top-right corner as the drawer's Close control — so it lands on top of it.
+     Hide the button while the menu is open; it's back the moment the menu closes. */
+  html.drawer-open .theme-toggle{ display:none; }
+
   .open-sidenav-btn{
     display:inline-flex; align-items:center; gap:.4rem;
     padding:.48rem .66rem; margin:.5rem 0 1rem;
