@@ -443,9 +443,6 @@
         const setDrawer = (open) => {
           if (checkbox.checked === open) return;
           checkbox.checked = open;
-          // Lets page-level chrome outside .layout react — see .theme-toggle, which
-          // otherwise floats on top of the drawer's Close button.
-          document.documentElement.classList.toggle("drawer-open", open);
           if (openBtnEl) openBtnEl.setAttribute("aria-expanded", open ? "true" : "false");
 
           if (open) {
@@ -598,7 +595,16 @@
           btn.setAttribute('aria-label', `Switch to ${next === 'dark' ? 'light' : 'dark'} mode`);
         });
 
-        document.body.appendChild(btn);
+        // Lives in the top bar, so it is laid out rather than floating over the
+        // page — it can't collide with content or with the mobile drawer.
+        // Only if the nav failed to render does it fall back to floating.
+        const host = document.querySelector('.topnav-inner');
+        if (host) {
+          host.appendChild(btn);
+        } else {
+          btn.classList.add('theme-toggle--floating');
+          document.body.appendChild(btn);
+        }
       };
 
       // Listen for system preference changes (only if no stored preference)
