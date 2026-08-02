@@ -58,27 +58,30 @@
 
 /* ==================== Dark Mode Tokens (AAA Compliant) ==================== */
 [data-theme="dark"] {
-  /* Neutrals sit on the site's own hue (168°, the teal) at low saturation.
-     They used to be a blue-grey at 216° / 12% — the same grey as the purple
-     1170 site — so on both sites the neutral pulled a direction the brand
-     colour didn't, which is what read as a clash. Lightness is unchanged, so
-     every contrast ratio below holds. */
-  --bg: #131615;             /* 15.3:1 under --text - AAA ✓ */
-  --sidebar-bg: #1b201f;     /* 13.9:1 under --text - AAA ✓ */
-  --text: #e9eceb;
-  --muted: #a9b4b2;          /* 8.6:1 on --bg - AAA ✓ */
-  --border: #2e3735;
-  --hover: #272e2d;
+  /* Surfaces sit on the site's own hue (168°, the teal) at 20% saturation, with
+     the main reading area at 6% lightness. They used to be a blue-grey at 216°
+     / 12% — the identical grey used on the purple 1170 site — so the neutral
+     pulled a direction the brand colour didn't, which is what read as a clash.
+     A first pass at 7–9% saturation moved the surfaces by 1–3 steps out of 255,
+     under what the eye resolves, so it changed nothing you could see. These are
+     deliberately far enough to read as a very dark teal rather than as grey.
+     Reference point: the 1730 site, which reads as cohesive, runs 33%. */
+  --bg: #0c1211;             /* 16.2:1 under --text - AAA ✓ */
+  --sidebar-bg: #141d1b;     /* 14.7:1 under --text - AAA ✓ */
+  --text: #eaeeed;
+  --muted: #a6b9b5;          /* 9.2:1 on --bg - AAA ✓ */
+  --border: #233733;
+  --hover: #1e2f2b;
   --accent-contrast: #ffffff;
   /* --focus stays as #005e4b for nav active states (dark bg with white text) */
-  --bright: #5ee0b3;         /* ~9:1 on #121417 - AAA ✓ */
-  --accent2: #6dd5f0;        /* ~10:1 on #121417 - AAA ✓ */
+  --bright: #5ee0b3;         /* 11.5:1 on --bg - AAA ✓ */
+  --accent2: #6dd5f0;        /* 12.9:1 on --bg - AAA ✓ */
   --focus-outline: #5ee0b3;  /* Bright outline for focus states */
 
   /* Accent box backgrounds (dark mode) - elevated surfaces */
-  --accent-box-bg: #212625;
-  --accent-box-text: #e9eceb;
-  --callout-bg: #212625;
+  --accent-box-bg: #1a2624;
+  --accent-box-text: #eaeeed;
+  --callout-bg: #1a2624;
   --req: #5ec4b0;          /* lighter teal for dark bg */
   --req-box-bg: #1a2724;   /* dark teal tint */
   --alert: #f5a623;        /* warm amber for dark bg */
@@ -90,8 +93,9 @@
   --pop-box-bg: #2a1f22;   /* dark warm tint */
 
   /* Sidenav active states (dark mode) */
-  --sidenav-active-bg: #252d35;
-  --sidenav-active-deep-bg: #2a3540;
+  /* were #252d35 / #2a3540 — still blue-grey after the surfaces moved to teal */
+  --sidenav-active-bg: #243632;       /* text 10.9:1, links 7.8:1 - AAA ✓ */
+  --sidenav-active-deep-bg: #2a403b;  /* text 9.5:1,  links 6.8:1 */
 }
 
 /* ==================== Global resets (safe) ==================== */
@@ -446,7 +450,7 @@ body{
 
 /* Dark mode: dark text on lighter blue sidebar */
 [data-theme="dark"] .aside-box::before {
-  color: #121417;
+  color: #0c1211;
 }
 
 /* ==================== Details / Accordion ================================ */
