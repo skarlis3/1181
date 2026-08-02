@@ -784,11 +784,17 @@ summary::-webkit-details-marker {
     overflow-y:auto;
     z-index:2000 !important;
     transform:translateY(100%); opacity:0; pointer-events:none;
-    transition:transform .22s ease, opacity .22s ease;
+    /* visibility, not just opacity: an invisible drawer whose links are still in the
+       tab order sends keyboard users into a menu they can't see.
+       0s delayed to the end of the slide on the way out, instant on the way in — so
+       the drawer is focusable the moment it opens but still fades out smoothly. */
+    visibility:hidden;
+    transition:transform .22s ease, opacity .22s ease, visibility 0s linear .22s;
     padding-bottom: calc(var(--bottomnav-h) + max(env(safe-area-inset-bottom,0px), 16px));
   }
   #sidenav-toggle:checked ~ .sidenav.sidenav--fullscreen{
-    transform:translateY(0); opacity:1; pointer-events:auto;
+    transform:translateY(0); opacity:1; pointer-events:auto; visibility:visible;
+    transition:transform .22s ease, opacity .22s ease, visibility 0s linear 0s;
   }
 
   .sidenav-scrim{
@@ -806,11 +812,18 @@ summary::-webkit-details-marker {
     border-bottom:1px solid rgba(255,255,255,.15);
   }
   .sidenav__title{ font:700 1rem "Lato", system-ui, sans-serif; }
+  /* Now a real <button> (was a <label>) — reset the UA button chrome. */
   .sidenav-close{
     display:inline-flex; align-items:center; gap:.5rem;
     padding:.35rem .65rem; border-radius:999px;
     color:var(--drawer-header-fg); border:2px solid rgba(255,255,255,.55);
+    background:transparent; cursor:pointer;
     text-decoration:none; font:600 .95rem "Lato", system-ui, sans-serif;
+  }
+  .sidenav-close:focus-visible,
+  .open-sidenav-btn:focus-visible{
+    outline:3px solid var(--focus-outline);
+    outline-offset:2px;
   }
 
   .sidenav{ padding:0; background:var(--sidebar-bg); }
@@ -1157,11 +1170,14 @@ html {
 }
 
 /* ==================== Dark Mode Toggle Button ==================== */
+/* nav.js builds this button but sets no inline styles — everything about how it
+   looks lives here. (It used to write these same properties inline with
+   !important, which silently killed this whole rule.) */
 .theme-toggle {
-  position: fixed !important;
+  position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
-  z-index: 9999 !important;
+  z-index: 9999;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -1169,7 +1185,7 @@ html {
   background: var(--bg, #ffffff);
   color: var(--text, #141414);
   cursor: pointer;
-  display: flex !important;
+  display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 10px rgba(0,0,0,.25);
