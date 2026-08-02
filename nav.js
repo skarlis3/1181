@@ -391,7 +391,12 @@
 
       const main = document.querySelector("main.content");
       const explicit = document.getElementById("page-content");
-      if (explicit && explicit.parentElement !== main) main.appendChild(explicit);
+      // explicit !== main matters: index.html supplies its own
+      // <main class="content" id="page-content">, so both lookups find the SAME
+      // element. Without this guard the line below appends a node to itself,
+      // which throws HierarchyRequestError and aborts the rest of init inside
+      // the catch — silently, on the home page only.
+      if (explicit && explicit !== main && explicit.parentElement !== main) main.appendChild(explicit);
 
       // -------------------- Behavior --------------------
       // Match your CSS mobile breakpoint so .bottomnav mode is consistent with layout
