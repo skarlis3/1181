@@ -33,7 +33,7 @@
     <div>
       <h4>External Links</h4>
       <p><a href="https://online.macomb.edu">Canvas</a></p>
-      <p><a href="https://sites.google.com/view/1181a/home">Online Textbook</a></p>
+      <p><a href="https://macomb.pressbooks.pub/engl1181/">Online Textbook</a></p>
     </div>
   </div>
 </footer>`.trim();
