@@ -70,19 +70,20 @@
 /* ==================== Dark Mode Tokens (AAA Compliant) ==================== */
 [data-theme="dark"] {
   /* Surfaces sit on the site's own hue (168°, the teal) at 20% saturation, with
-     the main reading area at 6% lightness. They used to be a blue-grey at 216°
+     the main reading area at 6% lightness (raised from 4% after checking on
+     several screens — 4% held up on one display and read as flat black on others). They used to be a blue-grey at 216°
      / 12% — the identical grey used on the purple 1170 site — so the neutral
      pulled a direction the brand colour didn't, which is what read as a clash.
      A first pass at 7–9% saturation moved the surfaces by 1–3 steps out of 255,
      under what the eye resolves, so it changed nothing you could see. These are
      deliberately far enough to read as a very dark teal rather than as grey.
      Reference point: the 1730 site, which reads as cohesive, runs 33%. */
-  --bg: #090c0b;             /* 16.5:1 under --text - AAA ✓ */
-  --sidebar-bg: #101615;     /* 15.4:1 under --text - AAA ✓ */
+  --bg: #0d1211;             /* 15.9:1 under --text - AAA ✓ */
+  --sidebar-bg: #151c1b;     /* 14.6:1 under --text - AAA ✓ */
   --text: #e9ecec;
   --muted: #afc0bd;          /* 10.4:1 on --bg - AAA ✓ */
-  --border: #212f2c;
-  --hover: #1c2725;
+  --border: #263532;
+  --hover: #202d2a;
   --accent-contrast: #ffffff;
   /* --focus stays as #005e4b for nav active states (dark bg with white text) */
   /* The accent is used everywhere — sidebar links, every h3, calendar tabs,
@@ -101,9 +102,9 @@
   --focus-outline: #a6ddc8;  /* tracks --bright */
 
   /* Accent box backgrounds (dark mode) - elevated surfaces */
-  --accent-box-bg: #171f1d;
+  --accent-box-bg: #1b2523;
   --accent-box-text: #e9ecec;
-  --callout-bg: #171f1d;
+  --callout-bg: #1b2523;
   --req: #5ec4b0;          /* lighter teal for dark bg */
   --req-box-bg: #1a2724;   /* dark teal tint */
   --alert: #f5a623;        /* warm amber for dark bg */
@@ -116,8 +117,8 @@
 
   /* Sidenav active states (dark mode) */
   /* were #252d35 / #2a3540 — still blue-grey after the surfaces moved to teal */
-  --sidenav-active-bg: #263331;       /* text 11.0:1, links 9.0:1 - AAA ✓ */
-  --sidenav-active-deep-bg: #2c3c39;  /* text 9.8:1,  links 7.9:1 - AAA ✓ */
+  --sidenav-active-bg: #2a3936;       /* text 10.2:1, links 8.0:1 - AAA ✓ */
+  --sidenav-active-deep-bg: #31423f;  /* text 9.1:1,  links 7.1:1 - AAA ✓ */
 }
 
 /* ==================== Global resets (safe) ==================== */
@@ -474,7 +475,7 @@ body{
 
 /* Dark mode: dark text on lighter blue sidebar */
 [data-theme="dark"] .aside-box::before {
-  color: #090c0b;
+  color: #0d1211;
 }
 
 /* ==================== Details / Accordion ================================ */
