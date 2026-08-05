@@ -7,51 +7,229 @@
   <link rel="stylesheet" href="/style.css" />
   <link rel="icon" href="/icon1181.png" type="image/x-icon">
   <meta name="description" content="Instructions and guidance for in-class peer review of the Project 1 rough draft in ENGL 1181." />
+  <style>
+    /* ===== Part Labels ===== */
+    .part-label {
+      display: inline-block;
+      font-family: "Lato", system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.2em 0.6em;
+      border-radius: 4px;
+      margin-right: 0.4em;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .part-a { background: #1e5582; color: #fff; }
+    .part-b { background: #2f5e18; color: #fff; }
+
+    /* ===== Part Boxes ===== */
+    .part-box {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.75rem 1rem;
+      margin: 1.25rem 0 1.75rem;
+      background: var(--accent-box-bg);
+    }
+    .part-box-a { border-left: 5px solid #1e5582; }
+    .part-box-b { border-left: 5px solid #2f5e18; }
+    [data-theme="dark"] .part-box-a { border-left-color: #6db3f2; }
+    [data-theme="dark"] .part-box-b { border-left-color: #8bc66a; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]):not([data-theme="dark"]) .part-box-a { border-left-color: #6db3f2; }
+      :root:not([data-theme="light"]):not([data-theme="dark"]) .part-box-b { border-left-color: #8bc66a; }
+    }
+
+    .part-box h3 {
+      margin-top: 0;
+      font-family: "Judson", serif;
+      font-size: 1.2rem;
+    }
+    .part-box-a h3 { color: #1e5582; }
+    .part-box-b h3 { color: #2f5e18; }
+    [data-theme="dark"] .part-box-a h3 { color: #6db3f2; }
+    [data-theme="dark"] .part-box-b h3 { color: #8bc66a; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]):not([data-theme="dark"]) .part-box-a h3 { color: #6db3f2; }
+      :root:not([data-theme="light"]):not([data-theme="dark"]) .part-box-b h3 { color: #8bc66a; }
+    }
+
+    .paper-map-questions > li { margin-bottom: 0.9em; }
+  </style>
 </head>
 <body>
   <div id="page-content">
 
     <h1>In-Class Peer Review</h1>
 
+    <p>
+      In-class peer review is where you read your teammates' rough drafts and give them feedback on their writing &mdash;
+      and where you get feedback on yours. It happens during class, on the day marked on the
+      <a href="/calendar/index.html">calendar</a>.
+    </p>
+
+    <!-- At a Glance -->
+    <div class="glance-accent-box">
+      <h3>At a Glance</h3>
+      <ul>
+        <li>You will review <b>two</b> of your teammates' rough drafts.</li>
+        <li>For each paper, you'll do two things:
+          <ol style="margin-top: 0.3em;">
+            <li><span class="part-label part-a">Part A</span> <b>Paper Map</b> &mdash; a quick reverse outline that helps you (and the author) see the paper's structure.</li>
+            <li><span class="part-label part-b">Part B</span> <b>Feedback on the Draft</b> &mdash; comments on specific spots where things are working well or could be stronger.</li>
+          </ol>
+        </li>
+        <li>All of it happens in <b>Microsoft Word online</b>, on the copy in your team's shared OneDrive folder.</li>
+        <li><b>Bring a laptop or tablet.</b></li>
+      </ul>
+    </div>
+
+    <p>
+      If illness or an emergency keeps you from being there, there is an
+      <a href="#alternative">alternative assignment</a> &mdash; but read this first:
+    </p>
+
+    <div class="pop-accent-box" id="asc-availability">
+      <h3>Book early &mdash; and don't come to class sick</h3>
+      <p>The alternative requires an appointment with a writing tutor at the Academic Success Center, and the ASC has <b>limited availability</b>. Appointments fill up.</p>
+      <p>This alternative is for <b>illness and emergencies</b>. As soon as it looks like you won't be able to make peer review, book the appointment. Putting it off usually means there is nothing left to book, and "I couldn't get an appointment" is not something I can fix after the fact.</p>
+      <p style="margin-bottom:0;">And please &mdash; <b>don't show up to peer review sick.</b> That is exactly what this alternative is for.</p>
+    </div>
+
     <!-- Table of Contents -->
-    <h2>Table of Contents</h2>
-    <ul class="toc">
-      <li><a href="#instructions">Peer Review Instructions</a></li>
-      <li><a href="#additional">Additional Information</a></li>
-      <li><a href="#hoc-moc">High- and Middle-Order Concerns</a></li>
-      <li><a href="#canvas-howto">Instructions for Using Canvas for Peer Review</a></li>
-      <li><a href="#viewing-feedback">Viewing Peer Review Feedback</a></li>
-    </ul>
+    <div class="toc">
+      <h3>Table of Contents</h3>
+      <ul>
+        <li><a href="#where">Where Peer Review Happens</a></li>
+        <li><a href="#overview">Overview: The Two Parts</a></li>
+        <li><a href="#part-a">Part A: Paper Map</a></li>
+        <li><a href="#part-b">Part B: Feedback on the Draft</a></li>
+        <li><a href="#hoc-moc">High- and Middle-Order Concerns</a></li>
+        <li><a href="#tips">Tips for Giving Good Feedback</a></li>
+        <li><a href="#viewing-feedback">Viewing Your Feedback</a></li>
+        <li><a href="#alternative">Alternative to In-Class Peer Review</a></li>
+      </ul>
+    </div>
 
-    <h2 id="instructions">Peer Review Instructions</h2>
+    <!-- Where Peer Review Happens -->
+    <h2 id="where">Where Peer Review Happens</h2>
+
+    <p>
+      Peer review is done during class in <b>Microsoft Word online</b>, through your
+      <b>Macomb Microsoft 365 / OneDrive account</b>.
+    </p>
+
     <ul>
-      <li>Leave feedback on the paper using Canvas (see instructions below).</li>
-      <li>Leave <strong>at least one</strong> comment that:
-        <ul>
-          <li>addresses a <strong>high- or middle-order concern</strong> that could use improvement (organization, details, paragraph structure, examples, flow, transitions, etc.).</li>
-          <li>points to a <strong>specific spot</strong> in the paper that illustrates the issue.</li>
-        </ul>
-      </li>
-      <li>Leave <strong>at least one</strong> comment about something that’s working well (ideally connected to a high-/middle-order concern).</li>
-      <li><strong>Do not</strong> leave later-order concerns (grammar/spelling/mechanics) unless they block readability. If so, make <strong>one</strong> note to explain the issue.</li>
-      <li><strong>Do not edit</strong> your classmate’s draft (no direct grammar fixing in the text).</li>
+      <li>Before class, everyone uploads their rough draft to their team's <b>shared OneDrive folder</b>. The link to that folder is posted <b>in Canvas, on the Rough Draft assignment</b>.</li>
+      <li>During class, I'll help everyone make sure the groups are even based on attendance, and you'll give two of your teammates feedback directly on their papers in Word Online.</li>
+      <li><b>Bring a laptop or tablet</b> so you can comment on your teammates' drafts and read the comments left on yours.</li>
+      <li>You will need to sign in with your <b>Macomb account</b> in order to access this folder.</li>
     </ul>
 
-    <h2 id="additional">Additional Information</h2>
+    <!-- Overview -->
+    <h2 id="overview">Overview: The Two Parts</h2>
+
+    <p>
+      Your job is to read your teammates' papers <b>as a reader</b> &mdash; not as an editor. You're helping the author see
+      their paper from the outside: what's coming through clearly, what's confusing, where the analysis feels convincing,
+      and where it feels thin.
+    </p>
+
+    <p>For each paper you review, you'll complete two parts:</p>
+
     <ul>
-      <li>Focus on ideas that could <strong>improve the paper</strong>. You don’t have to prescribe exact fixes.</li>
-      <li>It’s fine to comment as a <strong>reader</strong>—describe what you notice rather than trying to “be the editor.”</li>
-      <li>Use <strong>feedback sandwiches</strong> when possible (from the “In-Class Peer Review” reading).</li>
-      <li>Leave <strong>only</strong> high- and middle-order concern feedback.
-        <ul>
-          <li>No grammar/spelling feedback.</li>
-          <li><em>Exception:</em> For a consistent issue (e.g., fragments/run-ons) that hurts readability or flow, you can mark it <strong>once</strong> to flag the trend.</li>
-        </ul>
-      </li>
-      <li>For in-person classes: you may discuss papers verbally, but make sure feedback is also left on the draft in Canvas.</li>
+      <li><span class="part-label part-a">Part A</span> <b>Paper Map</b> &mdash; Read the paper all the way through and build a quick outline of what you see. Type this at the <b>end of the document</b>, under a heading with your name.</li>
+      <li><span class="part-label part-b">Part B</span> <b>Feedback on the Draft</b> &mdash; Go back through and leave <b>comments in the margins</b>, pointing to specific spots that are working well or could use improvement.</li>
     </ul>
 
+    <p>
+      Do them in that order. Part A gets you the lay of the land, so the comments you leave in Part B are about the paper
+      as a whole rather than the first thing you happened to notice.
+    </p>
+
+    <p>
+      You may discuss papers out loud with your team, but make sure your feedback is also <b>left in writing on the draft</b>
+      &mdash; that written record is what your teammate takes into revision, and what shows me the review was done.
+    </p>
+
+    <!-- Part A -->
+    <h2 id="part-a"><span class="part-label part-a">Part A</span> Paper Map</h2>
+
+    <p>
+      Start by reading the paper all the way through and building a Paper Map. This is a quick reverse outline that helps
+      you get the lay of the land before you start leaving detailed feedback. It also gives the author a useful picture of
+      how their paper reads to someone seeing it for the first time.
+    </p>
+
+    <div class="part-box part-box-a">
+      <h3>Paper Map Questions</h3>
+
+      <p><b>Type your Paper Map at the end of the document</b>, under a heading like <em>Paper Map &mdash; [your name]</em> (not as margin comments). Answer the following:</p>
+
+      <ol class="paper-map-questions">
+        <li>
+          <b>What community and what genre?</b><br>
+          In a sentence: what discourse community is this paper about, and what genre from that community is being analyzed?
+        </li>
+        <li>
+          <b>What conventions does the paper analyze?</b><br>
+          List them. Each one might have its own paragraph or section, or they might be mixed together &mdash; just describe what you see.<br>
+          <em>If you're having trouble telling the conventions apart, that's worth noting. It usually means the organization could be clearer.</em>
+        </li>
+        <li>
+          <b>What genre samples show up for each convention?</b><br>
+          For each convention on your list, do a quick tally: <b>how many different genre samples</b> are used as evidence? A rough count is fine.
+        </li>
+        <li>
+          <b>Does the support feel sufficient?</b><br>
+          Is any convention resting on a <b>single example</b>? A convention is supposed to be a <em>pattern</em> in the genre, so one example usually isn't enough to show it. Are there sections that feel thin, or places where a claim about the genre isn't backed by anything from the samples?
+        </li>
+      </ol>
+    </div>
+
+    <!-- Part B -->
+    <h2 id="part-b"><span class="part-label part-b">Part B</span> Feedback on the Draft</h2>
+
+    <p>
+      After finishing the Paper Map, go back through the paper and <b>leave comments in the margins</b> in Word online,
+      on your teammate's draft in the shared OneDrive folder.
+    </p>
+
+    <div class="part-box part-box-b">
+      <h3>What to Look For</h3>
+
+      <p>Focus on high or middle order concerns (see <a href="#hoc-moc">section below</a> for more on this). You do not have to answer all of the following questions, but you can use these if you're unsure what to comment on:</p>
+
+      <ul>
+        <li>Does the introduction give enough background for someone who has never heard of this community to follow the rest of the paper?</li>
+        <li>Are the genre samples actually <b>analyzed</b>, or are they described and then left alone without explaining what they show? (i.e. do the convention paragraphs include TED &mdash; topic sentence, evidence, and discussion &mdash; or are they missing that last part?)</li>
+        <li>Is each convention shown as a <b>pattern</b> across more than one sample, or does it rely on a single post or example?</li>
+        <li>At some point, does the paper connect the genre back to <b>how the community works</b> &mdash; what it values, who belongs, how people talk to each other?</li>
+        <li>Are there spots where you got confused or had to re-read to understand what was being said?</li>
+        <li>Is the paper easy to follow? Does the organization make sense?</li>
+      </ul>
+
+      <h3>Feedback Requirements</h3>
+
+      <ul>
+        <li>Leave <b>at least three</b> comments that:
+          <ul>
+            <li>address <b>high- or middle-order concerns</b> that could use improvement (organization, details, paragraph structure, examples, flow, transitions, evidence use, etc.).</li>
+            <li>point to a <b>specific spot</b> in the paper that illustrates the issue.</li>
+          </ul>
+        </li>
+        <li>Leave <b>at least one</b> comment about something that's working well (ideally connected to a high-/middle-order concern).</li>
+        <li><b>Do not</b> leave later-order concerns (grammar/spelling/mechanics) unless they block readability. If so, make <b>one</b> note to explain the issue.</li>
+        <li><b>Do not edit</b> your classmate's draft (no direct grammar fixing in the text).</li>
+      </ul>
+    </div>
+
+    <!-- High- and Middle-Order Concerns -->
     <h2 id="hoc-moc">High- and Middle-Order Concerns</h2>
+
+    <p>Both parts focus on these. Not grammar.</p>
 
     <h3>High-Order Concerns: The Big Stuff</h3>
     <p>Think about assignment requirements, overall organization, audience, purpose, and genre.</p>
@@ -70,25 +248,65 @@
     </ul>
     <p>Leave feedback on any area that could be improved.</p>
 
-    <h2 id="canvas-howto">Instructions for Using Canvas for Peer Review</h2>
-    <ol>
-      <li>Go to <strong>Modules</strong> and open the assignment titled <em>Rough Draft with Peer Review</em>.</li>
-      <li>Click one of your assigned peer reviews. <br>
-        <img src="/img/peer1.png" alt="Canvas: example of assigned peer reviews in the Rough Draft with Peer Review assignment" loading="lazy"></li>
-      <li>Click <strong>View Feedback</strong>.<br>
-        <img src="/img/peer2.png" alt="Canvas: location of the View Feedback button" loading="lazy"></li>
-      <li>Use the double-sided arrows to expand the document to full screen.</li>
-      <li>Use the annotation tools (highlighter, comment tool) to leave feedback on the draft. <br>
-        <img src="/img/peer3.png" alt="Canvas: annotation tools for highlighting and commenting" loading="lazy"></li>
-    </ol>
+    <!-- Tips -->
+    <h2 id="tips">Tips for Giving Good Feedback</h2>
+    <div class="tips-accent-box">
+      <h3>Keep in Mind</h3>
+      <ul>
+        <li><b>You don't have to prescribe exact fixes.</b> Focus on describing what you notice as a reader. "This section felt like it jumped topics" is more helpful than trying to rewrite it for them.</li>
+        <li><b>It's fine to comment as a reader.</b> For example, "I'm getting a little lost in this spot" or "I'm not sure what you mean here" is fine.</li>
+        <li><b>Use feedback sandwiches when possible</b> (from the "In-Class Peer Review" reading). Pair suggestions for improvement with something that's working well nearby.</li>
+        <li><b>Be specific.</b> "The third paragraph is confusing" is okay. "The third paragraph starts describing the posts but never says what they show about the genre" is much better.</li>
+        <li><b>It's a rough draft.</b> Expect it to be rough. Your job is to help the author figure out where to focus their revision energy, not to find everything that needs fixing.</li>
+        <li><b>Later-order concerns:</b> no grammar or spelling feedback. <em>Exception:</em> for a consistent issue (e.g., fragments/run-ons) that hurts readability or flow, you can mark it <b>once</b> to flag the trend.</li>
+      </ul>
+    </div>
 
-    <h2 id="viewing-feedback">Viewing Peer Review Feedback</h2>
+    <!-- Viewing Feedback -->
+    <h2 id="viewing-feedback">Viewing Your Feedback</h2>
+    <p>
+      Open your own draft from your team's shared OneDrive folder. Your teammates' comments appear in the margin alongside
+      your paper, and their Paper Maps are at the end of the document. They stay there, so you can go back to them while
+      you work on your <a href="revised-draft.html">Revised Draft</a>.
+    </p>
+
+    <!-- Alternative -->
+    <h2 id="alternative">Alternative to In-Class Peer Review</h2>
+
+    <p>
+      If illness or an emergency prevents you from attending peer review, you can complete an alternative assignment:
+      getting feedback on your draft from a <b>writing tutor at the Academic Success Center</b>.
+      Re-read the <a href="#asc-availability">note about booking early</a> before you plan on this.
+    </p>
+
+    <h3>It has to be a face-to-face appointment</h3>
+    <p>
+      To count as peer review, the session must be an <b>in-person or Zoom appointment</b> with a tutor &mdash;
+      a conversation where you and the tutor work through your draft together.
+    </p>
     <ul>
-      <li>Open the assignment in Modules &rarr; <em>Rough Draft with Peer Review</em>.</li>
-      <li>Your peer’s summary comment appears in the comments panel on the right.</li>
-      <li>To view annotations on the paper, click <strong>View Feedback</strong>. Comments should appear alongside your draft. <br>
-        <img src="/img/peer4.png" alt="Canvas: viewing feedback and sidebar comments on your draft" loading="lazy"></li>
+      <li><b>Asynchronous written comments will not count.</b> The point of peer review is the back-and-forth, so the alternative has to be a live one.</li>
+      <li>Make the appointment through the <b>Penji</b> link in Canvas (the light blue penguin icon), or the <a href="https://web.penjiapp.com/schools/macomb" target="_blank" rel="noopener noreferrer">Penji website</a>.</li>
     </ul>
+
+    <h3>Come to work, not to be corrected</h3>
+    <p>
+      Plan to <b>actively work with the tutor one-on-one</b> to improve your paper. This is a working session, not a
+      proofreading drop-off. Focus the appointment on <b>high- and middle-order concerns</b> &mdash; organization, flow,
+      use of evidence, paragraph development, whether your analysis is coming through. See
+      <a href="#hoc-moc">High- and Middle-Order Concerns</a> above for what those are.
+    </p>
+    <p>
+      Bring your draft, your genre samples, and the assignment page. Come with something you already know you're unsure
+      about &mdash; tutors can help far more when you can point at the part that isn't working.
+    </p>
+
+    <h3>Use the same feedback focus as in-class peer review</h3>
+    <p>
+      Your session needs to cover the <b>same things your teammates would have given you feedback on</b> &mdash; see
+      <a href="#part-b">Part B: Feedback on the Draft</a> and <a href="#hoc-moc">High- and Middle-Order Concerns</a> above.
+      Take notes during the session on the feedback you receive; you'll need them for your revision.
+    </p>
 
   </div>
 
