@@ -44,6 +44,7 @@
           href: "/assignments/index.html",
           children: [
             { label: "Introduction Assignment", href: "/assignments/introduction.html" },
+            { label: "Tech-free Writing", href: "/assignments/techfreewriting.html" },
             {
               label: "Weekly Writing",
               href: "/assignments/weeklywriting.html",
