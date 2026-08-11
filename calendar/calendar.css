@@ -21,6 +21,23 @@
   --cal-urgent-bg: #fef2f2;
   --cal-soon-bg: #fffbeb;
   --cal-later-bg: #f0fdf4;
+
+  /* Three-week view: squeezed (ghost) day width + event-type colours.
+     Kept consistent across sites, like the urgency colours above.
+     Light-mode contrast verified: kind labels 4.75-6.98:1 on their washes,
+     body text 16.3-17.7:1, ghost dates use each site's own --muted. */
+  --cal-ghost-w: 2.6rem;
+  --cal-ghost-bg: color-mix(in srgb, var(--text) 4%, var(--bg));
+  --cal-kind-class: var(--accent);
+  --cal-wash-class: var(--sidebar-bg);
+  --cal-kind-due: #b45309;
+  --cal-wash-due: #fef8ee;
+  --cal-kind-read: #2d5090;
+  --cal-wash-read: #eef1f8;
+  --cal-kind-async: #1a7a6a;
+  --cal-wash-async: #eef7f5;
+  --cal-kind-off: #6b7075;
+  --cal-wash-off: #f3f3f3;
 }
 
 /* ===== Dark Mode Overrides ===== */
@@ -160,169 +177,183 @@
 }
 
 /* =========================================================
-   WEEKLY VIEW: Mini Month + Expanded Week
+   WEEKLY VIEW: three weeks, empty weekdays squeezed
+
+   A weekday gets a full column if it carries an event in ANY of the
+   three visible weeks. Every other weekday still renders, squeezed to
+   --cal-ghost-w with its date intact -- never dropped. Omitting them
+   entirely made a week like 19 Oct (Monday only) read as a four-day
+   week, which is worse than the wasted space it saved.
    ========================================================= */
-.mini-plus-week {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+.three-week-view {
+  overflow-x: auto;
 }
 
-.mini-month {
-  width: 200px;
-  flex-shrink: 0;
-}
-
-.mini-month-nav {
+.week-controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
 }
 
-.mini-month-nav button {
+.week-controls button {
   background: none;
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 0.2rem 0.5rem;
+  padding: 0.25rem 0.6rem;
   cursor: pointer;
   color: var(--muted);
   font-size: 0.9rem;
+  font-family: inherit;
 }
 
-.mini-month-nav button:hover {
+.week-controls button:hover {
   background: var(--hover);
   color: var(--text);
 }
 
-.mini-month-header {
-  text-align: center;
+.week-controls button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.week-range {
   font-family: "Judson", serif;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+  color: var(--accent);
+  margin-right: auto;
+}
+
+.week-controls .wk-today-btn {
+  background: var(--cal-today-bg);
+  border-color: var(--accent);
   color: var(--accent);
 }
 
-.mini-month-grid {
+.week-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1px;
-  font-size: 0.75rem;
-  text-align: center;
+  gap: 3px;
+  align-items: stretch;
+  min-width: 34rem;
 }
 
-.mini-month-grid .mini-header {
-  color: var(--muted);
+.wk-head {
   font-size: 0.65rem;
-  padding: 0.25rem 0;
-}
-
-.mini-month-grid .mini-day {
-  padding: 0.3rem 0;
-  cursor: pointer;
-  border-radius: 4px;
-  position: relative;
-}
-
-.mini-month-grid .mini-day:hover {
-  background: var(--hover);
-}
-
-.mini-month-grid .mini-day.other-month {
-  color: var(--cal-other-month-text);  /* AAA compliant: was #ccc */
-}
-
-.mini-month-grid .mini-day.today {
-  background: var(--accent);
-  color: white;
   font-weight: 700;
-}
-
-.mini-month-grid .mini-day.in-selected-week {
-  background: var(--cal-today-bg);
-}
-
-.mini-month-grid .mini-day.today.in-selected-week {
-  background: var(--accent);
-}
-
-.mini-month-grid .mini-day.has-events::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  background: var(--cal-due-bg);
-  border-radius: 50%;
-}
-
-.mini-month-grid .mini-day.today.has-events::after {
-  background: white;
-}
-
-.expanded-week {
-  flex: 1;
-  min-width: 280px;
-}
-
-.expanded-week-header {
-  font-family: "Judson", serif;
-  font-size: 1rem;
-  margin-bottom: 0.75rem;
-  color: var(--text);
-}
-
-.expanded-week-days {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.expanded-day {
-  display: flex;
-  gap: 0.75rem;
-  padding: 0.6rem 0.75rem;
-  background: var(--sidebar-bg);
-  border-radius: 6px;
-  border-left: 3px solid var(--border);
-}
-
-.expanded-day.today {
-  border-left-color: var(--accent);
-  background: var(--cal-today-bg);
-}
-
-.expanded-day.has-due {
-  border-left-color: var(--cal-due-bg);
-}
-
-.expanded-day-label {
-  min-width: 55px;
-  font-size: 0.85rem;
-}
-
-.expanded-day-label .dow {
-  font-weight: 700;
-  color: var(--text);
-}
-
-.expanded-day-label .date {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--muted);
-  font-size: 0.75rem;
+  text-align: center;
+  padding: 0.2rem 0.15rem;
 }
 
-.expanded-day-events {
-  flex: 1;
+.wk-head.is-ghost {
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+.wk-weeklabel {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: "Judson", serif;
+  font-size: 0.95rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding: 0.55rem 0 0.25rem;
+}
+
+.wk-now {
+  font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--cal-event-text);
+  border-radius: 3px;
+  padding: 0.1rem 0.35rem;
+}
+
+.wk-cell {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  padding: 0.3rem;
   display: flex;
   flex-direction: column;
   gap: 3px;
+  min-width: 0;
 }
 
-.expanded-day-events .no-events {
-  color: var(--muted);
-  font-size: 0.85rem;
+.wk-cell.is-today {
+  border-color: var(--accent);
+  background: var(--cal-today-bg);
 }
+
+.wk-date {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.wk-none {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.wk-ghost {
+  border: 1px dashed var(--border);
+  border-radius: 4px;
+  background: var(--cal-ghost-bg);
+  display: flex;
+  justify-content: center;
+  padding: 0.3rem 0.1rem;
+  min-width: 0;
+}
+
+.wk-ghost-date {
+  font-size: 0.65rem;
+  color: var(--muted);
+}
+
+.wk-event {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  padding: 0.28rem 0.4rem;
+  border-radius: 3px;
+  border-left: 3px solid var(--cal-kind-class);
+  background: var(--cal-wash-class);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.wk-event.is-due   { border-left-color: var(--cal-kind-due);   background: var(--cal-wash-due); }
+.wk-event.is-read  { border-left-color: var(--cal-kind-read);  background: var(--cal-wash-read); }
+.wk-event.is-async { border-left-color: var(--cal-kind-async); background: var(--cal-wash-async); }
+
+.wk-event.is-off {
+  border-left-color: var(--cal-kind-off);
+  background: var(--cal-wash-off);
+  color: var(--muted);
+  font-style: italic;
+  cursor: default;
+}
+
+.wk-event-kind {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wk-event.is-due   .wk-event-kind { color: var(--cal-kind-due); }
+.wk-event.is-read  .wk-event-kind { color: var(--cal-kind-read); }
+.wk-event.is-async .wk-event-kind { color: var(--cal-kind-async); }
 
 /* =========================================================
    UPCOMING VIEW: Countdown Cards
@@ -642,12 +673,8 @@
 
 /* ===== Mobile Adjustments ===== */
 @media (max-width: 600px) {
-  .mini-plus-week {
-    flex-direction: column;
-  }
-  
-  .mini-month {
-    width: 100%;
+  .week-grid {
+    min-width: 30rem;
   }
   
   .calendar-grid .day-cell {
@@ -719,76 +746,7 @@
   background: var(--cal-due-bg);
 }
 
-/* Mini month */
-[data-theme="dark"] .mini-month-nav button {
-  border-color: var(--border);
-  color: var(--muted);
-}
-
-[data-theme="dark"] .mini-month-nav button:hover {
-  background: var(--hover);
-  color: var(--text);
-}
-
-[data-theme="dark"] .mini-month-grid .mini-day {
-  color: var(--text);
-}
-
-[data-theme="dark"] .mini-month-grid .mini-day.other-month {
-  color: #8a8a8a;  /* AAA compliant on dark backgrounds */
-}
-
-[data-theme="dark"] .mini-month-grid .mini-day:hover {
-  background: var(--hover);
-}
-
-[data-theme="dark"] .mini-month-grid .mini-day.today {
-  background: var(--accent);
-  color: var(--cal-event-text);
-}
-
-[data-theme="dark"] .mini-month-grid .mini-day.in-selected-week {
-  background: var(--cal-today-bg);
-}
-
-[data-theme="dark"] .mini-month-grid .mini-day.today.in-selected-week {
-  background: var(--accent);
-}
-
-[data-theme="dark"] .mini-month-grid .mini-day.has-events::after {
-  background: var(--cal-due-bg);
-}
-
-[data-theme="dark"] .mini-month-grid .mini-day.today.has-events::after {
-  background: var(--cal-event-text);
-}
-
-/* Expanded week */
-[data-theme="dark"] .expanded-day {
-  background: var(--sidebar-bg);
-  border-left-color: var(--border);
-}
-
-[data-theme="dark"] .expanded-day.today {
-  background: var(--cal-today-bg);
-  border-left-color: var(--accent);
-}
-
-[data-theme="dark"] .expanded-day.has-due {
-  border-left-color: var(--cal-due-bg);
-}
-
-[data-theme="dark"] .expanded-day-label .dow {
-  color: var(--text);
-}
-
-[data-theme="dark"] .expanded-day-label .date {
-  color: var(--muted);
-}
-
-[data-theme="dark"] .expanded-day-events .no-events {
-  color: var(--muted);
-}
+/* The three-week view is entirely token-driven, so it needs no dark overrides. */
 
 /* Countdown cards */
 [data-theme="dark"] .countdown-card {
@@ -852,11 +810,6 @@
 [data-theme="dark"] .calendar-tab.active {
   color: var(--bright);
   border-bottom-color: var(--bright);
-}
-
-/* Mini month header dark mode */
-[data-theme="dark"] .mini-month-header {
-  color: var(--bright);
 }
 
 /* View button dark mode */
