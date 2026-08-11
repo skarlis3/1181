@@ -186,11 +186,11 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
       });
 
       const template = [];
-      let headHtml = '';
+      let headRow = '';
       for (let i = 0; i < 7; i++) {
         const ghost = !active.has(i);
         template.push(ghost ? 'var(--cal-ghost-w)' : 'minmax(0, 1fr)');
-        headHtml += `<div class="wk-head${ghost ? ' is-ghost' : ''}">${dayNames[(WEEK_START_DOW + i) % 7]}</div>`;
+        headRow += `<div class="wk-head${ghost ? ' is-ghost' : ''}">${dayNames[(WEEK_START_DOW + i) % 7]}</div>`;
       }
 
       const currentWeek = getWeekStart(new Date());
@@ -199,6 +199,9 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
       weekStarts.forEach(ws => {
         bodyHtml += `<div class="wk-weeklabel">${weekRangeLabel(ws)}` +
           (isSameDay(ws, currentWeek) ? '<span class="wk-now">This week</span>' : '') + '</div>';
+
+        // Day names repeat per week so they stay next to the events they label.
+        bodyHtml += headRow;
 
         for (let i = 0; i < 7; i++) {
           const day = addDays(ws, i);
@@ -232,7 +235,7 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
           '<button class="next-week-btn" aria-label="Next week">\u2192</button>' +
           '<button class="wk-today-btn">Today</button>' +
         '</div>' +
-        `<div class="week-grid" style="grid-template-columns:${template.join(' ')}">${headHtml}${bodyHtml}</div>`;
+        `<div class="week-grid" style="grid-template-columns:${template.join(' ')}">${bodyHtml}</div>`;
 
       // Arrows step one week, which is what they always looked like they did.
       weeklyContainer.querySelector('.prev-week-btn').addEventListener('click', () => {

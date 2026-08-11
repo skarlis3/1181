@@ -29,7 +29,7 @@
   --cal-ghost-w: 2.6rem;
   --cal-ghost-bg: color-mix(in srgb, var(--text) 4%, var(--bg));
   --cal-kind-class: var(--accent);
-  --cal-wash-class: var(--sidebar-bg);
+  --cal-wash-class: color-mix(in srgb, var(--accent) 7%, var(--bg));
   --cal-kind-due: #b45309;
   --cal-wash-due: #fef8ee;
   --cal-kind-read: #2d5090;
@@ -238,20 +238,26 @@
   min-width: 34rem;
 }
 
+/* Repeated above every week, and left-aligned to sit directly over the cell
+   content below it. A single header row at the top of three weeks left the
+   day names too far from the events they label. */
 .wk-head {
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
-  text-align: center;
-  padding: 0.2rem 0.15rem;
+  text-align: left;
+  padding: 0.35rem 0.3rem 0.15rem;
 }
 
 .wk-head.is-ghost {
   font-weight: 400;
   font-style: italic;
   letter-spacing: 0.04em;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .wk-weeklabel {
@@ -323,20 +329,18 @@
 .wk-event {
   font-size: 0.78rem;
   line-height: 1.35;
-  padding: 0.28rem 0.4rem;
-  border-radius: 3px;
-  border-left: 3px solid var(--cal-kind-class);
+  padding: 0.3rem 0.45rem;
+  border-radius: 4px;
   background: var(--cal-wash-class);
   color: var(--text);
   cursor: pointer;
 }
 
-.wk-event.is-due   { border-left-color: var(--cal-kind-due);   background: var(--cal-wash-due); }
-.wk-event.is-read  { border-left-color: var(--cal-kind-read);  background: var(--cal-wash-read); }
-.wk-event.is-async { border-left-color: var(--cal-kind-async); background: var(--cal-wash-async); }
+.wk-event.is-due   { background: var(--cal-wash-due); }
+.wk-event.is-read  { background: var(--cal-wash-read); }
+.wk-event.is-async { background: var(--cal-wash-async); }
 
 .wk-event.is-off {
-  border-left-color: var(--cal-kind-off);
   background: var(--cal-wash-off);
   color: var(--muted);
   font-style: italic;
