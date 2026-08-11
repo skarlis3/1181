@@ -53,6 +53,19 @@
   --cal-urgent-bg: #2d1a1a;
   --cal-soon-bg: #2d2515;
   --cal-later-bg: #1a2d22;
+
+  /* Three-week view (dark). Kind labels 7.07-7.66:1 on their washes,
+     body text 12.3-14.7:1. Without these the washes fall back to the light
+     values and dark mode renders light cards under light text. */
+  --cal-ghost-bg: color-mix(in srgb, var(--text) 6%, var(--bg));
+  --cal-kind-due: #f5a623;
+  --cal-wash-due: #2a2318;
+  --cal-kind-read: #7badea;
+  --cal-wash-read: #1a1f2a;
+  --cal-kind-async: #5ec4b0;
+  --cal-wash-async: #1a2724;
+  --cal-kind-off: #9aa5a2;
+  --cal-wash-off: color-mix(in srgb, var(--text) 7%, var(--bg));
 }
 
 /* ===== Tab Navigation ===== */
