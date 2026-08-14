@@ -1,6 +1,14 @@
 # 1181 Site Repo
 
-See `work-with-claude-code/classes/ENGL-1181/CLAUDE.md` for full course context.
+## Read these first, before doing any work in this repo
+
+The rules governing this work are deliberately not kept in this repo, because this repo is public. Nothing here repeats them, so skipping these files means working without them. **Read each one in full — do not skim for the sections that look relevant.**
+
+1. `~/MEGA/work-with-claude-code/CLAUDE.md` — how Sarah wants the work done.
+2. `~/MEGA/work-with-claude-code/classes/CLAUDE.md` — rules shared across every class.
+3. `~/MEGA/work-with-claude-code/classes/ENGL-1181/CLAUDE.md` — this course: term, sections, readings, assignments, calendars.
+
+Everything below this point is about this repo's own files, and belongs here.
 
 ## Log every change to this repo
 
@@ -65,25 +73,3 @@ Located in repo root. Used **only** on projector pages.
 4. Wrap content in a `<div class="presentation-content">`
 5. The page's own `<style>` block handles all layout — `inclass.css` only provides the toggle button and presentation-mode base styles
 
-## Write in full sentences
-
-Every sentence needs a subject and a verb. **This is a live failure mode, named 13 Aug 2026** after it
-turned up across several unrelated projects: recent models drift into a clipped, promotional register even
-in plain documents.
-
-The tell is the **verbless headline fragment** — *"Three projects plus a final reflection, scaffolded by
-nine writing activities."* That is a caption, not a sentence. Write *"There are three projects and a final
-reflection. Nine writing activities scaffold them."*
-
-Same problem in other clothes: em-dash appositives standing in for clauses; bulleted lists of fragments
-where prose belongs; bolded lead-ins that replace the verb (*"**Project 2: Rhetorical Analysis** — 1,000
-words on one article"*). Bullets are for genuinely parallel enumerable items, and even then each bullet
-should be a complete sentence unless it is a bare name, number, or label.
-
-Applies to page copy, planning docs, READMEs, and change logs alike. Does not apply to tables, headings,
-filenames, or short labels.
-
-Related but distinct: **no marketing copy** — don't sell the course back to students, don't write
-atmospheric openers, don't explain what a reading is *doing* for the class on a student-facing page. That
-rule is about not saying it at all; this one is about how to write what does belong. Full statement of both:
-`~/MEGA/work-with-claude-code/CLAUDE.md`, under Communication Style.
