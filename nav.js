@@ -157,7 +157,6 @@
           href: "/calendar/index.html",
           children: [
             { label: "M/W Class",              href: "/calendar/mw-calendar.html" },
-            { label: "T/Th Class",             href: "/calendar/tth-calendar.html" },
             { label: "Thursday Class (Hybrid)", href: "/calendar/tues-calendar.html" }
           ]
         },
