@@ -216,9 +216,17 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
           events.forEach(e => {
             const kind = eventKind(e);
             const label = KIND_LABEL[kind];
-            eventsHtml += `<div class="wk-event is-${kind}" data-event-id="${e.id}">` +
-              (label ? `<span class="wk-event-kind">${label}</span>` : '') +
-              escapeHtml(cleanSummary(e, kind)) + '</div>';
+            const inner = (label ? `<span class="wk-event-kind">${label}</span>` : '') +
+              escapeHtml(cleanSummary(e, kind));
+            // A real <button>, so the keyboard can reach it. These used to be
+            // plain <div>s with a click handler, which Tab skips entirely —
+            // there was no way to open one without a mouse.
+            // "No class" is the exception and stays a plain block: it is styled
+            // as non-clickable (cursor: default) while still being wired up, and
+            // which of those two is right is Sarah's call, not a markup fix.
+            eventsHtml += kind === 'off'
+              ? `<div class="wk-event is-off" data-event-id="${e.id}">${inner}</div>`
+              : `<button type="button" class="wk-event is-${kind}" data-event-id="${e.id}">${inner}</button>`;
           });
           if (!events.length) eventsHtml = '<span class="wk-none">\u2014</span>';
 
@@ -295,13 +303,13 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
         urgent.forEach(({ event, days }) => {
           const date = getEventDate(event);
           html += `
-            <div class="countdown-card urgent" data-event-id="${event.id}">
-              <div class="countdown-badge">${days}<small>${days === 1 ? 'day' : 'days'}</small></div>
-              <div class="countdown-info">
-                <div class="countdown-title">${event.summary}</div>
-                <div class="countdown-date">${formatDateFull(date)}</div>
-              </div>
-            </div>
+            <button type="button" class="countdown-card urgent" data-event-id="${event.id}">
+              <span class="countdown-badge">${days}<small>${days === 1 ? 'day' : 'days'}</small></span>
+              <span class="countdown-info">
+                <span class="countdown-title">${escapeHtml(event.summary)}</span>
+                <span class="countdown-date">${formatDateFull(date)}</span>
+              </span>
+            </button>
           `;
         });
         html += '</div>';
@@ -312,13 +320,13 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
         soon.forEach(({ event, days }) => {
           const date = getEventDate(event);
           html += `
-            <div class="countdown-card soon" data-event-id="${event.id}">
-              <div class="countdown-badge">${days}<small>days</small></div>
-              <div class="countdown-info">
-                <div class="countdown-title">${event.summary}</div>
-                <div class="countdown-date">${formatDateFull(date)}</div>
-              </div>
-            </div>
+            <button type="button" class="countdown-card soon" data-event-id="${event.id}">
+              <span class="countdown-badge">${days}<small>days</small></span>
+              <span class="countdown-info">
+                <span class="countdown-title">${escapeHtml(event.summary)}</span>
+                <span class="countdown-date">${formatDateFull(date)}</span>
+              </span>
+            </button>
           `;
         });
         html += '</div>';
@@ -329,13 +337,13 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
         later.slice(0, 8).forEach(({ event, days }) => {
           const date = getEventDate(event);
           html += `
-            <div class="countdown-card later" data-event-id="${event.id}">
-              <div class="countdown-badge">${days}<small>days</small></div>
-              <div class="countdown-info">
-                <div class="countdown-title">${event.summary}</div>
-                <div class="countdown-date">${formatDateFull(date)}</div>
-              </div>
-            </div>
+            <button type="button" class="countdown-card later" data-event-id="${event.id}">
+              <span class="countdown-badge">${days}<small>days</small></span>
+              <span class="countdown-info">
+                <span class="countdown-title">${escapeHtml(event.summary)}</span>
+                <span class="countdown-date">${formatDateFull(date)}</span>
+              </span>
+            </button>
           `;
         });
         html += '</div>';
@@ -345,7 +353,6 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
 
       // Add click handlers for countdown cards
       upcomingContainer.querySelectorAll('.countdown-card').forEach(card => {
-        card.style.cursor = 'pointer';
         card.addEventListener('click', () => {
           const event = allEvents.find(e => e.id === card.dataset.eventId);
           if (event) showEventPopup(event);
@@ -404,13 +411,13 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
 
           events.slice(0, MAX_EVENTS_PER_DAY).forEach(e => {
             const dueClass = isDueEvent(e) ? ' is-due' : '';
-            eventsHtml += `<div class="event-chip${dueClass}" data-event-id="${e.id}">${e.summary}</div>`;
+            eventsHtml += `<button type="button" class="event-chip${dueClass}" data-event-id="${e.id}">${escapeHtml(e.summary)}</button>`;
           });
 
           if (events.length > MAX_EVENTS_PER_DAY) {
             const remaining = events.length - MAX_EVENTS_PER_DAY;
             const dateStr = dateObj.toISOString().split('T')[0];
-            eventsHtml += `<div class="more-events" data-date="${dateStr}">+${remaining} more</div>`;
+            eventsHtml += `<button type="button" class="more-events" data-date="${dateStr}">+${remaining} more</button>`;
           }
 
           html += `
@@ -442,6 +449,49 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
       });
     }
 
+    // ===== Dialogs =====
+    // showModal() is what makes these usable without a mouse: the browser moves
+    // focus into the dialog, keeps Tab inside it, closes on Escape, and makes
+    // the page behind it inert. Previously these were divs toggled with a class,
+    // so focus stayed on the page underneath and Tab walked through the content
+    // behind the open dialog.
+    //
+    // A <dialog> normally restores focus to whatever opened it, but here the
+    // opener is often a card that gets destroyed when the view re-renders, so
+    // the opener is remembered and focus is put back by hand — falling back to
+    // the calendar container if that card no longer exists.
+    let dialogOpener = null;
+
+    function openDialog(dialog) {
+      const active = document.activeElement;
+      // Only remember an opener that lives out on the page. Clicking a chip
+      // inside the day dialog opens the event dialog, and in that case the
+      // thing to come back to is the "+N more" button that started it all,
+      // not the chip — which is about to be hidden inside a closed dialog.
+      if (active && active !== document.body && !active.closest('.day-popup')) {
+        dialogOpener = active;
+      }
+      dialog.showModal();
+    }
+
+    // A remembered opener is only usable if it is still on the page AND not
+    // sitting inside a dialog that has since closed — a hidden element cannot
+    // take focus, and focus would silently fall back to nowhere.
+    function focusableOpener() {
+      return dialogOpener &&
+        document.contains(dialogOpener) &&
+        !dialogOpener.closest('dialog:not([open])')
+        ? dialogOpener
+        : container;
+    }
+
+    // Closing is all this does. Putting focus back is handled by the dialog's
+    // own 'close' event, so it happens however the dialog was shut — Escape,
+    // the close button, or a click outside it.
+    function closeDialog(dialog) {
+      if (dialog.open) dialog.close();
+    }
+
     // ===== Popup =====
     function showDayPopup(dateStr) {
       const [y, m, d] = dateStr.split('-').map(Number);
@@ -453,7 +503,7 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
       let html = '';
       events.forEach(e => {
         const dueClass = isDueEvent(e) ? ' is-due' : '';
-        html += `<div class="event-chip${dueClass}" data-event-id="${e.id}">${e.summary}</div>`;
+        html += `<button type="button" class="event-chip${dueClass}" data-event-id="${e.id}">${escapeHtml(e.summary)}</button>`;
       });
       document.getElementById('dayPopupEvents').innerHTML = html;
 
@@ -468,33 +518,29 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
         });
       });
 
-      document.getElementById('dayPopup').classList.add('active');
-      document.getElementById('popupBackdrop').classList.add('active');
+      openDialog(document.getElementById('dayPopup'));
     }
 
     function showEventPopup(event) {
       document.getElementById('eventPopupTitle').textContent = event.summary;
-      
+
       const date = getEventDate(event);
-      const timeStr = event.start.dateTime 
+      const timeStr = event.start.dateTime
         ? date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
         : 'All day';
       document.getElementById('eventPopupTime').textContent = `${formatDateFull(date)} · ${timeStr}`;
-      
+
       document.getElementById('eventPopupDescription').innerHTML = event.description || '<em>No description</em>';
-      
-      document.getElementById('eventPopup').classList.add('active');
-      document.getElementById('eventPopupBackdrop').classList.add('active');
+
+      openDialog(document.getElementById('eventPopup'));
     }
 
     function closePopup() {
-      document.getElementById('dayPopup').classList.remove('active');
-      document.getElementById('popupBackdrop').classList.remove('active');
+      closeDialog(document.getElementById('dayPopup'));
     }
 
     function closeEventPopup() {
-      document.getElementById('eventPopup').classList.remove('active');
-      document.getElementById('eventPopupBackdrop').classList.remove('active');
+      closeDialog(document.getElementById('eventPopup'));
     }
 
     // ===== Tab Switching =====
@@ -528,21 +574,36 @@ const CALENDAR_API_KEY = 'AIzaSyAv4RBdi3zx-8hCIXBpzYLb7oT9XTUL6tY';
       renderMonthlyView();
     });
 
-    // ===== Popup Close =====
-    document.getElementById('popupBackdrop').addEventListener('click', closePopup);
-    document.querySelector('#dayPopup .popup-close').addEventListener('click', closePopup);
-    
-    document.getElementById('eventPopupBackdrop').addEventListener('click', closeEventPopup);
-    document.querySelector('#eventPopup .popup-close').addEventListener('click', closeEventPopup);
-    
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closePopup();
-        closeEventPopup();
-      }
+    // ===== Dialog Close =====
+    // Escape is handled by the browser now, so there is no keydown listener.
+    // A dialog fires 'close' however it was shut, which is the one place focus
+    // needs handing back — that covers Escape as well as the buttons below.
+    document.querySelectorAll('.day-popup').forEach(dialog => {
+      dialog.querySelector('.popup-close').addEventListener('click', () => dialog.close());
+
+      // Clicking the dimmed area outside the dialog closes it. On a <dialog>
+      // that click lands on the dialog element itself rather than its contents.
+      dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) dialog.close();
+      });
+
+      dialog.addEventListener('close', () => {
+        // One dialog can close because another is opening. Only hand focus
+        // back once none of them are open.
+        if (document.querySelector('.day-popup[open]')) return;
+        const target = focusableOpener();
+        dialogOpener = null;
+        if (target && typeof target.focus === 'function') target.focus({ preventScroll: true });
+      });
     });
 
     // ===== Initialize =====
+    // Focus falls back to the calendar itself when the card a dialog was opened
+    // from has since been re-rendered away. A plain div cannot take focus, so
+    // it needs tabindex="-1" — which makes it focusable by script only, never a
+    // Tab stop.
+    container.setAttribute('tabindex', '-1');
+
     weekWindowStart = getWeekStart(new Date());
     loadAllEvents();
   });

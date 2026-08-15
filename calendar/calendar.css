@@ -117,6 +117,44 @@
   --cal-accent-fill: var(--bright);
 }
 
+/* ===== Clickable cards are real buttons =====
+   The event cards, the month chips, the countdown cards and the "+N more"
+   link are <button> elements, so the keyboard can reach them. They were
+   <div>s with click handlers, which Tab skips entirely — there was no way to
+   open one without a mouse. A button brings its own font, alignment, border
+   and background, so this strips all of that back and lets the existing card
+   rules do the work. Nothing here changes how any of them look.
+   Do not "simplify" these back into divs. */
+.wk-event,
+.event-chip,
+.countdown-card,
+.more-events {
+  font: inherit;
+  font-family: inherit;
+  text-align: left;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  width: 100%;
+}
+
+/* The focus ring has to clear the card's own edge, so it sits outside. */
+.wk-event:focus-visible,
+.event-chip:focus-visible,
+.countdown-card:focus-visible,
+.more-events:focus-visible {
+  outline: 3px solid var(--focus-outline, var(--focus));
+  outline-offset: 2px;
+}
+
+/* Inside a button, these are spans rather than divs — a button may only hold
+   phrasing content — so they need their box behaviour back. */
+.countdown-info,
+.countdown-title,
+.countdown-date {
+  display: block;
+}
+
 /* ===== Tab Navigation ===== */
 .calendar-tabs {
   display: flex;
@@ -697,25 +735,20 @@
 }
 
 /* ===== Popups ===== */
-.popup-backdrop {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.3);
-  z-index: 999;
-}
-
-.popup-backdrop.active {
-  display: block;
-}
-
+/* These are real <dialog> elements opened with showModal(), which is what
+   makes them usable without a mouse. The browser then moves focus into the
+   dialog, keeps Tab inside it while it is open, closes it on Escape, and makes
+   the page behind it inert. None of that was happening when these were divs
+   toggled with an .active class — focus stayed on the page underneath, so a
+   keyboard user tabbed through the page behind the dialog.
+   The old .popup-backdrop divs are gone; ::backdrop replaces them. */
 .day-popup {
-  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: var(--bg);
+  color: var(--text);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 1rem;
@@ -724,11 +757,10 @@
   max-height: 400px;
   overflow-y: auto;
   box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-  z-index: 1000;
 }
 
-.day-popup.active {
-  display: block;
+.day-popup::backdrop {
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .day-popup h3 {
