@@ -97,10 +97,22 @@
   /* --muted already clears AAA on the dark off-wash at 8.62:1. */
   --cal-quiet: var(--muted);
 
+  /* The plain "class" event derives its wash and its edge from --accent, which
+     the site does not override in dark mode. Left alone, its card edge came out
+     at 1.18:1 against the page — an invisible border on the one event type that
+     has no kind label to identify it either. --bright is the dark counterpart
+     everywhere else on the site, so it is the counterpart here too.
+     Edge 3.44:1, body text on the wash 13.98:1. */
+  --cal-kind-class: var(--bright);
+  --cal-wash-class: color-mix(in srgb, var(--bright) 7%, var(--bg));
+
   /* Card edges, dark. Lower percentages than light mode reach the same place,
      because these kind colours are already light against a dark ground.
      Measured 3.32-3.46:1 against the page. */
-  --cal-edge-class: color-mix(in srgb, var(--cal-kind-class) 46%, var(--bg));
+  /* 48% rather than 46%: this file is shared with 1170 and 1190, whose accents
+     are a lighter purple and blue. 46% cleared 3:1 here but landed at 2.88 and
+     2.93 there. 48% clears on all three (3.64, 3.07, 3.10). */
+  --cal-edge-class: color-mix(in srgb, var(--cal-kind-class) 48%, var(--bg));
   --cal-edge-due:   color-mix(in srgb, var(--cal-kind-due)   54%, var(--bg));
   --cal-edge-read:  color-mix(in srgb, var(--cal-kind-read)  56%, var(--bg));
   --cal-edge-async: color-mix(in srgb, var(--cal-kind-async) 54%, var(--bg));
