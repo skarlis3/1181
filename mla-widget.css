@@ -1,0 +1,423 @@
+/*
+=============================================
+||      MLA PAPER FORMATTING WIDGET         ||
+=============================================
+Interactive hot-spot widget showing what an MLA first page and Works
+Cited look like. All rules scoped under .mla-paper-widget so they
+don't leak into the rest of the book. The "paper" is rendered at real
+8.5"x11" and transform-scaled to fit the Pressbooks reading column
+(~757px).
+
+Uses native <details>/<summary> for hot-spots — keyboard accessible,
+announced as expandable by screen readers, no JS required. Pressbooks
+strips <script>, so users dismiss popups by clicking the marker
+again. No ESC-to-close (that needed JS).
+
+Copied to the 1181 class site from the OER (my-styles.css) on 25 Sep 2026.
+The two copies are NOT kept in sync on purpose. Site-specific overrides are
+at the bottom of this file.
+*/
+
+.mla-paper-widget {
+  --mla-scale: 0.9;
+  --mla-paper-bg: #fffefb;
+  --mla-paper-shadow: 0 1px 2px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.12);
+  --mla-ink: #1a1a1a;
+  --mla-label: #2a2a2a;
+  --mla-accent: #1d4ed8;
+  --mla-accent-dark: #1e3a8a;
+  --mla-popup-bg: #ffffff;
+  --mla-popup-text: #111827;
+  --mla-popup-border: #1d4ed8;
+  --mla-focus-ring: #f59e0b;
+  --mla-body-font: "Times New Roman", Times, "Liberation Serif", serif;
+  --mla-ui-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Lato", sans-serif;
+  font-family: var(--mla-ui-font);
+  color: var(--mla-label);
+  line-height: 1.5;
+  margin: 2em 0;
+}
+
+.mla-paper-widget *,
+.mla-paper-widget *::before,
+.mla-paper-widget *::after { box-sizing: border-box; }
+
+.mla-paper-widget > p {
+  font-family: var(--mla-ui-font);
+  text-indent: 0;
+}
+
+.mla-paper-widget .mla-legend {
+  background: #f7f8fa;
+  border: 1px solid #d4d4d8;
+  border-radius: 6px;
+  padding: .75em 1em;
+  margin: 1em 0 1.5em;
+  font-size: .95em;
+}
+.mla-paper-widget .mla-legend p {
+  margin: 0;
+  font-family: var(--mla-ui-font);
+  text-indent: 0;
+}
+
+/* ---------- Workspace and page labels ---------- */
+
+.mla-paper-widget .mla-workspace {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5em;
+}
+
+.mla-paper-widget h3.mla-page-label,
+.mla-paper-widget .mla-page-label {
+  font-family: var(--mla-ui-font) !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 1.05em !important;
+  color: var(--mla-label);
+  margin: 0 0 .75em !important;
+  text-align: center;
+}
+
+/* ---------- Paper frame (scales paper to fit column) ---------- */
+
+.mla-paper-widget .mla-paper-frame {
+  position: relative;
+  width: calc(8.5in * var(--mla-scale));
+  max-width: 100%;
+  height: calc(11in * var(--mla-scale));
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.mla-paper-widget .mla-paper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8.5in;
+  height: 11in;
+  background: var(--mla-paper-bg);
+  box-shadow: var(--mla-paper-shadow);
+  font-family: var(--mla-body-font);
+  font-size: 12pt;
+  line-height: 2;
+  color: var(--mla-ink);
+  overflow: hidden;
+  transform: scale(var(--mla-scale));
+  transform-origin: top left;
+}
+
+/* Neutralize Pressbooks paragraph styling inside the paper */
+.mla-paper-widget .mla-paper p {
+  font-family: var(--mla-body-font);
+  font-size: 12pt;
+  line-height: 2;
+  color: var(--mla-ink);
+  margin: 0;
+  text-align: left;
+}
+
+/* Running header (top-right of every page) */
+.mla-paper-widget .mla-running-header {
+  position: absolute;
+  top: 0.5in;
+  right: 1in;
+  font-family: var(--mla-body-font);
+  font-size: 12pt;
+  line-height: 1;
+  margin: 0;
+  text-indent: 0;
+}
+
+/* Heading block (top-left, page 1) */
+.mla-paper-widget .mla-heading-block {
+  position: absolute;
+  top: 1in;
+  left: 1in;
+  margin: 0;
+}
+.mla-paper-widget .mla-heading-block p {
+  margin: 0;
+  text-indent: 0;
+}
+
+/* Centered title (page 1) — styled paragraph (not real heading, keeps the
+   chapter outline clean and stops the fake paper title from showing up in
+   navigation as an h2). */
+.mla-paper-widget .mla-paper-title {
+  position: absolute;
+  top: calc(1in + 8 * 12pt);
+  left: 1in;
+  right: 1in;
+  text-align: center !important;
+  font-family: var(--mla-body-font) !important;
+  font-size: 12pt !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  margin: 0 !important;
+  text-indent: 0 !important;
+}
+
+/* Body paragraphs (page 1) */
+.mla-paper-widget .mla-paper-body {
+  position: absolute;
+  top: calc(1in + 10 * 12pt);
+  left: 1in;
+  right: 1in;
+  bottom: 1in;
+}
+.mla-paper-widget .mla-paper-body p {
+  margin: 0;
+  text-indent: 0.5in;
+  text-align: left;
+}
+
+/* "Works Cited" centered title — also styled paragraph, not real heading */
+.mla-paper-widget .mla-wc-title {
+  position: absolute;
+  top: 1in;
+  left: 1in;
+  right: 1in;
+  text-align: center !important;
+  font-family: var(--mla-body-font) !important;
+  font-size: 12pt !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  margin: 0 !important;
+  text-indent: 0 !important;
+}
+
+/* Works cited entries (hanging indent via padding/negative text-indent).
+   line-height set explicitly because Pressbooks .chapter li/ul rules can
+   override the inherited line-height:2 from .mla-paper, which makes the
+   list look single-spaced even though the rest of the paper isn't. */
+.mla-paper-widget .mla-wc-list {
+  position: absolute;
+  top: calc(1in + 2 * 12pt);
+  left: 1in;
+  right: 1in;
+  margin: 0;
+  padding: 0;
+  list-style: none !important;
+  line-height: 2 !important;
+}
+.mla-paper-widget .mla-wc-list li {
+  padding-left: 0.5in;
+  text-indent: -0.5in;
+  margin: 0 !important;     /* override .chapter li + li margin */
+  list-style: none !important;
+  line-height: 2 !important;
+  font-size: 12pt;
+}
+
+
+/* ---------- Hot-spot markers ---------- */
+
+.mla-paper-widget .mla-hotspot { position: absolute; }
+
+.mla-paper-widget .mla-hotspot > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 50%;
+  background: var(--mla-accent);
+  color: #fff;
+  font-family: var(--mla-ui-font);
+  font-weight: 700;
+  font-size: 15px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--mla-accent-dark), 0 2px 4px rgba(0,0,0,.25);
+  user-select: none;
+  transition: transform .15s ease, background-color .15s ease;
+}
+.mla-paper-widget .mla-hotspot > summary::-webkit-details-marker { display: none; }
+.mla-paper-widget .mla-hotspot > summary:hover {
+  background: var(--mla-accent-dark);
+  transform: scale(1.08);
+}
+.mla-paper-widget .mla-hotspot > summary:focus-visible {
+  outline: 3px solid var(--mla-focus-ring);
+  outline-offset: 3px;
+}
+.mla-paper-widget .mla-hotspot[open] > summary {
+  background: var(--mla-accent-dark);
+  transform: scale(1.08);
+}
+
+/* Popup content */
+.mla-paper-widget .mla-popup {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 340px;
+  background: var(--mla-popup-bg);
+  color: var(--mla-popup-text);
+  border: 2px solid var(--mla-popup-border);
+  border-radius: 8px;
+  padding: .75em .9em .9em;
+  box-shadow: 0 4px 16px rgba(0,0,0,.18);
+  font-family: var(--mla-ui-font);
+  font-size: 14px;
+  line-height: 1.45;
+  z-index: 50;
+}
+.mla-paper-widget .mla-popup h4 {
+  font-family: var(--mla-ui-font) !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  color: var(--mla-accent-dark);
+  margin: 0 0 .35em !important;
+}
+.mla-paper-widget .mla-popup p {
+  margin: 0;
+  font-family: var(--mla-ui-font);
+  text-indent: 0;
+}
+
+/* Popup arrow (when popping below the marker) */
+.mla-paper-widget .mla-popup::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-bottom: 10px solid var(--mla-popup-border);
+}
+.mla-paper-widget .mla-popup::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 8px solid var(--mla-popup-bg);
+}
+
+/* Popup direction variants */
+.mla-paper-widget .mla-hotspot--pop-left .mla-popup {
+  left: auto;
+  right: 40px;
+  top: -4px;
+  transform: none;
+}
+.mla-paper-widget .mla-hotspot--pop-left .mla-popup::before,
+.mla-paper-widget .mla-hotspot--pop-left .mla-popup::after { display: none; }
+
+.mla-paper-widget .mla-hotspot--pop-right .mla-popup {
+  left: 40px;
+  top: -4px;
+  transform: none;
+}
+.mla-paper-widget .mla-hotspot--pop-right .mla-popup::before,
+.mla-paper-widget .mla-hotspot--pop-right .mla-popup::after { display: none; }
+
+.mla-paper-widget .mla-hotspot--pop-above .mla-popup {
+  top: auto;
+  bottom: 40px;
+}
+.mla-paper-widget .mla-hotspot--pop-above .mla-popup::before {
+  top: auto;
+  bottom: -10px;
+  border-bottom: none;
+  border-top: 10px solid var(--mla-popup-border);
+}
+.mla-paper-widget .mla-hotspot--pop-above .mla-popup::after {
+  top: auto;
+  bottom: -7px;
+  border-bottom: none;
+  border-top: 8px solid var(--mla-popup-bg);
+}
+
+/* Subtle attention pulse on closed markers; honors reduced motion */
+@keyframes mla-hp-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px var(--mla-accent-dark), 0 2px 4px rgba(0,0,0,.25), 0 0 0 0 rgba(29,78,216,.5); }
+  50%      { box-shadow: 0 0 0 2px var(--mla-accent-dark), 0 2px 4px rgba(0,0,0,.25), 0 0 0 8px rgba(29,78,216,0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .mla-paper-widget .mla-hotspot:not([open]) > summary {
+    animation: mla-hp-pulse 2.4s ease-out infinite;
+  }
+}
+
+/* ---------- Hot-spot positions (in inches, relative to the 8.5x11 paper) ---------- */
+
+/* Page 1 — first-page markers */
+.mla-paper-widget .mla-hp-heading-block   { top: 1.5in;  left: 3.3in;  }
+.mla-paper-widget .mla-hp-running-header  { top: 0.85in; left: 6.92in; }
+.mla-paper-widget .mla-hp-title           { top: 2.25in; left: 7.65in; }
+.mla-paper-widget .mla-hp-indent          { top: 3.2in;  left: 0.35in; }
+.mla-paper-widget .mla-hp-no-extra-lines  { top: 4.6in;  left: 0.35in; }
+.mla-paper-widget .mla-hp-double-space    { top: 5.4in;  left: 7.65in; }
+.mla-paper-widget .mla-hp-font            { top: 7.8in;  left: 7.65in; }
+
+/* Page 2 — works cited markers */
+.mla-paper-widget .mla-hp-wc-title        { top: 0.9in;  left: 5.0in;  }
+.mla-paper-widget .mla-hp-quotes          { top: 1.5in;  left: 7.65in; }
+.mla-paper-widget .mla-hp-hanging         { top: 1.7in;  left: 0.35in; }
+.mla-paper-widget .mla-hp-italics         { top: 2.1in;  left: 7.65in; }
+.mla-paper-widget .mla-hp-wc-double       { top: 3.0in;  left: 7.65in; }
+.mla-paper-widget .mla-hp-alphabetical    { top: 3.5in;  left: 0.35in; }
+
+/* ---------- Responsive: shrink the paper on narrower viewports ---------- */
+@media (max-width: 900px) { .mla-paper-widget { --mla-scale: 0.75; } }
+@media (max-width: 600px) { .mla-paper-widget { --mla-scale: 0.55; } }
+@media (max-width: 420px) { .mla-paper-widget { --mla-scale: 0.40; } }
+
+/* ---------- Print: hide hot-spots, render paper at full size ---------- */
+@media print {
+  .mla-paper-widget .mla-legend,
+  .mla-paper-widget .mla-hotspot { display: none; }
+  .mla-paper-widget .mla-paper {
+    box-shadow: none;
+    transform: none;
+    position: relative;
+  }
+  .mla-paper-widget .mla-paper-frame {
+    width: 8.5in;
+    height: 11in;
+    page-break-after: always;
+  }
+}
+
+
+/* ---------- Class-site overrides ---------- */
+
+/* style.css gives every <details>/<summary> an accordion look
+   (border, tint, padding, a ▸ arrow). Undo that for the hot-spots. */
+.mla-paper-widget details {
+  border: none;
+  border-radius: 0;
+  background: none;
+  margin: 0;
+}
+.mla-paper-widget .mla-hotspot > summary {
+  padding: 0;
+  gap: 0;
+}
+.mla-paper-widget .mla-hotspot > summary::before { content: none; }
+
+/* Dark mode: the paper stays a white printed page; the text around it and
+   the Instructions box follow the site theme. */
+[data-theme="dark"] .mla-paper-widget {
+  --mla-label: var(--text);
+}
+[data-theme="dark"] .mla-paper-widget .mla-legend {
+  background: var(--sidebar-bg);
+  border-color: var(--border);
+}
+
