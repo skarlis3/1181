@@ -58,12 +58,14 @@
               label: "Project 1: Genre Analysis",
               href: "/assignments/project1.html",
               children: [
+                { heading: "Assignments" },
                 { label: "Genre Analysis Essay",       href: "/assignments/genre-analysis.html" },
                 { label: "Rough Draft",                href: "/assignments/rough-draft.html" },
                 { label: "Peer Review",                href: "/assignments/peer-review.html" },
                 { label: "Revised Draft",              href: "/assignments/revised-draft.html" },
                 { label: "Reflection & Checklist",      href: "/assignments/reflection.html" },
                 { label: "Individual Conferences",     href: "/assignments/conferences.html" },
+                { heading: "Resources" },
                 { label: "Grading",                    href: "/assignments/p1-grading.html" },
                 { label: "Checklists",                 href: "/assignments/p1-checklist.html" },
                 { label: "Simplified Instructions",    href: "/assignments/genre-analysis-simplified.html" },
@@ -199,10 +201,11 @@
 
       const trimLabel = (s) => String(s || "").replace(/\s+/g, " ").trim();
 
-      // prune empty-label items so no link renders without discernible text
+      // prune empty-label items so no link renders without discernible text.
+      // { heading: "..." } entries are small group labels inside a submenu, not links.
       const prune = (nodes = []) =>
         nodes
-          .filter(n => n && trimLabel(n.label).length > 0)
+          .filter(n => n && (trimLabel(n.label).length > 0 || trimLabel(n.heading).length > 0))
           .map(n => ({ ...n, children: prune(n.children || []) }));
 
       const path = location.pathname.toLowerCase().replace(/\/+$/, "");
@@ -305,6 +308,7 @@
       const renderList = (children, level = 3) => !children?.length ? "" : `
         <ul class="nav-level-${level}">
           ${children.map(node => {
+            if (node.heading) return `<li class="nav-subhead">${esc(node.heading)}</li>`;
             const hasKids = !!node.children?.length;
             const open = hasKids && containsCurrent(node);
             if (hasKids)

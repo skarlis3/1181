@@ -1419,3 +1419,21 @@ table.grade-table td.grade-text{
   .grade-badge{ width: 46px; height: 46px; font-size: 1.25rem; }
   table.grade-table td.grade-text{ padding-left: .9rem; }
 }
+
+/* ===================== Submenu group labels ======================== */
+/* { heading: "..." } entries in nav.js: a small label, with a divider line above
+   every label after the first, so a long submenu reads as separate groups. */
+.sidenav .nav-subhead{
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding:.55rem .6rem .2rem;
+}
+.sidenav .nav-subhead:first-child{ padding-top:.2rem; }
+.sidenav .nav-subhead:not(:first-child){
+  border-top:1px solid var(--border);
+  margin-top:.45rem;
+  padding-top:.6rem;
+}
