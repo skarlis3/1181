@@ -65,6 +65,7 @@
                 { label: "Reflection & Checklist",      href: "/assignments/reflection.html" },
                 { label: "Individual Conferences",     href: "/assignments/conferences.html" },
                 { label: "Grading",                    href: "/assignments/p1-grading.html" },
+                { label: "Checklists",                 href: "/assignments/p1-checklist.html" },
                 { label: "Simplified Instructions",    href: "/assignments/genre-analysis-simplified.html" },
                 { label: "Example Organization",       href: "/assignments/p1-example-organization-v3.html" },
                 { label: "Example Essays",             href: "/assignments/example-p1.html" },
