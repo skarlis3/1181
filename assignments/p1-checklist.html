@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project 1: Checklist | ENGL 1181</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/assignments.css" />
+  <link rel="icon" href="/icon1181.png" type="image/x-icon">
+</head>
+<body>
+  <div id="page-content">
+
+    <h1>Project 1: Checklist</h1>
+
+    <p class="checklist-note">Checkboxes save on this device only &mdash; they don't submit anything or sync across devices.</p>
+
+    <div class="checklist-box">
+      <h3>Rough Draft (before peer review day)</h3>
+      <ul>
+        <li><input type="checkbox" id="c1"><label for="c1">Rough draft is at least 1000 words (not including the Works Cited page)</label></li>
+        <li><input type="checkbox" id="c2"><label for="c2">Covers the required topics: introduction of your discourse community, description of your chosen genre, purpose and audience, analysis of at least three conventions, and how the genre functions in your community</label></li>
+        <li><input type="checkbox" id="c3"><label for="c3">Includes evidence from at least three genre samples from your discourse community</label></li>
+        <li><input type="checkbox" id="c4"><label for="c4">Recommended: the beginnings of a Works Cited page (MLA Style)</label></li>
+        <li><input type="checkbox" id="c5"><label for="c5">Submitted to the Rough Draft assignment in Canvas</label></li>
+        <li><input type="checkbox" id="c6"><label for="c6">Uploaded as a Word document to your team&rsquo;s OneDrive folder before class on peer review day</label></li>
+      </ul>
+    </div>
+    <div class="checklist-box">
+      <h3>Revised Draft: Content &amp; Argument</h3>
+      <ul>
+        <li><input type="checkbox" id="c7"><label for="c7">Paper is at least 1300 words</label></li>
+        <li><input type="checkbox" id="c8"><label for="c8">Paper covers the required topics from the assignment sheet (re-read the <a href="/assignments/genre-analysis.html">Genre Analysis</a> overview to make sure you didn&rsquo;t forget anything)</label></li>
+        <li><input type="checkbox" id="c9"><label for="c9">The conventions are all covered in their own paragraphs and use at least two examples from the community to support your points</label></li>
+        <li><input type="checkbox" id="c10"><label for="c10">All claims are supported with evidence from sources</label></li>
+      </ul>
+    </div>
+    <div class="checklist-box">
+      <h3>Revised Draft: Sources</h3>
+      <ul>
+        <li><input type="checkbox" id="c11"><label for="c11">At least three samples are used throughout the paper</label></li>
+        <li><input type="checkbox" id="c12"><label for="c12">For each convention paragraph, at least two samples are used to support and explain each genre</label></li>
+        <li><input type="checkbox" id="c13"><label for="c13">No secondary research is used; only primary research (your genre samples)</label></li>
+      </ul>
+    </div>
+    <div class="checklist-box">
+      <h3>Revised Draft: Organization &amp; Revision</h3>
+      <ul>
+        <li><input type="checkbox" id="c14"><label for="c14">Shows clear revision of ideas, organization, structure, and/or development (not just typo fixes)</label></li>
+        <li><input type="checkbox" id="c15"><label for="c15">Body paragraphs are fully developed and include evidence from your genre samples</label></li>
+        <li><input type="checkbox" id="c16"><label for="c16">Body paragraphs attempt to use TED organization (topic sentence, evidence, discussion)</label></li>
+      </ul>
+    </div>
+    <div class="checklist-box">
+      <h3>Revised Draft: MLA Formatting &amp; AI Statement</h3>
+      <ul>
+        <li><input type="checkbox" id="c17"><label for="c17">MLA style in-text citations for your genre samples</label></li>
+        <li><input type="checkbox" id="c18"><label for="c18">MLA Works Cited page at the end of your paper</label></li>
+        <li><input type="checkbox" id="c19"><label for="c19">AI Statement of Use is included at the end of the paper (even if you didn&rsquo;t use it, you must include a statement)</label></li>
+        <li><input type="checkbox" id="c20"><label for="c20">Submitted as a Word document (.doc or .docx) to the Project 1 assignment in Canvas</label></li>
+      </ul>
+    </div>
+    <div class="checklist-box">
+      <h3>Reflection &amp; Checklist</h3>
+      <ul>
+        <li><input type="checkbox" id="c21"><label for="c21">Completed the <a href="/assignments/reflection.html">Reflection &amp; Checklist</a> form after finishing your revised draft</label></li>
+        <li><input type="checkbox" id="c22"><label for="c22">Uploaded to the Reflection &amp; Checklist assignment in Canvas as a Word document before your conference</label></li>
+      </ul>
+    </div>
+    <div class="checklist-box">
+      <h3>Individual Conference</h3>
+      <ul>
+        <li><input type="checkbox" id="c23"><label for="c23">Signed up for a conference time (the sign-up link is in Canvas Modules, in the week Project 1 is due)</label></li>
+        <li><input type="checkbox" id="c24"><label for="c24">Revised Draft and Reflection &amp; Checklist are both submitted on Canvas before your conference time</label></li>
+        <li><input type="checkbox" id="c25"><label for="c25">Planning to arrive on time (more than 10 minutes late counts as a missed appointment)</label></li>
+      </ul>
+    </div>
+
+  </div>
+  <script src="/nav.js"></script>
+  <script src="/footer.js" defer></script>
+  <script>
+    // Save checkbox state to localStorage
+    (function() {
+      var KEY = "p1-checklist-1181";
+      var boxes = document.querySelectorAll('.checklist-box input[type="checkbox"]');
+      var saved = {};
+      try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+      boxes.forEach(function(cb) {
+        if (saved[cb.id]) cb.checked = true;
+        cb.addEventListener("change", function() {
+          saved[cb.id] = cb.checked;
+          try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
