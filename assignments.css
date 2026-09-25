@@ -502,3 +502,79 @@ table.grade-table td.grade-text{
   .remix-arrow { justify-self: center; }
   .remix-arrow::before { content: "\2193"; } /* down arrow when stacked */
 }
+
+
+/* ==================== Grouped Tips (P1 Rough Draft) ==================== */
+/* Tips sorted into labeled groups: label column on the left, tips on the right.
+   Stacks to one column on phones. */
+
+.tip-group {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 1rem 1.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+}
+.tip-group:first-of-type { border-top: none; }
+
+.tip-group-label {
+  margin: 0;
+  font-family: "Judson", serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--accent);
+}
+[data-theme="dark"] .tip-group-label { color: var(--bright); }
+
+.tip-group-label small {
+  display: block;
+  margin-top: .2rem;
+  font-family: "Lato", sans-serif;
+  font-size: .78rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tip-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: .85rem;
+}
+
+.tip-title {
+  display: block;
+  font-weight: 700;
+  margin-bottom: .2rem;
+}
+
+/* Placeholder examples shown as sticky notes */
+.placeholder-notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: .5rem 0 .6rem;
+}
+.sticky-note {
+  background: #fff7c9;
+  color: #3d3300;
+  border: 1px solid #e4d27a;
+  border-radius: 3px;
+  padding: .35rem .6rem;
+  font-style: italic;
+  font-size: .92rem;
+  box-shadow: 0 1px 0 #e4d27a;
+}
+[data-theme="dark"] .sticky-note {
+  background: #2d2a14;
+  color: #f3e7a6;
+  border-color: #6e6325;
+  box-shadow: 0 1px 0 #6e6325;
+}
+
+@media (max-width: 680px) {
+  .tip-group { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+}
