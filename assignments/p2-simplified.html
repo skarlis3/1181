@@ -9,7 +9,7 @@
   <link rel="icon" href="/icon1181.png" type="image/x-icon">
   <style>
     /* Step cards — same look as the P1 simplified instructions page.
-       Heading colors are darkened from the P1 page's values to clear 7:1. */
+       Headings use the body text color rather than the card colors. */
     .step-card {
       border-radius: 10px;
       padding: 1.5rem;
@@ -28,14 +28,13 @@
     .step-card li { margin-bottom: 0.35rem; }
     .step-card > *:last-child { margin-bottom: 0; }
     .step-choose { background: #f0f0f0; border-left: 5px solid #555; }
-    .step-choose h2 { color: #444; }
     .step-genre { background: #e6f4ea; border-left: 5px solid #2d7a3a; }
-    .step-genre h2 { color: #1f5a2a; }
     .step-remix { background: #fef3e0; border-left: 5px solid #b8710a; }
-    .step-remix h2 { color: #6b4506; }
     .step-poster { background: #f0f0f0; border-left: 5px solid #555; }
-    .step-poster h2 { color: #444; }
     .step-card h3 { font-size: 1.05rem; margin: 1rem 0 0.25rem; }
+    /* All headings in the body text color for readability (Sarah, 25 Sep 2026) */
+    .step-card h2, .step-card h3,
+    .step-card .option-box > h3:first-child { color: var(--text); }
 
     /* Option boxes sit inside the step cards; white background so they read as their own layer */
     .step-card .option-box { margin: 0.75rem 0; padding: 0.75rem 1.25rem; }
@@ -52,12 +51,8 @@
     [data-theme="dark"] .step-card { color: #e8eaed; }
     [data-theme="dark"] .step-choose,
     [data-theme="dark"] .step-poster { background: #1e2024; border-left-color: #888; }
-    [data-theme="dark"] .step-choose h2,
-    [data-theme="dark"] .step-poster h2 { color: #bbb; }
     [data-theme="dark"] .step-genre { background: #1a2b1f; border-left-color: #4caf6a; }
-    [data-theme="dark"] .step-genre h2 { color: #6dcf88; }
     [data-theme="dark"] .step-remix { background: #2b2214; border-left-color: #d4a03c; }
-    [data-theme="dark"] .step-remix h2 { color: #e8b84a; }
     [data-theme="dark"] .two-parts { background: #1e3a5c; }
   </style>
 </head>
@@ -69,8 +64,8 @@
 
     <div class="important-note">
       <div class="important-note-content">
-        <p><strong>This page does not include every requirement.</strong></p>
-        <p>Make sure you also read the requirements on the full assignment pages: the <a href="/assignments/p2.html">Project 2 Overview</a>, the Genre Remix page for your option (<a href="/assignments/p2-remix.html">Option A</a> or <a href="/assignments/p2-remix-b.html">Option B</a>), and the <a href="/assignments/p2-poster.html">Poster Presentation</a> page.</p>
+        <p>This page is meant to be used as a simplified overview. Additional information and requirements can be found on the assignment pages.</p>
+        <p><a href="/assignments/p2-checklist.html">Project 2 Checklist</a></p>
       </div>
     </div>
 
