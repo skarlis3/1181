@@ -101,14 +101,29 @@
     .simplified-checklist h2 { margin-top: 0; color: #2c5f8a; }
     .simplified-checklist ul { list-style: none; padding-left: 0; }
     .simplified-checklist li {
-      padding: 0.5rem 0 0.5rem 2.2rem; position: relative;
       border-bottom: 1px solid #dce4ed; font-size: 1rem;
     }
     .simplified-checklist li:last-child { border-bottom: none; }
-    .simplified-checklist li::before {
-      content: ''; position: absolute; left: 0; top: 0.6rem;
-      width: 1.3rem; height: 1.3rem;
+    /* The whole row is the label, so the click target is the full line, not just the box */
+    .simplified-checklist label {
+      display: flex; align-items: flex-start; gap: 0.9rem;
+      padding: 0.5rem 0; cursor: pointer;
+    }
+    .simplified-checklist input[type="checkbox"] {
+      appearance: none; -webkit-appearance: none; flex: none;
+      width: 1.3rem; height: 1.3rem; margin: 0.15rem 0 0;
       border: 2px solid #2c5f8a; border-radius: 4px; background: #fff;
+      display: grid; place-content: center; cursor: pointer;
+    }
+    .simplified-checklist input[type="checkbox"]::after {
+      content: ''; width: 0.35rem; height: 0.7rem; margin-top: -0.15rem;
+      border: solid #fff; border-width: 0 3px 3px 0;
+      transform: rotate(45deg); visibility: hidden;
+    }
+    .simplified-checklist input[type="checkbox"]:checked { background: #2c5f8a; }
+    .simplified-checklist input[type="checkbox"]:checked::after { visibility: visible; }
+    .simplified-checklist input[type="checkbox"]:focus-visible {
+      outline: 3px solid #2c5f8a; outline-offset: 2px;
     }
     /* Dark mode — matches site [data-theme="dark"] */
     [data-theme="dark"] .section-community { background: #1a2636; border-left-color: #5b9bd5; }
@@ -158,9 +173,12 @@
     }
     [data-theme="dark"] .simplified-checklist h2 { color: #5ee0b3; }
     [data-theme="dark"] .simplified-checklist li { border-bottom-color: #2d3138; }
-    [data-theme="dark"] .simplified-checklist li::before {
+    [data-theme="dark"] .simplified-checklist input[type="checkbox"] {
       border-color: #5ee0b3; background: #121417;
     }
+    [data-theme="dark"] .simplified-checklist input[type="checkbox"]:checked { background: #5ee0b3; }
+    [data-theme="dark"] .simplified-checklist input[type="checkbox"]::after { border-color: #121417; }
+    [data-theme="dark"] .simplified-checklist input[type="checkbox"]:focus-visible { outline-color: #5ee0b3; }
   </style>
 </head>
 <body>
@@ -293,17 +311,17 @@
     <div class="simplified-checklist">
       <h2>Final Checklist</h2>
       <ul>
-        <li>My essay is about one community</li>
-        <li>My essay is about one type of post (one genre)</li>
-        <li>I explain the purpose (why people make these posts)</li>
-        <li>I explain the audience (who reads or watches)</li>
-        <li>I analyze 3 conventions (informal rules) with examples</li>
-        <li>Each convention paragraph: names it, shows examples, explains why it matters</li>
-        <li>I explain how this type of post helps the community</li>
-        <li>I have 3 samples as evidence</li>
-        <li>I include a Works Cited page with links to my samples (MLA format)</li>
-        <li>My essay is 1,300–1,700 words</li>
-        <li>MLA format</li>
+        <li><label><input type="checkbox" data-item="1"> My essay is about one community</label></li>
+        <li><label><input type="checkbox" data-item="2"> My essay is about one type of post (one genre)</label></li>
+        <li><label><input type="checkbox" data-item="3"> I explain the purpose (why people make these posts)</label></li>
+        <li><label><input type="checkbox" data-item="4"> I explain the audience (who reads or watches)</label></li>
+        <li><label><input type="checkbox" data-item="5"> I analyze 3 conventions (informal rules) with examples</label></li>
+        <li><label><input type="checkbox" data-item="6"> Each convention paragraph: names it, shows examples, explains why it matters</label></li>
+        <li><label><input type="checkbox" data-item="7"> I explain how this type of post helps the community</label></li>
+        <li><label><input type="checkbox" data-item="8"> I have 3 samples as evidence</label></li>
+        <li><label><input type="checkbox" data-item="9"> I include a Works Cited page with links to my samples (MLA format)</label></li>
+        <li><label><input type="checkbox" data-item="10"> My essay is 1,300–1,700 words</label></li>
+        <li><label><input type="checkbox" data-item="11"> MLA format</label></li>
       </ul>
     </div>
 
@@ -311,6 +329,22 @@
   </div>
 
   <!-- main navigation and page scripts -->
+  <script>
+    // Final Checklist: remember ticked boxes in this browser only (nothing is sent anywhere)
+    (function () {
+      var KEY = 'p1-simplified-checklist';
+      var boxes = document.querySelectorAll('.simplified-checklist input[type="checkbox"]');
+      var saved = {};
+      try { saved = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
+      boxes.forEach(function (box) {
+        box.checked = !!saved[box.dataset.item];
+        box.addEventListener('change', function () {
+          saved[box.dataset.item] = box.checked;
+          try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+        });
+      });
+    })();
+  </script>
   <script src="/nav.js"></script>
   <script src="/footer.js" defer></script>
 </body>
