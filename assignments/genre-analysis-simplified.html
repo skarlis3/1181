@@ -312,16 +312,16 @@
       <h2>Final Checklist</h2>
       <ul>
         <li><label><input type="checkbox" data-item="1"> My essay is about one community</label></li>
-        <li><label><input type="checkbox" data-item="2"> My essay is about one type of post (one genre)</label></li>
+        <li><label><input type="checkbox" data-item="2"> My essay is about one type of post or comment (one genre)</label></li>
         <li><label><input type="checkbox" data-item="3"> I explain the purpose (why people make these posts)</label></li>
         <li><label><input type="checkbox" data-item="4"> I explain the audience (who reads or watches)</label></li>
-        <li><label><input type="checkbox" data-item="5"> I analyze 3 conventions (informal rules) with examples</label></li>
-        <li><label><input type="checkbox" data-item="6"> Each convention paragraph: names it, shows examples, explains why it matters</label></li>
-        <li><label><input type="checkbox" data-item="7"> I explain how this type of post helps the community</label></li>
-        <li><label><input type="checkbox" data-item="8"> I have 3 samples as evidence</label></li>
-        <li><label><input type="checkbox" data-item="9"> I include a Works Cited page with links to my samples (MLA format)</label></li>
-        <li><label><input type="checkbox" data-item="10"> My essay is 1,300–1,700 words</label></li>
-        <li><label><input type="checkbox" data-item="11"> MLA format</label></li>
+        <li><label><input type="checkbox" data-item="5"> I analyze at least 3 conventions (informal rules) with examples</label></li>
+        <li><label><input type="checkbox" data-item="6"> I have at least 3 genre samples as evidence</label></li>
+        <li><label><input type="checkbox" data-item="7"> Each convention paragraph: names it, shows examples, explains why it matters</label></li>
+        <li><label><input type="checkbox" data-item="8"> I explain how this type of post functions in the community</label></li>
+        <li><label><input type="checkbox" data-item="9"> My essay is 1,300–1,700 words</label></li>
+        <li><label><input type="checkbox" data-item="10"> My essay is in MLA format</label></li>
+        <li><label><input type="checkbox" data-item="11"> I include an MLA Works Cited page with links to my samples (MLA format)</label></li>
       </ul>
     </div>
 
@@ -332,7 +332,7 @@
   <script>
     // Final Checklist: remember ticked boxes in this browser only (nothing is sent anywhere)
     (function () {
-      var KEY = 'p1-simplified-checklist';
+      var KEY = 'p1-simplified-checklist-v2';
       var boxes = document.querySelectorAll('.simplified-checklist input[type="checkbox"]');
       var saved = {};
       try { saved = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
