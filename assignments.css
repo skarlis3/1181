@@ -382,3 +382,43 @@ table.grade-table td.grade-text{
   .grade-badge{ width: 46px; height: 46px; font-size: 1.25rem; }
   table.grade-table td.grade-text{ padding-left: .9rem; }
 }
+
+
+/* ==================== Project Option Boxes (A = blue, B = purple) ==================== */
+/* Same blue and purple as the P1 Example Organization cards, so any page that
+   talks about Option A and Option B separately uses the same colors.
+   Heading/text colors are darkened a step from the P1 border colors for AAA. */
+
+.option-box {
+  border: 1px solid var(--option-color);
+  border-left: 6px solid var(--option-color);
+  background: var(--option-bg);
+  border-radius: 6px;
+  padding: 1rem 1.75rem .8rem;
+  margin: 1.25rem 0 1.75rem;
+}
+
+.option-a { --option-color: #2c5f8a; --option-bg: #dfeaf5; --option-text: #1f4a6e; }
+.option-b { --option-color: #6b3fa0; --option-bg: #f3e8fd; --option-text: #5a2f8c; }
+
+[data-theme="dark"] .option-a { --option-color: #5b9bd5; --option-bg: #1a2636; --option-text: #7db8e8; }
+[data-theme="dark"] .option-b { --option-color: #9b7cc9; --option-bg: #241a30; --option-text: #b89de0; }
+
+.option-box > h2:first-child,
+.option-box > h3:first-child {
+  margin-top: .25rem;
+  color: var(--option-text);
+}
+
+.option-box p:last-child,
+.option-box ul:last-child {
+  margin-bottom: 0;
+}
+
+/* Grade scale inside an option box: keep the grid readable on the tinted background */
+.option-box .grid-container-2columns {
+  padding: 10px 0;
+}
+.option-box .grid-item {
+  background-color: var(--bg);
+}

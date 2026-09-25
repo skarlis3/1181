@@ -74,8 +74,10 @@
               href: "/assignments/p2.html", 
               children: [
                 { label: "Project 2 Overview",    href: "/assignments/p2.html"},
-                { label: "Genre Remix",           href: "/assignments/p2-remix.html"},
+                { label: "Genre Remix: Option A", href: "/assignments/p2-remix.html"},
+                { label: "Genre Remix: Option B", href: "/assignments/p2-remix-b.html"},
                 { label: "Poster Presentation",   href: "/assignments/p2-poster.html"},
+                { label: "Grading",               href: "/assignments/p2-grading.html"},
                 { label: "Checklist",             href: "/assignments/p2-checklist.html"},
                 { label: "Design Resources",      href: "/assignments/p2-design-resources.html"},
                 { label: "Example Projects",      href: "/assignments/example-p2.html"}
