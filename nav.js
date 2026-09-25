@@ -64,6 +64,7 @@
                 { label: "Revised Draft",              href: "/assignments/revised-draft.html" },
                 { label: "Reflection & Checklist",      href: "/assignments/reflection.html" },
                 { label: "Individual Conferences",     href: "/assignments/conferences.html" },
+                { label: "Simplified Instructions",    href: "/assignments/genre-analysis-simplified.html" },
                 { label: "Example Organization",       href: "/assignments/p1-example-organization-v3.html" },
                 { label: "Example Essays",             href: "/assignments/example-p1.html" },
                 { label: "MLA Style & Citations",      href: "/assignments/mla-style.html" }
