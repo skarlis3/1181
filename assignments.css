@@ -422,3 +422,13 @@ table.grade-table td.grade-text{
 .option-box .grid-item {
   background-color: var(--bg);
 }
+
+
+/* ==================== Genre Ideas Table (P2 Option B) ==================== */
+/* Reuses the grade-scale table look; both columns hold wrapping text. */
+
+.genre-ideas-table td:first-child,
+.genre-ideas-table th:first-child {
+  width: 50%;
+  white-space: normal;
+}
