@@ -432,3 +432,24 @@ table.grade-table td.grade-text{
   width: 50%;
   white-space: normal;
 }
+
+
+/* ==================== Comparison Table (P2 Option A example remix) ==================== */
+/* Grade-scale table look, with row headers down the first column. */
+
+.comparison-table tbody th {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px solid var(--border, #e2e3e5);
+  font-weight: 700;
+}
+
+.comparison-table td {
+  vertical-align: top;
+}
+
+.comparison-table td:first-child,
+.comparison-table th:first-child {
+  width: 6rem;
+}
