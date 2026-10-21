@@ -149,6 +149,7 @@
                 {label: "AI Ethics Debate",     href: "/resources/in-class/ai-ethics-debate.html"},
                 {label: "AI Human vs. AI",      href: "/resources/in-class/ai-human-vs-ai.html"},
                 {label: "Different Audiences",  href: "/resources/in-class/different-audiences.html"},
+                {label: "Remix: Voice and Style",  href: "/resources/in-class/voice-and-style.html"},
                 {label: "The Smartest Move",    href: "/resources/in-class/the-smartest-move.html"},
                 {label: "Example News",         href: "/resources/in-class/example-news.html"},
                 {label: "Children's Books",     href: "/resources/in-class/childrens-books.html"},
