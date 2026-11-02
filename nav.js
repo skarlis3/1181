@@ -63,7 +63,6 @@
                 { label: "Rough Draft",                href: "/assignments/rough-draft.html" },
                 { label: "Peer Review",                href: "/assignments/peer-review.html" },
                 { label: "Revised Draft",              href: "/assignments/revised-draft.html" },
-                { label: "Reflection & Checklist",      href: "/assignments/reflection.html" },
                 { label: "Individual Conferences",     href: "/assignments/conferences.html" },
                 { heading: "Resources" },
                 { label: "Checklists",                 href: "/assignments/p1-checklist.html" },
