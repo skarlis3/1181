@@ -159,7 +159,8 @@
               ]
               },
               {label: "Additional Readings & Videos",  href: "/resources/additional-readings-and-videos.html"},
-              {label: "Letters of Recommendation",  href: "/resources/letters-of-recommendation.html"}
+              {label: "Letters of Recommendation",  href: "/resources/letters-of-recommendation.html"},
+              {label: "Using the Printer in F-308",  href: "/resources/printer-f308.html"}
           ]
         },
         {
